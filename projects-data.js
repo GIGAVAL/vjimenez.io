@@ -6,7 +6,7 @@ const PROJECTS = [
     location: "Chicago, IL",
     area: 3900000,
     value: null,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: "images/cook-county-1.jpg",
     pageId: "justice",
     position: { x: 20, y: 4 }
@@ -18,7 +18,7 @@ const PROJECTS = [
     location: "Queens, NY",
     area: 1200000,
     value: null,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: null,
     pageId: "civic",
     position: { x: 70, y: 8 }
@@ -30,7 +30,7 @@ const PROJECTS = [
     location: "Newark, NJ",
     area: 1000000,
     value: 2700,
-    year: "2020 -- 2021",
+    year: "2020 / 2021",
     image: null,
     pageId: null,
     position: { x: 45, y: 18 }
@@ -42,7 +42,7 @@ const PROJECTS = [
     location: "Baltimore, MD",
     area: null,
     value: 450,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: null,
     pageId: null,
     position: { x: 15, y: 30 }
@@ -54,7 +54,7 @@ const PROJECTS = [
     location: "New Hampton, NY",
     area: 345000,
     value: 300,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: "mid-hudson.jpg",
     pageId: "hospital",
     position: { x: 68, y: 28 }
@@ -66,7 +66,7 @@ const PROJECTS = [
     location: "Staten Island, NY",
     area: 270000,
     value: 155,
-    year: "2020 -- Present",
+    year: "2020 / Present",
     image: "courtroom-hero.jpg",
     pageId: "court",
     position: { x: 40, y: 42 }
@@ -78,7 +78,7 @@ const PROJECTS = [
     location: "Macomb County, MI",
     area: null,
     value: 229,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: null,
     pageId: null,
     position: { x: 75, y: 48 }
@@ -90,7 +90,7 @@ const PROJECTS = [
     location: "San Juan, PR",
     area: 150000,
     value: 185,
-    year: "2023 -- 2024",
+    year: "2023 / 2024",
     image: null,
     pageId: null,
     position: { x: 22, y: 58 }
@@ -102,7 +102,7 @@ const PROJECTS = [
     location: "Queens, NY",
     area: 115000,
     value: 65,
-    year: "2015 -- 2018",
+    year: "2015 / 2018",
     image: null,
     pageId: null,
     position: { x: 55, y: 65 }
@@ -114,7 +114,7 @@ const PROJECTS = [
     location: "Ithaca, NY",
     area: 31000,
     value: 21.6,
-    year: "2010 -- 2015",
+    year: "2010 / 2015",
     image: "cornell-axo.jpg",
     pageId: "library",
     position: { x: 30, y: 78 }
@@ -126,7 +126,7 @@ const PROJECTS = [
     location: "NYC Subway",
     area: null,
     value: 25,
-    year: "2018 -- 2024",
+    year: "2018 / 2024",
     image: "transit-1.jpg",
     pageId: "transit",
     position: { x: 65, y: 82 }

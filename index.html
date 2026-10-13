@@ -11,11 +11,11 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vjimenez.io/">
 <meta property="og:title" content="Valerie Jimenez Architecture, NYC">
-<meta property="og:description" content="Architecture for regulated platforms. 14 years, 20+ public-use facilities, $2.7B+ aggregate. Selected works 2010&ndash;2026.">
+<meta property="og:description" content="Architecture for regulated platforms. 14 years, 20+ public-use facilities, $2.7B+ aggregate. Selected works 2010-2026.">
 <meta property="og:image" content="https://vjimenez.io/images/cook-county-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Valerie Jimenez Architecture, NYC">
-<meta name="twitter:description" content="Architecture for regulated platforms. 14 years, 20+ public-use facilities, $2.7B+ aggregate. Selected works 2010&ndash;2026.">
+<meta name="twitter:description" content="Architecture for regulated platforms. 14 years, 20+ public-use facilities, $2.7B+ aggregate. Selected works 2010-2026.">
 <meta name="twitter:image" content="https://vjimenez.io/images/cook-county-1.jpg">
 <script type="application/ld+json">
 {
@@ -132,7 +132,7 @@
     color: var(--ink);
     transition: color 0.2s ease, -webkit-text-stroke-color 0.2s ease;
   }
-  /* Hover & active: hollow outline letterforms — white fill, ink stroke */
+  /* Hover & active: hollow outline letterforms, white fill, ink stroke */
   .nav-links a:hover,
   .nav-links a.active {
     color: #f5f1ea;
@@ -463,6 +463,41 @@
     transform: scale(1.02);
   }
 
+  /* Text-only card variant, dark tile with typographic weight instead of hero image */
+  .home-entry--text .home-image-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 4.5rem 2.4rem 2.4rem;
+    background: var(--ink);
+    color: #f5f1ea;
+  }
+
+  .home-entry--text .home-text-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+    max-width: 92%;
+    margin: 0;
+  }
+
+  .home-entry--text .home-text-metric {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: #c8bdac;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-top: 1.6rem;
+  }
+
+  .home-entry--text:hover .home-image-wrap {
+    background: #1a1a1a;
+  }
+
   /* Hard black tag overlay DS+R "HIGH LINE" device */
   .home-tag {
     position: absolute;
@@ -501,17 +536,6 @@
     color: var(--ink);
   }
 
-  /* Archive tiles -- portrait PDF pages bleed to the canvas edge.
-     Click reveals the full document on the project page. */
-  #cat-archive .home-image-wrap {
-    aspect-ratio: 4 / 5;
-    background: var(--ink);
-  }
-  #cat-archive .home-image-wrap img {
-    object-fit: cover;
-    object-position: top center;
-  }
-
   .home-meta {
     padding: 1.6rem 3.6rem 0 0;
   }
@@ -543,6 +567,67 @@
   .home-meta-loc .sep {
     color: var(--text-faint);
     margin: 0 0.8rem;
+  }
+
+  /* Grid variant, 2-column thumbnails, condenses tall-scroll sections */
+  .cat-section--grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.6rem;
+    row-gap: 4rem;
+  }
+  .cat-section--grid > .cat-header {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+  .cat-section--grid > .home-entry {
+    margin-bottom: 0;
+  }
+  .cat-section--grid .home-tag {
+    font-size: 0.75rem;
+    padding: 0.6rem 1rem;
+    letter-spacing: 0.14em;
+  }
+  .cat-section--grid .home-tag .num {
+    margin-right: 0.6rem;
+  }
+  .cat-section--grid .home-meta {
+    padding: 1.1rem 0 0 0;
+  }
+  .cat-section--grid .home-meta-name {
+    font-size: 1.7rem;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.6rem;
+  }
+  .cat-section--grid .home-meta-loc {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+  }
+  .cat-section--grid .home-meta-loc .sep {
+    margin: 0 0.4rem;
+  }
+  .cat-section--grid .home-entry--text .home-image-wrap {
+    padding: 2.4rem 1.4rem 1.4rem;
+  }
+  .cat-section--grid .home-entry--text .home-text-title {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+  }
+  .cat-section--grid .home-entry--text .home-text-metric {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    margin-top: 1rem;
+  }
+
+  /* Grid collapses to single column on narrow viewports */
+  @media (max-width: 900px) {
+    .cat-section--grid {
+      grid-template-columns: 1fr;
+      row-gap: 3rem;
+    }
+    .cat-section--grid .home-meta-name { font-size: 2.2rem; }
+    .cat-section--grid .home-meta-loc { font-size: 1rem; }
   }
 
   .home-intro {
@@ -805,11 +890,10 @@
       <hr class="nav-divider">
       <ul class="nav-links" id="navLinks">
         <li><a href="#cat-infrastructure" data-cat="infrastructure">Infrastructure</a></li>
-        <li><a href="#cat-care" data-cat="care">Care</a></li>
         <li><a href="#cat-justice" data-cat="justice">Justice</a></li>
         <li><a href="#cat-practice" data-cat="practice">Practice</a></li>
         <li><a href="#cat-editorial" data-cat="editorial">Editorial</a></li>
-        <li><a href="#cat-archive" data-cat="archive">Archive</a></li>
+        <li><a href="#cat-repo" data-cat="repo">Repo</a></li>
       </ul>
     </div>
     <div class="nav-footer">
@@ -827,17 +911,17 @@
       <div class="edge-mark">Valerie Jimenez Architect, NYC</div>
 
       <div class="home-intro">
-        <div class="home-intro-tag">Index 2010 / 2026 10 selected works</div>
+        <div class="home-intro-tag">Index 2010 / 2026 14 selected works</div>
         <div class="home-intro-text">Buildings as regulated platforms. Built to survive value engineering, political reality and capital math.</div>
         <div class="home-intro-sub">Fourteen years, 20+ public-use facilities, $2.7B+ aggregate, 7.9M+ sf across courthouses, libraries, healthcare, transit and hospitality. Operator fluency in real estate finance (NYU Schack) bridges design intent and business reality. Working across public and private sectors where architecture meets infrastructure, finance and adaptive reuse.</div>
       </div>
 
       <!-- 01 INFRASTRUCTURE -->
-      <section class="cat-section" id="cat-infrastructure">
+      <section class="cat-section cat-section--grid" id="cat-infrastructure">
         <div class="cat-header">
           <div class="cat-mark">01</div>
           <h2 class="cat-name">Infrastructure</h2>
-          <div class="cat-thesis">Civic-scale public works learning environments, transit systems, mixed-use districts. Buildings as public utilities rather than objects.</div>
+          <div class="cat-thesis">Civic-scale public works and the capital frameworks behind them: learning environments, transit systems, mixed-use districts and development pro formas. Buildings and their business cases treated as one engineered system.</div>
         </div>
 
         <a class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
@@ -885,48 +969,17 @@
         </a>
       </section>
 
-      <!-- 02 CARE -->
-      <section class="cat-section" id="cat-care">
+      <!-- 02 JUSTICE -->
+      <section class="cat-section cat-section--grid" id="cat-justice">
         <div class="cat-header">
           <div class="cat-mark">02</div>
-          <h2 class="cat-name">Care</h2>
-          <div class="cat-thesis">Behavioral health and forensic treatment environments designed around recovery rather than control. Daylight, material warmth and clinical rigor inside a secure perimeter.</div>
-        </div>
-
-        <a class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">005</span>Detention &amp; Treatment</div>
-            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Intake and Holdings</div>
-            <div class="home-meta-loc">2019<span class="sep">/</span>Exploded axonometric<span class="sep">/</span>Programmatic stacking study</div>
-          </div>
-        </a>
-
-        <a class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">006</span>Forensic</div>
-            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
-            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf<span class="sep">/</span>$300M<span class="sep">/</span>306-bed secure facility</div>
-          </div>
-        </a>
-      </section>
-
-      <!-- 03 JUSTICE -->
-      <section class="cat-section" id="cat-justice">
-        <div class="cat-header">
-          <div class="cat-mark">03</div>
           <h2 class="cat-name">Justice</h2>
-          <div class="cat-thesis">Confinement, courts and the architecture of judicial process. Trauma-informed planning at $2B+ scale across the typologies the discipline largely refuses to examine.</div>
+          <div class="cat-thesis">Confinement, courts and forensic treatment. Trauma-informed planning at $2B+ scale, environments designed around recovery rather than control, across the typologies the discipline largely refuses to examine.</div>
         </div>
 
         <a class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">007</span>Detention</div>
+            <div class="home-tag"><span class="num">005</span>Detention</div>
             <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -937,7 +990,7 @@
 
         <a class="home-entry" href="#court" onclick="stackOpen(&apos;court&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">008</span>Court</div>
+            <div class="home-tag"><span class="num">006</span>Court</div>
             <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -945,14 +998,37 @@
             <div class="home-meta-loc">2020&rarr;Present<span class="sep">/</span>270K sf<span class="sep">/</span>$155M<span class="sep">/</span>Bridging documents</div>
           </div>
         </a>
+
+        <a class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">007</span>Forensic</div>
+            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
+            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf<span class="sep">/</span>$300M<span class="sep">/</span>306-bed secure facility</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">008</span>Detention &amp; Treatment</div>
+            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Intake and Holdings</div>
+            <div class="home-meta-loc">2019<span class="sep">/</span>Exploded axonometric<span class="sep">/</span>Programmatic stacking study</div>
+          </div>
+        </a>
+
       </section>
 
-      <!-- 04 PRACTICE -->
-      <section class="cat-section" id="cat-practice">
+      <!-- 03 PRACTICE -->
+      <section class="cat-section cat-section--grid" id="cat-practice">
         <div class="cat-header">
-          <div class="cat-mark">04</div>
+          <div class="cat-mark">03</div>
           <h2 class="cat-name">Practice</h2>
-          <div class="cat-thesis">Smaller-scale work where material and proportion carry the design storefront, workplace, retail. The studio register at room scale.</div>
+          <div class="cat-thesis">Smaller-scale work where material and proportion carry the design: retail and workplace. The studio register at room scale.</div>
         </div>
 
         <a class="home-entry" href="#interior" onclick="stackOpen(&apos;interior&apos;); return false;">
@@ -977,30 +1053,20 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">011</span>Storefront</div>
-            <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Rodarte</div>
-            <div class="home-meta-loc">Meatpacking District, NYC<span class="sep">/</span>Storefront concept<span class="sep">/</span>Highline frontage</div>
-          </div>
-        </a>
       </section>
 
-      <!-- 05 EDITORIAL -->
-      <section class="cat-section" id="cat-editorial">
+      <!-- 04 EDITORIAL -->
+      <section class="cat-section cat-section--grid" id="cat-editorial">
         <div class="cat-header">
-          <div class="cat-mark">05</div>
+          <div class="cat-mark">04</div>
           <h2 class="cat-name">Editorial</h2>
-          <div class="cat-thesis">DO: Design Observer an independent platform writing the typologies the discipline refuses. Justice architecture as the inaugural subject.</div>
+          <div class="cat-thesis">DO: Design Observer, an independent platform on the typologies architecture refuses to examine. Justice as the inaugural subject.</div>
         </div>
 
-        <a class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;); return false;">
+        <a class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">012</span>Writing &amp; Research</div>
-            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="Editorial — DO: Design Observer + Conference Reports" onload="this.classList.add('loaded')">
+            <div class="home-tag"><span class="num">011</span>Writing &amp; Research</div>
+            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="Editorial, DO: Design Observer and conference reports" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Editorial</div>
@@ -1009,36 +1075,68 @@
         </a>
       </section>
 
-      <!-- 06 ARCHIVE -->
-      <section class="cat-section" id="cat-archive">
+      <!-- 05 REPO -->
+      <section class="cat-section cat-section--grid" id="cat-repo">
         <div class="cat-header">
-          <div class="cat-mark">06</div>
-          <h2 class="cat-name">Archive</h2>
-          <div class="cat-thesis">Earlier work: a Doban-led residential redevelopment and two academic portfolios from architectural training at NYIT. PDFs open in a new tab.</div>
+          <div class="cat-mark">05</div>
+          <h2 class="cat-name">Repo</h2>
+          <div class="cat-thesis">Workshop and archive. AI-assisted architectural tools versioned in the open at <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a>, alongside earlier work: a residential redevelopment, a storefront concept and academic portfolios from NYIT.</div>
         </div>
+
+        <a class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">012</span>QA/QC</div>
+            <img decoding="async" loading="lazy" src="images/repos/sheetcheck.png" alt="SheetCheck, architectural drawing set QA/QC tool" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">SheetCheck</div>
+            <div class="home-meta-loc">Drawing-set QA/QC<span class="sep">/</span>Title-block extraction<span class="sep">/</span>Live browser demo</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="https://github.com/GIGAVAL/fire002-handover" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">013</span>Code</div>
+            <img decoding="async" loading="lazy" src="images/repos/fire002.png" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">FIRE-002 Compartmentation</div>
+            <div class="home-meta-loc">Fire compartmentation validation<span class="sep">/</span>NCC 2022, DBP Act NSW<span class="sep">/</span>Interactive handover</div>
+          </div>
+        </a>
 
         <a class="home-entry" href="#archive-inwood" onclick="stackOpen(&apos;archive-inwood&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">013</span>Residential</div>
+            <div class="home-tag"><span class="num">014</span>Residential</div>
             <img decoding="async" loading="lazy" src="images/archive/inwood-redevelopment-cover.jpg" alt="Redevelopment" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Redevelopment</div>
-            <div class="home-meta-loc">Inwood, Manhattan<span class="sep">/</span>2018<span class="sep">/</span>Doban Architecture<span class="sep">/</span>Ranger Properties LLC<span class="sep">/</span>22-page presentation</div>
+            <div class="home-meta-loc">Inwood, Manhattan<span class="sep">/</span>2018<span class="sep">/</span>Architecture firm<span class="sep">/</span>Private developer</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">015</span>Storefront</div>
+            <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Rodarte</div>
+            <div class="home-meta-loc">Meatpacking District, NYC<span class="sep">/</span>Storefront concept<span class="sep">/</span>Highline frontage</div>
           </div>
         </a>
 
         <a class="home-entry" href="#archive-design-2" onclick="stackOpen(&apos;archive-design-2&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">014</span>Academic</div>
-            <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio — Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')">
+            <div class="home-tag"><span class="num">016</span>Academic</div>
+            <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio, Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Archived Portfolio</div>
             <div class="home-meta-loc">NYIT<span class="sep">/</span>Fall 2011 + Spring 2012<span class="sep">/</span>Central Park Pavilion, Palazzi, CaixaForum</div>
           </div>
         </a>
-
       </section>
 
     </div>
@@ -1077,28 +1175,28 @@
     <!-- COURT -->
     <div class="project-page" id="court">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Courtroom interior — walnut millwork, wood-slat feature wall, integrated linear lighting" onload="this.classList.add('loaded')">
-        <div class="image-caption">Courtroom interior render — walnut millwork, wood-slat feature wall behind the bench, integrated linear lighting</div>
+        <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Courtroom interior, walnut millwork, wood-slat feature wall, integrated linear lighting" onload="this.classList.add('loaded')">
+        <div class="image-caption">Courtroom interior render, walnut millwork, wood-slat feature wall behind the bench, integrated linear lighting</div>
       </div>
       <div class="project-content">
         <div class="project-location">Staten Island, NY / 2020&rarr;Present / 270K sf / $155M</div>
-        <p class="project-description">Consolidating three existing civic buildings — 100 Richmond Terrace, 10 Hamilton Avenue and 55 Stuyvesant Place — into a unified family courthouse complex on a single campus. The courtroom interiors balance judicial gravity with warm walnut millwork, a multicolor wood-slat feature wall behind the bench and integrated linear lighting that softens the institutional ceiling plane.</p>
+        <p class="project-description">Consolidating three existing civic buildings, 100 Richmond Terrace, 10 Hamilton Avenue and 55 Stuyvesant Place, into a unified family courthouse complex on a single campus. The courtroom interiors balance judicial gravity with warm walnut millwork, a multicolor wood-slat feature wall behind the bench and integrated linear lighting that softens the institutional ceiling plane.</p>
         <div class="project-role">Role</div>
         <p class="project-detail">Collaborating with the design architect on bridging documents. Developing test-fit options and blocking diagrams for each department, participating in steering committee presentations and contributing to the conceptual report for cost estimation. Joint venture with Mitchell Giurgola Architects for DASNY.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/court/court-site-plan.jpg" alt="Family Court campus site plan — 100 Richmond, 10 Hamilton, 55 Stuyvesant" onload="this.classList.add('loaded')">
-        <div class="image-caption">Campus site plan — 100 Richmond Terrace, 10 Hamilton Avenue and 55 Stuyvesant Place, three buildings consolidated into a single courthouse complex</div>
-        <img decoding="async" loading="lazy" src="court-studies.jpg?v=3" alt="Courtroom design studies — eight material and lighting iterations" onload="this.classList.add('loaded')">
-        <div class="image-caption">Material and lighting studies — iterative design development across ceiling geometry, millwork finish and feature-wall configurations</div>
-        <img decoding="async" loading="lazy" src="si-court-plan.jpg" alt="Third floor overall plan with key plan — 10 Hamilton and 55 Stuyvesant" onload="this.classList.add('loaded')">
-        <div class="image-caption">Third floor overall plan — courtrooms, chambers and departmental support across 10 Hamilton and 55 Stuyvesant, with color-coded key plan</div>
+        <img decoding="async" loading="lazy" src="images/court/court-site-plan.jpg" alt="Family Court campus site plan, 100 Richmond, 10 Hamilton, 55 Stuyvesant" onload="this.classList.add('loaded')">
+        <div class="image-caption">Campus site plan, 100 Richmond Terrace, 10 Hamilton Avenue and 55 Stuyvesant Place, three buildings consolidated into a single courthouse complex</div>
+        <img decoding="async" loading="lazy" src="court-studies.jpg?v=3" alt="Courtroom design studies, eight material and lighting iterations" onload="this.classList.add('loaded')">
+        <div class="image-caption">Material and lighting studies, iterative design development across ceiling geometry, millwork finish and feature-wall configurations</div>
+        <img decoding="async" loading="lazy" src="si-court-plan.jpg" alt="Third floor overall plan with key plan, 10 Hamilton and 55 Stuyvesant" onload="this.classList.add('loaded')">
+        <div class="image-caption">Third floor overall plan, courtrooms, chambers and departmental support across 10 Hamilton and 55 Stuyvesant, with color-coded key plan</div>
         <img decoding="async" loading="lazy" src="images/court/court-color-plan.jpg?v=5" alt="Family Court programmatic color plan" onload="this.classList.add('loaded')">
-        <div class="image-caption">Programmatic plan — courtrooms and ancillary spaces organized by department around the central circulation core</div>
+        <div class="image-caption">Programmatic plan, courtrooms and ancillary spaces organized by department around the central circulation core</div>
         <img decoding="async" loading="lazy" src="images/court/court-courtroom-plan.jpg?v=6" alt="Family Court detailed courtroom floor plan" onload="this.classList.add('loaded')">
-        <div class="image-caption">Courtroom floor plan — BIM-modeled layout with judge's bench, witness stand, jury box, gallery seating and ancillary chambers</div>
+        <div class="image-caption">Courtroom floor plan, BIM-modeled layout with judge's bench, witness stand, jury box, gallery seating and ancillary chambers</div>
         <img decoding="async" loading="lazy" src="si-court-exterior.jpg" alt="Historic Richmond County Courthouse with contemporary addition" onload="this.classList.add('loaded')">
-        <div class="image-caption">Historic Richmond County Courthouse with contemporary addition — contextual response to the circa-1920 civic landmark at 100 Richmond Terrace</div>
+        <div class="image-caption">Historic Richmond County Courthouse with contemporary addition, contextual response to the circa-1920 civic landmark at 100 Richmond Terrace</div>
       </div>
       <div class="next-page"><a href="#interior" onclick="showPage('interior')">Interior &rarr;</a></div>
     </div>
@@ -1109,7 +1207,7 @@
         <img decoding="async" loading="lazy" src="images/penobscot/axo-full.png?v=2" alt="Intake and Holdings exploded axonometric and floor diagrams" onload="this.classList.add('loaded')">
         <div class="image-caption">Exploded axonometric and floor-by-floor programmatic diagrams, 2019</div>
         <img decoding="async" loading="lazy" src="images/penobscot/stacking-diagram.png" alt="Intake and Holdings programmatic stacking diagram" onload="this.classList.add('loaded')">
-        <div class="image-caption">Stacking diagram — vertical adjacency of housing, healthcare, admin, food service, MEP and intake operations</div>
+        <div class="image-caption">Stacking diagram, vertical adjacency of housing, healthcare, admin, food service, MEP and intake operations</div>
       </div>
       <div class="project-content">
         <div class="project-location">2019 / Programmatic study</div>
@@ -1139,7 +1237,12 @@
         <p class="project-detail">Coordinated consultants and managed fee structures for a trauma-informed treatment campus. Developed design options that satisfied both security requirements and the emerging standards for behavioral health environments. Integrated BIM workflows with prefabrication sequencing for a 306-bed secure facility.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/hospital-view-03c.jpg" alt="Hospital view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-view-03c.jpg" alt="Forensic Psychiatric Center campus view" onload="this.classList.add('loaded')">
+        <div class="image-caption">Campus approach, therapeutic landscape and building massing in context</div>
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-007.jpg" alt="Forensic Psychiatric Center site study, alternate view" onload="this.classList.add('loaded')">
+        <div class="image-caption">Site work, alternate elevation and grade condition study</div>
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-008c.jpg" alt="Forensic Psychiatric Center program and massing iteration" onload="this.classList.add('loaded')">
+        <div class="image-caption">Program and massing iteration, secure perimeter and daylit central commons</div>
       </div>
       <div class="next-page"><a href="#justice" onclick="showPage('justice')">Justice &rarr;</a></div>
     </div>
@@ -1174,13 +1277,16 @@
       <div class="project-content">
         <div class="project-location">Various Locations New York</div>
         <p class="project-description">Intimate-scale interior and retail projects where material choices and spatial proportion carry the design. A corner bakery with a warm storefront presence. An auditorium renovation balancing acoustics and atmosphere. Residential and commercial spaces developed through close collaboration with clients and craftspeople.</p>
+        <div class="project-role">Role</div>
+        <p class="project-detail">Full project lifecycles from survey through construction documents. Material specification, finish schedules and millwork detailing coordinated with contractors and fabricators.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/interior-auditorium.jpg" alt="Auditorium" onload="this.classList.add('loaded')">
-        <div class="image-caption">Auditorium renovation</div>
-        <img decoding="async" loading="lazy" src="images/cargo/interior-residential-commercial.jpg" alt="Residential commercial" onload="this.classList.add('loaded')">
-        <div class="image-caption">Residential and commercial interiors</div>
-        <img decoding="async" loading="lazy" src="images/cargo/interior-garden.jpg" alt="Garden" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/interior-auditorium.jpg" alt="Auditorium renovation" onload="this.classList.add('loaded')">
+        <div class="image-caption">Auditorium renovation, acoustics, seating layout and material palette</div>
+        <img decoding="async" loading="lazy" src="images/cargo/interior-residential-commercial.jpg" alt="Residential and commercial interiors" onload="this.classList.add('loaded')">
+        <div class="image-caption">Residential and commercial interiors, adaptive reuse and fit-out studies</div>
+        <img decoding="async" loading="lazy" src="images/cargo/interior-garden.jpg" alt="Garden courtyard landscape plan" onload="this.classList.add('loaded')">
+        <div class="image-caption">NYC courtyard garden, landscape plan, planting schedule and detail studies</div>
       </div>
       <div class="next-page"><a href="#office" onclick="showPage('office')">Office &rarr;</a></div>
     </div>
@@ -1199,10 +1305,13 @@
       </div>
       <div class="project-images">
         <img decoding="async" loading="lazy" src="images/cargo/civic-tq-northwest-corner.jpg" alt="Metropolitan Park, northwest corner render" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/civic/metropolitan-park-axonometric-views.jpg" alt="Metropolitan Park, building axonometric views — South Gateway Plaza approach and Roosevelt Avenue parcel" onload="this.classList.add('loaded')">
-        <div class="image-caption">Building axonometric views — South Gateway Plaza approach from Citi Field, and parcel context at Roosevelt Avenue / Seaver Way</div>
+        <div class="image-caption">Northwest corner, hotel and casino entry frontage at Roosevelt Avenue</div>
+        <img decoding="async" loading="lazy" src="images/civic/metropolitan-park-axonometric-views.jpg" alt="Metropolitan Park, building axonometric views, South Gateway Plaza approach and Roosevelt Avenue parcel" onload="this.classList.add('loaded')">
+        <div class="image-caption">Building axonometric views, South Gateway Plaza approach from Citi Field and parcel context at Roosevelt Avenue / Seaver Way</div>
         <img decoding="async" loading="lazy" src="images/civic/tq-exploded-axo.png" alt="Tower Q parking garage exploded axonometric" onload="this.classList.add('loaded')">
         <div class="image-caption">Tower Q parking garage, exploded axonometric programmatic stacking</div>
+        <img decoding="async" loading="lazy" src="images/cargo/civic-tq-overall-plan.jpg" alt="Metropolitan Park, 50-acre district plan" onload="this.classList.add('loaded')">
+        <div class="image-caption">Overall site plan, 50-acre district organization across hotel, casino, performance venue, food hall and public park</div>
       </div>
       <div class="next-page"><a href="#transit" onclick="showPage('transit')">Transit &rarr;</a></div>
     </div>
@@ -1220,8 +1329,10 @@
         <p class="project-detail">Led integration of screen door concepts with existing station elements. Coordinated interdisciplinary equipment room design and produced design-build bridging documents.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-2.jpg" alt="Transit 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="transit-1.jpg?v=2" alt="Transit detail" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-2.jpg" alt="Platform screen door installation, alternate station view" onload="this.classList.add('loaded')">
+        <div class="image-caption">Platform screen door system, alternate station configuration and passenger flow</div>
+        <img decoding="async" loading="lazy" src="transit-1.jpg?v=2" alt="Platform screen door technical detail" onload="this.classList.add('loaded')">
+        <div class="image-caption">Screen door assembly, integration with existing column grid and ventilation systems</div>
       </div>
       <div class="next-page"><a href="#development" onclick="showPage('development')">Development &rarr;</a></div>
     </div>
@@ -1250,7 +1361,7 @@
         <img decoding="async" loading="lazy" src="images/les-bldg-qty.jpg" alt="LES building quantities" onload="this.classList.add('loaded')">
         <div class="image-caption">Building quantities takeoffs supporting the construction estimate</div>
       </div>
-      <div class="next-page"><a href="#hospital" onclick="showPage('hospital')">Care &rarr;</a></div>
+      <div class="next-page"><a href="#hospital" onclick="showPage('hospital')">Forensic &rarr;</a></div>
     </div>
 
     <!-- OFFICE -->
@@ -1262,18 +1373,21 @@
       <div class="project-content">
         <div class="project-location">New York, NY</div>
         <p class="project-description">Interior renovation and strategic programming of a 5-story commercial office for an architecture and engineering firm. Developed the spatial strategy for collaboration zones, private offices and client-facing presentation areas balancing operational efficiency with the firm's creative identity.</p>
+        <div class="project-role">Role</div>
+        <p class="project-detail">Space planning, construction documentation and material specification. Coordinated MEP and furniture systems integration across five floors of occupied renovation.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/office-aec-plans.jpg" alt="Office plans" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/office-aec-plans.jpg" alt="Office floor plans and programming" onload="this.classList.add('loaded')">
+        <div class="image-caption">Floor plans, open office, conference suites and support spaces</div>
       </div>
-      <div class="next-page"><a href="#rodarte" onclick="showPage('rodarte')">Rodarte &rarr;</a></div>
+      <div class="next-page"><a href="#editorial" onclick="showPage('editorial')">Editorial &rarr;</a></div>
     </div>
 
     <!-- RODARTE STOREFRONT -->
     <div class="project-page" id="rodarte">
       <div class="project-images">
         <img decoding="async" loading="lazy" src="images/rodarte/storefront-rendering.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
-        <div class="image-caption">Storefront concept rendering — Highline frontage, Meatpacking District</div>
+        <div class="image-caption">Storefront concept rendering, Highline frontage, Meatpacking District</div>
       </div>
       <div class="project-content">
         <div class="project-location">Meatpacking District, NYC / Storefront concept / NYIT Spring 2012 origin</div>
@@ -1283,11 +1397,15 @@
       </div>
       <div class="project-images">
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-06.png" alt="Highline Fashion Rodarte page 1" onload="this.classList.add('loaded')">
+        <div class="image-caption">Brand research and preliminary facade sketches, Rodarte references, mood board and hand-drawn storefront studies</div>
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-07.png" alt="Highline Fashion Rodarte page 2" onload="this.classList.add('loaded')">
+        <div class="image-caption">Site plan and massing model, pedestrian and vehicle circulation at the High Line and Washington Street</div>
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-08.png" alt="Highline Fashion Rodarte page 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">Floor plans, structural axonometric and display system model, program stacking from gallery through production studio to roof</div>
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-09.png" alt="Highline Fashion Rodarte page 4" onload="this.classList.add('loaded')">
+        <div class="image-caption">Building sections and facade model, detailed section through showroom, studio and conference levels</div>
       </div>
-      <div class="next-page"><a href="#editorial" onclick="showPage('editorial')">Editorial &rarr;</a></div>
+      <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>
     </div>
 
     <!-- EDITORIAL / WRITING -->
@@ -1300,8 +1418,8 @@
       </div>
       <div class="project-content">
         <div class="project-location">Editorial Research &amp; Writing</div>
-        <p class="project-description">An editorial practice across justice architecture, sustainable real estate and transportation infrastructure. Writing at the intersection of design practice, policy critique and capital markets. Three current threads: a forthcoming platform on justice typologies, an authored summary of the 2026 NYU Schack conference on sustainable real estate, and an authored summary of the PwC Transportation and Infrastructure Forum.</p>
-        <div class="project-role">Volume 1 Forthcoming — DO: Design Observer</div>
+        <p class="project-description">An editorial practice across justice architecture, sustainable real estate and transportation infrastructure. Writing at the intersection of design practice, policy critique and capital markets. Three current threads: a forthcoming platform on justice typologies, an authored summary of the 2026 NYU Schack conference on sustainable real estate and an authored summary of the PwC Transportation and Infrastructure Forum.</p>
+        <div class="project-role">Volume 1 Forthcoming, DO: Design Observer</div>
         <p class="project-detail">Inaugural issue assembling typological, material and technological reports on innovations in justice and treatment infrastructure. Sections in development: trauma-informed planning, post-supervision typologies, materials of care, technology and surveillance. Drawing on first-hand work across $1.5B+ of detention, court and behavioral health programs.</p>
       </div>
       <div class="project-images">
@@ -1313,7 +1431,7 @@
       <div class="project-content">
         <div class="project-location">NYU Schack Institute / 9th Annual Conference on Sustainable Real Estate / 2026</div>
         <p class="project-description">Executive summary and conference notes for the 9th Annual NYU Schack Conference on Sustainable Real Estate. The summary distills panel sessions across energy infrastructure and grid transformation, adaptive reuse, climate risk management, workforce development, capital markets innovation and critical challenges facing the sector. The accompanying notes document moderator-led conversations between investors, developers, public agencies and academic researchers.</p>
-        <div class="project-role">Authored — NYU 9th Conference</div>
+        <div class="project-role">Authored, NYU 9th Conference</div>
         <p class="project-detail">
           <a href="editorial/nyu-sustainable-re-executive-summary.pdf" target="_blank" rel="noopener">Download Executive Summary (PDF, 7 pages)</a>
           &nbsp;&middot;&nbsp;
@@ -1321,38 +1439,27 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="NYU 9th Conference Executive Summary page 1" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-02.png" alt="NYU 9th Conference Executive Summary page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-03.png" alt="NYU 9th Conference Executive Summary page 3" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-04.png" alt="NYU 9th Conference Executive Summary page 4" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-05.png" alt="NYU 9th Conference Executive Summary page 5" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-06.png" alt="NYU 9th Conference Executive Summary page 6" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-07.png" alt="NYU 9th Conference Executive Summary page 7" onload="this.classList.add('loaded')">
-        <div class="image-caption">Conference Notes follow &mdash;</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="NYU 9th Conference Notes page 1" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-02.png" alt="NYU 9th Conference Notes page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-03.png" alt="NYU 9th Conference Notes page 3" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-04.png" alt="NYU 9th Conference Notes page 4" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-05.png" alt="NYU 9th Conference Notes page 5" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-06.png" alt="NYU 9th Conference Notes page 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="NYU 9th Conference Executive Summary cover" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary cover, full 7-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="NYU 9th Conference Notes cover" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes cover, full 6-page document available above</div>
       </div>
 
       <!-- PWC TRANSPORTATION & INFRASTRUCTURE FORUM -->
       <div class="project-content">
         <div class="project-location">PwC Transportation &amp; Infrastructure Forum / Accenture, 395 North Avenue NYC / February 2026</div>
-        <p class="project-description">Executive summary of the PwC Transportation and Infrastructure Forum. Documents the moderator perspective and regional context, then synthesizes program updates across NYC DOT bridges, MTA capital program and systemwide modernization, NYSDOT Region 11 delivery and procurement flexibility, and NYCEDC capital program with community-centered infrastructure. Closes on cross-cutting themes and emerging directions for the sector.</p>
-        <div class="project-role">Authored — PwC Forum</div>
+        <p class="project-description">Executive summary of the PwC Transportation and Infrastructure Forum. Documents the moderator perspective and regional context, then synthesizes program updates across NYC DOT bridges, MTA capital program and systemwide modernization, NYSDOT Region 11 delivery and procurement flexibility and NYCEDC capital program with community-centered infrastructure. Closes on cross-cutting themes and emerging directions for the sector.</p>
+        <div class="project-role">Authored, PwC Forum</div>
         <p class="project-detail">
           <a href="editorial/pwc-transportation-infrastructure-forum.pdf" target="_blank" rel="noopener">Download Executive Summary (PDF, 3 pages)</a>
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary page 1" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-02.png" alt="PwC Forum Executive Summary page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-03.png" alt="PwC Forum Executive Summary page 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary cover" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary cover, full 3-page document available above</div>
       </div>
 
-      <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Archive &rarr;</a></div>
+      <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Redevelopment &rarr;</a></div>
     </div>
 
     <!-- ARCHIVE 011: INWOOD REDEVELOPMENT -->
@@ -1362,32 +1469,15 @@
         <img decoding="async" loading="lazy" src="images/archive/inwood/page-01.png?v=2" alt="Redevelopment site plan" onload="this.classList.add('loaded')">
       </div>
       <div class="project-content">
-        <div class="project-location">Inwood, Manhattan / Doban Architecture / Ranger Properties LLC / May 2018</div>
-        <p class="project-description">Building presentation for an 8-story residential redevelopment. Architectural massing, site and zoning analysis, unit-mix studies and material approach. Archived from the Doban Architecture portfolio.</p>
+        <div class="project-location">Inwood, Manhattan / Architecture Firm / Private Developer / May 2018</div>
+        <p class="project-description">Building presentation for an 8-story residential redevelopment. Architectural massing, site and zoning analysis, unit-mix studies and material approach. Archived from a prior firm portfolio.</p>
         <p class="project-detail"><a href="archive/inwood-redevelopment.pdf" target="_blank" rel="noopener">Download original PDF</a> &nbsp;&middot;&nbsp; 22 pages</p>
       </div>
       <div class="project-images">
         <img decoding="async" loading="lazy" src="images/archive/inwood/page-02.png?v=2" alt="Redevelopment page 2" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/inwood/page-03.png?v=2" alt="Redevelopment page 3" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/inwood/page-04.png?v=2" alt="Redevelopment page 4" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-05.png?v=2" alt="Redevelopment page 5" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-06.png?v=2" alt="Redevelopment page 6" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-07.png?v=2" alt="Redevelopment page 7" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-08.png?v=2" alt="Redevelopment page 8" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-09.png?v=2" alt="Redevelopment page 9" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-10.png?v=2" alt="Redevelopment page 10" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-11.png?v=2" alt="Redevelopment page 11" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-12.png?v=2" alt="Redevelopment page 12" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-13.png?v=2" alt="Redevelopment page 13" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-14.png?v=2" alt="Redevelopment page 14" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-15.png?v=2" alt="Redevelopment page 15" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-16.png?v=2" alt="Redevelopment page 16" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-17.png?v=2" alt="Redevelopment page 17" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-18.png?v=2" alt="Redevelopment page 18" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-19.png?v=2" alt="Redevelopment page 19" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-20.png?v=2" alt="Redevelopment page 20" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-21.png?v=2" alt="Redevelopment page 21" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-22.png?v=2" alt="Redevelopment page 22" onload="this.classList.add('loaded')">
+        <div class="image-caption">Representative spreads, full 22-page presentation available above</div>
       </div>
       <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>
     </div>
@@ -1403,7 +1493,7 @@
       </div>
       <div class="project-content">
         <div class="project-location">NYIT / Fall 2011 + Spring 2012</div>
-        <p class="project-description">Combined academic archive of first- and second-year studio work. Fall 2011 (ARCH 201): The Pavilion at Central Park, a small-scale design intervention near the Jacqueline Kennedy Onassis Reservoir, exploring site, section and the organization of space. Spring 2012: precedent analyses of Palazzo Massimo Alle Colonne in Rome (Baldassarre Peruzzi) and Herzog &amp; de Meuron's CaixaForum facade in Madrid.</p>
+        <p class="project-description">Combined academic archive of first- and second-year studio work. Fall 2011 (ARCH 201): The Pavilion at Central Park, a small-scale design intervention near the Jacqueline Kennedy Onassis Reservoir, exploring site, section and the organization of space. Spring 2012: precedent analyses of Palazzo Massimo Alle Colonne in Rome and the CaixaForum facade in Madrid.</p>
         <p class="project-detail">
           <a href="archive/design-2-portfolio.pdf" target="_blank" rel="noopener">Download Spring 2012 PDF</a>
           &nbsp;&middot;&nbsp;
@@ -1415,7 +1505,7 @@
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-03.png" alt="Spring 2012, CaixaForum page 3" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-04.png" alt="Spring 2012, CaixaForum page 4" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/design-2/page-05.png" alt="Spring 2012, CaixaForum page 5" onload="this.classList.add('loaded')">
-        <div class="image-caption">Fall 2011 — Central Park Pavilion follows &mdash;</div>
+        <div class="image-caption">Fall 2011, Central Park Pavilion follows</div>
         <img decoding="async" loading="lazy" src="images/archive/design-1/page-01.png" alt="Central Park Pavilion cover" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/design-1/page-02.png" alt="Central Park Pavilion page 2" onload="this.classList.add('loaded')">
         <img decoding="async" loading="lazy" src="images/archive/design-1/page-03.png" alt="Central Park Pavilion page 3" onload="this.classList.add('loaded')">
@@ -1442,27 +1532,27 @@
         <div class="work-entry">
           <div class="work-entry-header">
             <span class="work-title">Associate / Senior Designer</span>
-            <span class="work-dates">2018 &ndash; Present</span>
+            <span class="work-dates">2018 / Present</span>
           </div>
           <div class="work-company">AEC Firm (10+ yrs in industry)</div>
-          <p class="work-description">Co-lead designer on institutional building programs valued at $50M&ndash;$450M for public and private clients. Primary client liaison through design phases, presenting options to steering committees and translating stakeholder feedback into built form. Promoted to Associate based on delivery across 5M+ sf spanning courthouses, psychiatric facilities, transit stations and schools.</p>
+          <p class="work-description">Co-lead designer on institutional building programs valued at $50M-$450M for public and private clients. Primary client liaison through design phases, presenting options to steering committees and translating stakeholder feedback into built form. Promoted to Associate based on delivery across 5M+ sf spanning courthouses, psychiatric facilities, transit stations and schools.</p>
         </div>
 
         <div class="work-entry">
           <div class="work-entry-header">
             <span class="work-title">Project Manager / Lead Design Architect</span>
-            <span class="work-dates">2015 &ndash; 2018</span>
+            <span class="work-dates">2015 / 2018</span>
           </div>
-          <div class="work-company">Doban Architecture</div>
-          <p class="work-description">Managed full project lifecycles for educational and commercial renovations valued at $1M&ndash;$65M. Led client presentations and construction document production. Delivered 780K sf of completed work across concurrent capital projects including a 115K sf school and a 600K sf facade restoration.</p>
+          <div class="work-company">Architecture Firm, NYC</div>
+          <p class="work-description">Managed full project lifecycles for educational and commercial renovations valued at $1M-$65M. Led client presentations and construction document production. Delivered 780K sf of completed work across concurrent capital projects including a 115K sf school and a 600K sf facade restoration.</p>
         </div>
 
         <div class="work-entry">
           <div class="work-entry-header">
             <span class="work-title">Design Architect</span>
-            <span class="work-dates">2010 &ndash; 2015</span>
+            <span class="work-dates">2010 / 2015</span>
           </div>
-          <div class="work-company">Gruzen Samton LLP</div>
+          <div class="work-company">Legacy AEC Firm, NYC</div>
           <p class="work-description">Built foundation in technical production and cross-discipline coordination on large-scale public education projects at a legacy New York practice founded in 1936. Early immersion in the standards of civic and institutional design Grand Central Subway Station, NYC Police Headquarters, Columbia University campus buildings.</p>
         </div>
 
@@ -1554,7 +1644,7 @@
   let stackImageList = [];
   let stackIndex = 0;
 
-  function stackOpen(projectId) {
+  function stackOpen(projectId, tile) {
     const project = document.getElementById(projectId);
     if (!project) return;
     stackProjectId = projectId;
@@ -1569,9 +1659,10 @@
 
     /* Build a citation-style meta block from the home tile data:
        Ref. NNN
-       *Project Name*. Location. Year. */
+       *Project Name*. Location. Year.
+       Prefer the clicked tile so cards sharing a target keep their own metadata. */
     const meta = document.querySelector('.stack-meta');
-    const projectTile = document.querySelector('.home-entry[href="#' + projectId + '"]');
+    const projectTile = tile || document.querySelector('.home-entry[href="#' + projectId + '"]');
     let num = '';
     let projectName = projectId;
     let citationDetail = '';
