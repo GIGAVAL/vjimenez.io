@@ -2,7 +2,7 @@
 
 Portfolio site of Valerie Jimenez, architect in New York City.
 
-**Live:** [vjimenez.io](https://vjimenez.io) · GitHub Pages copy: [gigaval.github.io/vjimenez.io](https://gigaval.github.io/vjimenez.io/)
+**Live:** [www.vjimenez.io](https://www.vjimenez.io), served by GitHub Pages from this repo
 
 Architecture for regulated platforms: fourteen years and 20+ public-use facilities at $2.7B+ aggregate, with operator fluency in design and real estate finance.
 
@@ -23,7 +23,6 @@ Architecture for regulated platforms: fourteen years and 20+ public-use faciliti
 | `images/` | Project images, grouped by project |
 | `archive/` | Full portfolio PDFs |
 | `editorial/` | Editorial PDFs |
-| `netlify.toml` | Cache headers for the Netlify deploy |
 
 No build step. Plain static files.
 
@@ -37,5 +36,4 @@ Then open http://localhost:4400.
 
 ## Deploy
 
-- **GitHub Pages:** push to `master`. The site rebuilds in about a minute.
-- **vjimenez.io:** served by Netlify, deployed separately from this folder. A push here does not update it.
+Push to `master`. GitHub Pages rebuilds www.vjimenez.io in about a minute. The `CNAME` file sets the custom domain, and Squarespace forwards the bare vjimenez.io to www.
