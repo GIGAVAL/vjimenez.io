@@ -101,15 +101,19 @@
 
   .site-subtitle {
     font-family: var(--font-mono);
-    font-size: 1.15rem;
-    font-weight: 400;
+    font-size: 1.35rem;
+    font-weight: 700;
     line-height: 1.2;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 4rem;
     display: inline-block;
-    color: var(--text-light);
+    color: var(--ink);
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--accent);
+    transition: color 0.2s ease;
   }
+  .site-subtitle:hover, .site-subtitle.active { color: var(--accent); }
 
   .nav-divider {
     border: none;
@@ -889,7 +893,7 @@
   <nav class="nav-panel">
     <div>
       <h1 class="site-name" onclick="location.hash=''; showHome();">Valerie Jimenez</h1>
-      <a href="#info" class="site-subtitle" onclick="showPage('info')">Information</a>
+      <a href="#info" class="site-subtitle" onclick="showPage('info')">About / Resume &rarr;</a>
       <hr class="nav-divider">
       <ul class="nav-links" id="navLinks">
         <li><a href="#cat-infrastructure" data-cat="infrastructure">Infrastructure</a></li>
