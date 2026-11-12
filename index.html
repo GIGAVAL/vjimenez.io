@@ -721,24 +721,27 @@
     max-width: 56rem;
   }
 
-  /* INDEX: one line per work, generated from the tiles below so the two never disagree */
-  .home-index { border-top: 1px solid var(--ink); padding: 2.4rem 1.6rem 1rem 0; margin-bottom: 5rem; columns: 2; column-gap: 4rem; }
-  .home-index-group { break-inside: avoid; margin-bottom: 2.6rem; }
-  .home-index-head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.4rem; }
+  /* INDEX: lives in the side nav in place of the display-type section links. One line per work,
+     generated from the home tiles so the two never disagree. */
+  .nav-links { display: none; }
+  .home-index { columns: 2; column-gap: 2.4rem; }
+  .home-index-group { break-inside: avoid; margin-bottom: 2.2rem; }
+  .home-index-head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding-bottom: 0.7rem; border-bottom: 1px solid var(--ink); margin-bottom: 0.2rem; }
   .home-index-head a { color: inherit; }
-  .home-index-row { display: grid; grid-template-columns: 3.4rem 1fr; gap: 0 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); color: var(--text); font-size: 1.3rem; line-height: 1.3; }
-  .home-index-row .n { font-family: var(--font-mono); font-size: 1rem; color: var(--text-faint); padding-top: 0.2rem; }
-  .home-index-row .d { display: block; color: var(--text-light); font-size: 1.1rem; }
+  .home-index-head a:hover { color: var(--accent); }
+  .home-index-row { display: grid; grid-template-columns: 3.2rem 1fr; gap: 0 0.6rem; padding: 0.45rem 0; border-bottom: 1px solid var(--rule); color: var(--text); font-size: 1.25rem; line-height: 1.25; }
+  .home-index-row .n { font-family: var(--font-mono); font-size: 0.95rem; color: var(--text-faint); padding-top: 0.2rem; }
+  .home-index-row .d { display: none; }
   .home-index-row:hover .t { color: var(--accent); }
-  @media (max-width: 900px) { .home-index { columns: 1; margin-bottom: 3.6rem; } }
-
-  /* Desktop: side nav already names the section in display type, so the header drops to a mono label and the thesis leads */
-  @media (min-width: 901px) {
-    .cat-header { padding: 2.4rem 0 2.8rem; align-items: baseline; }
-    .cat-mark { margin-top: 0; }
-    .cat-name { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; line-height: 1.2; letter-spacing: 0.12em; margin-bottom: 1.6rem; }
-    .cat-thesis { font-size: 2.2rem; line-height: 1.3; color: var(--text); max-width: 72rem; letter-spacing: -0.01em; }
+  /* Tablet and phone: nav sits above the content, so the index folds to section names and counts */
+  @media (max-width: 900px) {
+    .home-index { columns: 2; margin-top: 0.4rem; }
+    .home-index-group { margin-bottom: 1.2rem; }
+    .home-index-row { display: none; }
+    .home-index-head { font-size: 1.2rem; }
   }
+  @media (max-width: 600px) { .home-index { columns: 1; } }
+
 
   /* INLINE VIZ OVERRIDES (visualization.css loaded separately) */
 
@@ -921,6 +924,7 @@
         <li><a href="#cat-editorial" data-cat="editorial">Editorial</a></li>
         <li><a href="#cat-repo" data-cat="repo">Repo</a></li>
       </ul>
+      <div class="home-index" id="homeIndex" aria-label="Index of works"></div>
     </div>
     <div class="nav-footer">
       <hr>
@@ -942,8 +946,6 @@
         <div class="home-intro-text">Buildings as regulated platforms. Built to survive value engineering, political reality and capital math.</div>
         <div class="home-intro-sub">Fourteen years, 20+ public-use facilities, $2.7B+ aggregate, 7.8M+ sf across courthouses, libraries, healthcare, transit and hospitality. Operator fluency in real estate finance (NYU Schack) bridges design intent and business reality. Working across public and private sectors where architecture meets infrastructure, finance and adaptive reuse.</div>
       </div>
-
-      <nav class="home-index" id="homeIndex" aria-label="Index of works"></nav>
 
       <!-- 01 INFRASTRUCTURE -->
       <section class="cat-section cat-section--grid" id="cat-infrastructure">
