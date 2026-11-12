@@ -721,6 +721,17 @@
     max-width: 56rem;
   }
 
+  /* INDEX: one line per work, generated from the tiles below so the two never disagree */
+  .home-index { border-top: 1px solid var(--ink); padding: 2.4rem 1.6rem 1rem 0; margin-bottom: 5rem; columns: 2; column-gap: 4rem; }
+  .home-index-group { break-inside: avoid; margin-bottom: 2.6rem; }
+  .home-index-head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding-bottom: 0.8rem; border-bottom: 1px solid var(--rule); margin-bottom: 0.4rem; }
+  .home-index-head a { color: inherit; }
+  .home-index-row { display: grid; grid-template-columns: 3.4rem 1fr; gap: 0 1rem; padding: 0.55rem 0; border-bottom: 1px solid var(--rule); color: var(--text); font-size: 1.3rem; line-height: 1.3; }
+  .home-index-row .n { font-family: var(--font-mono); font-size: 1rem; color: var(--text-faint); padding-top: 0.2rem; }
+  .home-index-row .d { display: block; color: var(--text-light); font-size: 1.1rem; }
+  .home-index-row:hover .t { color: var(--accent); }
+  @media (max-width: 900px) { .home-index { columns: 1; margin-bottom: 3.6rem; } }
+
   /* Desktop: side nav already names the section in display type, so the header drops to a mono label and the thesis leads */
   @media (min-width: 901px) {
     .cat-header { padding: 2.4rem 0 2.8rem; align-items: baseline; }
@@ -931,6 +942,8 @@
         <div class="home-intro-text">Buildings as regulated platforms. Built to survive value engineering, political reality and capital math.</div>
         <div class="home-intro-sub">Fourteen years, 20+ public-use facilities, $2.7B+ aggregate, 7.8M+ sf across courthouses, libraries, healthcare, transit and hospitality. Operator fluency in real estate finance (NYU Schack) bridges design intent and business reality. Working across public and private sectors where architecture meets infrastructure, finance and adaptive reuse.</div>
       </div>
+
+      <nav class="home-index" id="homeIndex" aria-label="Index of works"></nav>
 
       <!-- 01 INFRASTRUCTURE -->
       <section class="cat-section cat-section--grid" id="cat-infrastructure">
@@ -2064,5 +2077,45 @@
   <button class="img-lightbox-close" onclick="closeLightbox(event)" aria-label="Close">&times;</button>
 </div>
 
+
+<script>
+  /* Build the index from the home tiles: section name, count, one row per work. */
+  (function () {
+    const box = document.getElementById('homeIndex');
+    if (!box) return;
+    document.querySelectorAll('.cat-section').forEach(sec => {
+      const tiles = sec.querySelectorAll('.home-entry');
+      if (!tiles.length) return;
+      const g = document.createElement('div');
+      g.className = 'home-index-group';
+      const mark = sec.querySelector('.cat-mark')?.textContent.trim() || '';
+      const name = sec.querySelector('.cat-name')?.textContent.trim() || '';
+      const head = document.createElement('div');
+      head.className = 'home-index-head';
+      head.innerHTML = '<a href="#' + sec.id + '"></a><span></span>';
+      head.firstChild.textContent = mark + ' ' + name;
+      head.lastChild.textContent = tiles.length;
+      g.appendChild(head);
+      tiles.forEach(tile => {
+        const row = document.createElement('a');
+        row.className = 'home-index-row';
+        row.href = tile.getAttribute('href');
+        if (tile.target) { row.target = tile.target; row.rel = 'noopener'; }
+        else row.addEventListener('click', e => { e.preventDefault(); tile.click(); });
+        const loc = tile.querySelector('.home-meta-loc');
+        const parts = loc ? Array.from(loc.childNodes).filter(n => !(n.classList && n.classList.contains('sep'))).map(n => n.textContent.trim()).filter(Boolean) : [];
+        const n = document.createElement('span'); n.className = 'n';
+        n.textContent = tile.querySelector('.home-tag .num')?.textContent.trim() || '';
+        const body = document.createElement('span');
+        const t = document.createElement('span'); t.className = 't';
+        t.textContent = tile.querySelector('.home-meta-name')?.textContent.trim() || '';
+        const d = document.createElement('span'); d.className = 'd';
+        d.textContent = parts.join(' / ');
+        body.append(t, d); row.append(n, body); g.appendChild(row);
+      });
+      box.appendChild(g);
+    });
+  })();
+</script>
 </body>
 </html>
