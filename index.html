@@ -930,6 +930,9 @@
   .project-content, .info-content { padding: 2.4rem 2.4rem; }
   .next-page { padding: 1.8rem 2.4rem; }
   .info-list { margin-top: 2rem; }
+
+  /* Current page or section is marked in the index, in the accent color */
+  .home-index a.active, .home-index a.active .t, .home-index-row.active .n { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -967,7 +970,7 @@
       <div class="edge-mark">Valerie Jimenez Architect, NYC</div>
 
       <div class="home-intro">
-        <div class="home-intro-tag">Index 2011 / 2026 25 selected works</div>
+        <div class="home-intro-tag">Index 2011 / 2026 31 selected works</div>
         <div class="home-intro-text">Buildings as regulated platforms. Built to survive value engineering, political reality and capital math.</div>
         <div class="home-intro-sub">Fourteen years, 20+ public-use facilities, $2.7B+ aggregate, 7.8M+ sf across courthouses, libraries, healthcare, transit and hospitality. Operator fluency in real estate finance (NYU Schack) bridges design intent and business reality. Working across public and private sectors where architecture meets infrastructure, finance and adaptive reuse.</div>
       </div>
@@ -1138,17 +1141,84 @@
         <div class="cat-header">
           <div class="cat-mark">04</div>
           <h2 class="cat-name">Editorial</h2>
-          <div class="cat-thesis">DO: Design Observer, an independent platform on the typologies architecture refuses to examine. Justice as the inaugural subject.</div>
+          <div class="cat-thesis">Writing across justice architecture, AI in practice, sustainable real estate, infrastructure and development. Seven pieces, each with its full text or document.</div>
         </div>
 
-        <a class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
+        <a class="home-entry" href="#editorial" onclick="showPage(&apos;editorial&apos;); location.hash=&apos;editorial&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">013</span>Writing &amp; Research</div>
-            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="Editorial, DO: Design Observer and conference reports" onload="this.classList.add('loaded')">
+            <div class="home-tag"><span class="num">013</span>Justice</div>
+            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
-            <div class="home-meta-name">Editorial</div>
-            <div class="home-meta-loc">DO: Design Observer<span class="sep">/</span>NYU Schack Conference<span class="sep">/</span>PwC Forum<span class="sep">/</span>AI in practice<span class="sep">/</span>Development proposals<span class="sep">/</span>7 pieces</div>
+            <div class="home-meta-name">DO: Design Observer</div>
+            <div class="home-meta-loc">Justice typologies<span class="sep">/</span>Volume 1 forthcoming</div>
+          </div>
+        </a>
+
+        <a class="home-entry home-entry--text" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">014</span>AI in practice</div>
+            <div class="home-text-title">Twelve principles. Seven frameworks. Every finding cited.</div>
+            <div class="home-text-metric">Essay / May 2026</div>
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">A Trauma-Informed Design Review Rubric</div>
+            <div class="home-meta-loc">Justice facilities<span class="sep">/</span>AI first-pass audit<span class="sep">/</span>2026</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#ed-spine" onclick="showPage(&apos;ed-spine&apos;); location.hash=&apos;ed-spine&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">015</span>AI in practice</div>
+            <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">The Spine: Parametric Design with AI</div>
+            <div class="home-meta-loc">Grasshopper by prompt<span class="sep">/</span>2026<span class="sep">/</span>PDF, 3 pages</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#ed-sustainable-re" onclick="showPage(&apos;ed-sustainable-re&apos;); location.hash=&apos;ed-sustainable-re&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">016</span>Real estate</div>
+            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Sustainable Real Estate Conference</div>
+            <div class="home-meta-loc">NYU Schack, 9th annual<span class="sep">/</span>2026<span class="sep">/</span>Executive summary and notes</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#ed-infrastructure" onclick="showPage(&apos;ed-infrastructure&apos;); location.hash=&apos;ed-infrastructure&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">017</span>Infrastructure</div>
+            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Transportation and Infrastructure Forum</div>
+            <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Executive summary</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#ed-hotel-plus" onclick="showPage(&apos;ed-hotel-plus&apos;); location.hash=&apos;ed-hotel-plus&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">018</span>Development</div>
+            <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Hotel+ Proposal</div>
+            <div class="home-meta-loc">East Village<span class="sep">/</span>2020<span class="sep">/</span>PDF, 8 pages</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="#ed-the-cad" onclick="showPage(&apos;ed-the-cad&apos;); location.hash=&apos;ed-the-cad&apos;; return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">019</span>Development</div>
+            <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">The CAD Proposal</div>
+            <div class="home-meta-loc">Brooklyn Heights<span class="sep">/</span>2019<span class="sep">/</span>PDF, 14 pages</div>
           </div>
         </a>
       </section>
@@ -1163,7 +1233,7 @@
 
         <a class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">014</span>QA/QC</div>
+            <div class="home-tag"><span class="num">020</span>QA/QC</div>
             <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1174,7 +1244,7 @@
 
         <a class="home-entry" href="https://gigaval.github.io/fire002-handover/" target="_blank" rel="noopener">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">015</span>Code</div>
+            <div class="home-tag"><span class="num">021</span>Code</div>
             <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1184,7 +1254,7 @@
         </a>
         <a class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">016</span>Structure</div>
+            <div class="home-tag"><span class="num">022</span>Structure</div>
             <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1205,7 +1275,7 @@
 
         <a class="home-entry" href="#archive-inwood" onclick="stackOpen(&apos;archive-inwood&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">017</span>Residential</div>
+            <div class="home-tag"><span class="num">023</span>Residential</div>
             <img decoding="async" loading="lazy" src="images/archive/inwood-redevelopment-cover.jpg" alt="Redevelopment" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1216,7 +1286,7 @@
 
         <a class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">018</span>Storefront</div>
+            <div class="home-tag"><span class="num">024</span>Storefront</div>
             <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1227,7 +1297,7 @@
 
         <a class="home-entry" href="#jorejick" onclick="stackOpen(&apos;jorejick&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">019</span>Dwelling</div>
+            <div class="home-tag"><span class="num">025</span>Dwelling</div>
             <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Jorejick Home, covered terrace at sunset" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1238,7 +1308,7 @@
 
         <a class="home-entry" href="#cyber-housing" onclick="stackOpen(&apos;cyber-housing&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">020</span>Housing</div>
+            <div class="home-tag"><span class="num">026</span>Housing</div>
             <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Cyber Housing" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1249,7 +1319,7 @@
 
         <a class="home-entry" href="#hotel" onclick="stackOpen(&apos;hotel&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">021</span>Hospitality</div>
+            <div class="home-tag"><span class="num">027</span>Hospitality</div>
             <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Hotel+, proposed exterior" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1260,7 +1330,7 @@
 
         <a class="home-entry" href="#models" onclick="stackOpen(&apos;models&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">022</span>Models</div>
+            <div class="home-tag"><span class="num">028</span>Models</div>
             <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Scale Models" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1271,7 +1341,7 @@
 
         <a class="home-entry" href="#housing-studies" onclick="stackOpen(&apos;housing-studies&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">023</span>Housing</div>
+            <div class="home-tag"><span class="num">029</span>Housing</div>
             <img decoding="async" loading="lazy" src="images/vjl/housing/cover.jpg" alt="Housing Studies, mixed-use residential tower" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1282,7 +1352,7 @@
 
         <a class="home-entry" href="#internet-museum" onclick="stackOpen(&apos;internet-museum&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">024</span>Museum</div>
+            <div class="home-tag"><span class="num">030</span>Museum</div>
             <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Internet Museum, elevation and section" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1293,7 +1363,7 @@
 
         <a class="home-entry" href="#archive-design-2" onclick="stackOpen(&apos;archive-design-2&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">025</span>Academic</div>
+            <div class="home-tag"><span class="num">031</span>Academic</div>
             <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio, Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1582,24 +1652,57 @@
 
     <!-- EDITORIAL / WRITING -->
     <div class="project-page" id="editorial">
-
-      <!-- DO: DESIGN OBSERVER -->
       <div class="project-images">
         <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer masthead, Volume 1" onload="this.classList.add('loaded')">
         <div class="image-caption">DO: Design Observer masthead, Volume 1</div>
       </div>
       <div class="project-content">
-        <div class="project-location">Editorial Research &amp; Writing</div>
-        <p class="project-description">An editorial practice across justice architecture, sustainable real estate and transportation infrastructure. Writing at the intersection of design practice, policy critique and capital markets. Five threads: a forthcoming platform on justice typologies, the 2026 NYU Schack conference on sustainable real estate, the PwC Transportation and Infrastructure Forum, AI in practice and development proposals.</p>
+        <div class="project-location">DO: Design Observer / Justice typologies / Volume 1 forthcoming</div>
+        <p class="project-description">An editorial practice across justice architecture, sustainable real estate and transportation infrastructure. Writing at the intersection of design practice, policy critique and capital markets. This is the justice thread: a forthcoming independent platform on the typologies architecture refuses to examine.</p>
         <div class="project-role">Volume 1 Forthcoming, DO: Design Observer</div>
         <p class="project-detail">Inaugural issue assembling typological, material and technological reports on innovations in justice and treatment infrastructure. Sections in development: trauma-informed planning, post-supervision typologies, materials of care, technology and surveillance. Drawing on first-hand work across $1.5B+ of detention, court and behavioral health programs.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="typology.jpg" alt="Typology study" onload="this.classList.add('loaded')">
-        <div class="image-caption">Typological research transportation, passengers, buildings</div>
+        <img decoding="async" loading="lazy" src="typology.jpg" alt="Typological research: transportation, passengers, buildings" onload="this.classList.add('loaded')">
+        <div class="image-caption">Typological research: transportation, passengers, buildings</div>
       </div>
-
-      <!-- NYU 9TH CONFERENCE ON SUSTAINABLE REAL ESTATE -->
+      <div class="next-page"><a href="#ed-design-review" onclick="showPage('ed-design-review')">Design Review Rubric &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-design-review">
+      <div class="project-content">
+        <div class="project-location">AI in Practice / A Trauma-Informed Design Review Rubric for Justice Facilities / May 2026</div>
+        <p class="project-description">Trauma-informed design for justice facilities sits across seven separate frameworks (SAMHSA, NIC, AAJ, Vera, ACA, WBDG, BJA) that do not naturally cross-reference. I built an AI reviewer that replaces the manual cross-reference with a structured, citation-anchored first-pass audit a project architect can run on a narrative, programming sheet or drawing set in under three minutes. Twelve principles are scored 0 to 3, and every finding must cite a published framework: safety, normative materiality and dignity, sightlines and supervision model, daylight and biophilia, acoustic environment, de-escalation and sensory regulation, programming and education, family contact and visitation, gender-responsive design, cultural and demographic context, staff wellness and respite, wayfinding and autonomy.</p>
+        <div class="project-role">Authored, AI for Architects (ELVTR)</div>
+        <p class="project-detail">What surprised me was that the structure mattered more than the model. When I forced a twelve-principle scored matrix and required a framework citation on every finding, the reviewer produced peer-level critique. When I let it free-range, it drifted into moralizing. There is an ethics problem inside this work that the tool does not solve: reducing trauma-informed design to a 0 to 3 rubric risks turning an ethical practice into a checklist. I accept that risk because the alternative, uneven application based on whoever is reviewing, is worse. A rigorous checklist that names its frameworks beats a moral posture that produces no audit trail. What it cannot do is read the room. It cannot interview a formerly incarcerated woman. It cannot evaluate post-occupancy.</p>
+      </div>
+      <div class="next-page"><a href="#ed-spine" onclick="showPage('ed-spine')">The Spine &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-spine">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine, page 1 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">The Spine, page 1 of 3</div>
+      </div>
+      <div class="project-content">
+        <div class="project-location">AI in Practice / The Spine: Parametric Design with AI / June 2026</div>
+        <p class="project-description">A ring-and-spine structure built from scratch in Grasshopper by prompting a text-to-Grasshopper assistant, reconstructing the parametric logic of my own studio project. A single NURBS curve carries a row of circular rings that vary in size along its length, lifted on a cross-braced support. The definition was built in six labeled groups through five sequenced prompts. The prompts are the logic.</p>
+        <div class="project-role">Authored, AI for Architects (ELVTR)</div>
+        <p class="project-detail">
+          <a href="editorial/parametric-design-with-ai-the-spine.pdf" target="_blank" rel="noopener">Download The Spine (PDF, 3 pages)</a>
+        </p>
+      </div>
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-2.jpg" alt="The Spine, page 2 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">The Spine, page 2 of 3</div>
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-3.jpg" alt="The Spine, page 3 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">The Spine, page 3 of 3</div>
+      </div>
+      <div class="next-page"><a href="#ed-sustainable-re" onclick="showPage('ed-sustainable-re')">Sustainable Real Estate &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-sustainable-re">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Executive Summary, page 1 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 1 of 7</div>
+      </div>
       <div class="project-content">
         <div class="project-location">NYU Schack Institute / 9th Annual Conference on Sustainable Real Estate / 2026</div>
         <p class="project-description">Executive summary and conference notes for the 9th Annual NYU Schack Conference on Sustainable Real Estate. The summary distills panel sessions across energy infrastructure and grid transformation, adaptive reuse, climate risk management, workforce development, capital markets innovation and critical challenges facing the sector. The accompanying notes document moderator-led conversations between investors, developers, public agencies and academic researchers.</p>
@@ -1611,13 +1714,38 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="NYU 9th Conference Executive Summary cover" onload="this.classList.add('loaded')">
-        <div class="image-caption">Executive Summary cover, full 7-page document available above</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="NYU 9th Conference Notes cover" onload="this.classList.add('loaded')">
-        <div class="image-caption">Conference Notes cover, full 6-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-02.png" alt="Executive Summary, page 2 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 2 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-03.png" alt="Executive Summary, page 3 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 3 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-04.png" alt="Executive Summary, page 4 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 4 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-05.png" alt="Executive Summary, page 5 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 5 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-06.png" alt="Executive Summary, page 6 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 6 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-07.png" alt="Executive Summary, page 7 of 7" onload="this.classList.add('loaded')">
+        <div class="image-caption">Executive Summary, page 7 of 7</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="Conference Notes, page 1 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 1 of 6</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-02.png" alt="Conference Notes, page 2 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 2 of 6</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-03.png" alt="Conference Notes, page 3 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 3 of 6</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-04.png" alt="Conference Notes, page 4 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 4 of 6</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-05.png" alt="Conference Notes, page 5 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 5 of 6</div>
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-06.png" alt="Conference Notes, page 6 of 6" onload="this.classList.add('loaded')">
+        <div class="image-caption">Conference Notes, page 6 of 6</div>
       </div>
-
-      <!-- PWC TRANSPORTATION & INFRASTRUCTURE FORUM -->
+      <div class="next-page"><a href="#ed-infrastructure" onclick="showPage('ed-infrastructure')">Infrastructure Forum &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-infrastructure">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary, page 1 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">PwC Forum Executive Summary, page 1 of 3</div>
+      </div>
       <div class="project-content">
         <div class="project-location">PwC Transportation &amp; Infrastructure Forum / Accenture, 395 North Avenue NYC / February 2026</div>
         <p class="project-description">Executive summary of the PwC Transportation and Infrastructure Forum. Documents the moderator perspective and regional context, then synthesizes program updates across NYC DOT bridges, MTA capital program and systemwide modernization, NYSDOT Region 11 delivery and procurement flexibility and NYCEDC capital program with community-centered infrastructure. Closes on cross-cutting themes and emerging directions for the sector.</p>
@@ -1627,33 +1755,18 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary cover" onload="this.classList.add('loaded')">
-        <div class="image-caption">Executive Summary cover, full 3-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-02.png" alt="PwC Forum Executive Summary, page 2 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">PwC Forum Executive Summary, page 2 of 3</div>
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-03.png" alt="PwC Forum Executive Summary, page 3 of 3" onload="this.classList.add('loaded')">
+        <div class="image-caption">PwC Forum Executive Summary, page 3 of 3</div>
       </div>
-
-      <!-- AI IN PRACTICE: TRAUMA-INFORMED DESIGN REVIEW RUBRIC -->
-      <div class="project-content">
-        <div class="project-location">AI in Practice / A Trauma-Informed Design Review Rubric for Justice Facilities / May 2026</div>
-        <p class="project-description">Trauma-informed design for justice facilities sits across seven separate frameworks (SAMHSA, NIC, AAJ, Vera, ACA, WBDG, BJA) that do not naturally cross-reference. I built an AI reviewer that replaces the manual cross-reference with a structured, citation-anchored first-pass audit a project architect can run on a narrative, programming sheet or drawing set in under three minutes. Twelve principles are scored 0 to 3, and every finding must cite a published framework: safety, normative materiality and dignity, sightlines and supervision model, daylight and biophilia, acoustic environment, de-escalation and sensory regulation, programming and education, family contact and visitation, gender-responsive design, cultural and demographic context, staff wellness and respite, wayfinding and autonomy.</p>
-        <div class="project-role">Authored, AI for Architects (ELVTR)</div>
-        <p class="project-detail">What surprised me was that the structure mattered more than the model. When I forced a twelve-principle scored matrix and required a framework citation on every finding, the reviewer produced peer-level critique. When I let it free-range, it drifted into moralizing. There is an ethics problem inside this work that the tool does not solve: reducing trauma-informed design to a 0 to 3 rubric risks turning an ethical practice into a checklist. I accept that risk because the alternative, uneven application based on whoever is reviewing, is worse. A rigorous checklist that names its frameworks beats a moral posture that produces no audit trail. What it cannot do is read the room. It cannot interview a formerly incarcerated woman. It cannot evaluate post-occupancy.</p>
-      </div>
-
-      <!-- AI IN PRACTICE: PARAMETRIC DESIGN WITH AI -->
-      <div class="project-content">
-        <div class="project-location">AI in Practice / The Spine: Parametric Design with AI / June 2026</div>
-        <p class="project-description">A ring-and-spine structure built from scratch in Grasshopper by prompting a text-to-Grasshopper assistant, reconstructing the parametric logic of my own studio project. A single NURBS curve carries a row of circular rings that vary in size along its length, lifted on a cross-braced support. The definition was built in six labeled groups through five sequenced prompts. The prompts are the logic.</p>
-        <div class="project-role">Authored, AI for Architects (ELVTR)</div>
-        <p class="project-detail">
-          <a href="editorial/parametric-design-with-ai-the-spine.pdf" target="_blank" rel="noopener">Download The Spine (PDF, 3 pages)</a>
-        </p>
-      </div>
+      <div class="next-page"><a href="#ed-hotel-plus" onclick="showPage('ed-hotel-plus')">Hotel+ Proposal &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-hotel-plus">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.png" alt="The Spine cover, full 3-page document available above" onload="this.classList.add('loaded')">
-        <div class="image-caption">The Spine cover, full 3-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal, page 1 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 1 of 8</div>
       </div>
-
-      <!-- DEVELOPMENT PROPOSALS -->
       <div class="project-content">
         <div class="project-location">Development Proposals / Hotel+, East Village / July 2020</div>
         <p class="project-description">Investment proposal to acquire a corner hotel in the East Village and redevelop it as a six-story, 60-key hotel with a ground-floor restaurant and rooftop garden. The document covers the neighborhood and its typology, zoning and as-of-right area, a survey of industry recovery and a ten-year hold with exit assumptions.</p>
@@ -1663,8 +1776,27 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.png" alt="Hotel+ proposal, first page. Full 8-page document available above" onload="this.classList.add('loaded')">
-        <div class="image-caption">Hotel+ proposal, first page. Full 8-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-2.jpg" alt="Hotel+ Proposal, page 2 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 2 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-3.jpg" alt="Hotel+ Proposal, page 3 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 3 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-4.jpg" alt="Hotel+ Proposal, page 4 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 4 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-5.jpg" alt="Hotel+ Proposal, page 5 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 5 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-6.jpg" alt="Hotel+ Proposal, page 6 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 6 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-7.jpg" alt="Hotel+ Proposal, page 7 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 7 of 8</div>
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-8.jpg" alt="Hotel+ Proposal, page 8 of 8" onload="this.classList.add('loaded')">
+        <div class="image-caption">Hotel+ Proposal, page 8 of 8</div>
+      </div>
+      <div class="next-page"><a href="#ed-the-cad" onclick="showPage('ed-the-cad')">The CAD Proposal &rarr;</a></div>
+    </div>
+    <div class="project-page" id="ed-the-cad">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal, page 1 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 1 of 14</div>
       </div>
       <div class="project-content">
         <div class="project-location">Development Proposals / The CAD, Brooklyn Heights / NYU Schack / December 2019</div>
@@ -1675,12 +1807,36 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.png" alt="The CAD proposal cover, full 14-page document available above" onload="this.classList.add('loaded')">
-        <div class="image-caption">The CAD proposal cover, full 14-page document available above</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-02.jpg" alt="The CAD Proposal, page 2 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 2 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-03.jpg" alt="The CAD Proposal, page 3 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 3 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-04.jpg" alt="The CAD Proposal, page 4 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 4 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-05.jpg" alt="The CAD Proposal, page 5 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 5 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-06.jpg" alt="The CAD Proposal, page 6 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 6 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-07.jpg" alt="The CAD Proposal, page 7 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 7 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-08.jpg" alt="The CAD Proposal, page 8 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 8 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-09.jpg" alt="The CAD Proposal, page 9 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 9 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-10.jpg" alt="The CAD Proposal, page 10 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 10 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-11.jpg" alt="The CAD Proposal, page 11 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 11 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-12.jpg" alt="The CAD Proposal, page 12 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 12 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-13.jpg" alt="The CAD Proposal, page 13 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 13 of 14</div>
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-14.jpg" alt="The CAD Proposal, page 14 of 14" onload="this.classList.add('loaded')">
+        <div class="image-caption">The CAD Proposal, page 14 of 14</div>
       </div>
-
       <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Redevelopment &rarr;</a></div>
     </div>
+
 
     <!-- ARCHIVE 011: INWOOD REDEVELOPMENT -->
     <div class="project-page" id="archive-inwood">
