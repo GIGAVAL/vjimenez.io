@@ -933,6 +933,17 @@
 
   /* Current page or section is marked in the index, in the accent color */
   .home-index a.active, .home-index a.active .t, .home-index-row.active .n { color: var(--accent); }
+
+  /* TILE LABEL ON THE IMAGE: name and three facts sit in a black box at the lower left of the picture,
+     so nothing hangs below the tile. Number and type stay in the tag at the upper left. */
+  .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { position: absolute; left: 0; bottom: 0; max-width: calc(100% - 1.2rem); background: var(--ink); padding: 0.7rem 1rem 0.75rem; transition: background 0.2s ease; }
+  .home-entry .home-meta-name, .cat-section--grid .home-meta-name { color: var(--bg); font-size: 1.5rem; line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 0.35rem; }
+  .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { color: rgba(244,244,239,0.74); font-size: 0.74rem; line-height: 1.35; letter-spacing: 0.07em; }
+  .home-entry:hover .home-meta { background: var(--accent); }
+  .home-entry:hover .home-meta-name, .home-entry:hover .home-meta-loc { color: #fff; }
+  .cat-section--grid { row-gap: 0.8rem; }
+  .home-entry .home-meta-loc .sep { color: rgba(244,244,239,0.5); }
+  .home-entry--text .home-image-wrap, .cat-section--grid .home-entry--text .home-image-wrap { padding-bottom: 5.4rem; }
 </style>
 </head>
 <body>
@@ -990,7 +1001,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Fine Arts Library</div>
-            <div class="home-meta-loc">Ithaca NY<span class="sep">/</span>2018&rarr;2019<span class="sep">/</span>31K sf<span class="sep">/</span>$21.6M<span class="sep">/</span>LEED Gold</div>
+            <div class="home-meta-loc">Ithaca NY<span class="sep">/</span>2018&rarr;2019<span class="sep">/</span>31K sf, $21.6M</div>
           </div>
         </a>
 
@@ -1001,7 +1012,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Metropolitan Park</div>
-            <div class="home-meta-loc">Willets Point Queens<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>1.2M sf<span class="sep">/</span>50-acre district</div>
+            <div class="home-meta-loc">Queens NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>1.2M sf, 50 acres</div>
           </div>
         </a>
 
@@ -1012,7 +1023,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">MTA Platform Screen Doors</div>
-            <div class="home-meta-loc">NYC Subway<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>$25M<span class="sep">/</span>Three-station pilot</div>
+            <div class="home-meta-loc">NYC Subway<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>$25M pilot</div>
           </div>
         </a>
 
@@ -1022,8 +1033,8 @@
             <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
-            <div class="home-meta-name">341 Grand Street LES Mixed-Use Development</div>
-            <div class="home-meta-loc">Lower East Side, Manhattan<span class="sep">/</span>2024<span class="sep">/</span>10K bgsf<span class="sep">/</span>5.1% cap rate<span class="sep">/</span>NYU Schack capstone</div>
+            <div class="home-meta-name">341 Grand Street</div>
+            <div class="home-meta-loc">Lower East Side<span class="sep">/</span>2024<span class="sep">/</span>10K sf, 5.1% cap</div>
           </div>
         </a>
         <a class="home-entry" href="#brooklyn-tech" onclick="stackOpen(&apos;brooklyn-tech&apos;); return false;">
@@ -1033,7 +1044,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Historic Tower</div>
-            <div class="home-meta-loc">Fort Greene, Brooklyn<span class="sep">/</span>2015&rarr;2018<span class="sep">/</span>600K sf<span class="sep">/</span>$19M<span class="sep">/</span>Facade restoration</div>
+            <div class="home-meta-loc">Brooklyn NY<span class="sep">/</span>2015&rarr;2018<span class="sep">/</span>600K sf, $19M</div>
           </div>
         </a>
 
@@ -1054,7 +1065,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Adult Justice Center</div>
-            <div class="home-meta-loc">Chicago IL<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>3.9M sf<span class="sep">/</span>Master plan</div>
+            <div class="home-meta-loc">Chicago IL<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>3.9M sf master plan</div>
           </div>
         </a>
 
@@ -1065,7 +1076,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Family Court</div>
-            <div class="home-meta-loc">2020&rarr;2026<span class="sep">/</span>300K sf<span class="sep">/</span>$155M<span class="sep">/</span>Bridging documents</div>
+            <div class="home-meta-loc">Staten Island NY<span class="sep">/</span>2020&rarr;2026<span class="sep">/</span>300K sf, $155M</div>
           </div>
         </a>
 
@@ -1076,7 +1087,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
-            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf<span class="sep">/</span>$300M<span class="sep">/</span>306-bed secure facility</div>
+            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf, $300M</div>
           </div>
         </a>
 
@@ -1087,7 +1098,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Intake and Holdings</div>
-            <div class="home-meta-loc">2019<span class="sep">/</span>Exploded axonometric<span class="sep">/</span>Programmatic stacking study</div>
+            <div class="home-meta-loc">2019<span class="sep">/</span>Program stacking study</div>
           </div>
         </a>
 
@@ -1098,7 +1109,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">County Jail Renovation</div>
-            <div class="home-meta-loc">Macomb County MI<span class="sep">/</span>$229M<span class="sep">/</span>Direct supervision addition<span class="sep">/</span>Program massing</div>
+            <div class="home-meta-loc">Macomb County MI<span class="sep">/</span>$229M<span class="sep">/</span>Program massing</div>
           </div>
         </a>
 
@@ -1119,7 +1130,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Interiors &amp; Renovations</div>
-            <div class="home-meta-loc">New York NY<span class="sep">/</span>Bakery, auditorium, apartment, office, garden<span class="sep">/</span>Five projects</div>
+            <div class="home-meta-loc">New York NY<span class="sep">/</span>Five projects</div>
           </div>
         </a>
 
@@ -1130,7 +1141,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Architecture &amp; Engineering HQ</div>
-            <div class="home-meta-loc">New York NY<span class="sep">/</span>5-story interior renovation</div>
+            <div class="home-meta-loc">New York NY<span class="sep">/</span>5-story renovation</div>
           </div>
         </a>
 
@@ -1163,7 +1174,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">A Trauma-Informed Design Review Rubric</div>
-            <div class="home-meta-loc">Justice facilities<span class="sep">/</span>AI first-pass audit<span class="sep">/</span>2026</div>
+            <div class="home-meta-loc">Essay<span class="sep">/</span>2026</div>
           </div>
         </a>
 
@@ -1174,7 +1185,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">The Spine: Parametric Design with AI</div>
-            <div class="home-meta-loc">Grasshopper by prompt<span class="sep">/</span>2026<span class="sep">/</span>PDF, 3 pages</div>
+            <div class="home-meta-loc">2026<span class="sep">/</span>PDF, 3 pages</div>
           </div>
         </a>
 
@@ -1185,7 +1196,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Sustainable Real Estate Conference</div>
-            <div class="home-meta-loc">NYU Schack, 9th annual<span class="sep">/</span>2026<span class="sep">/</span>Executive summary and notes</div>
+            <div class="home-meta-loc">NYU Schack<span class="sep">/</span>2026<span class="sep">/</span>Summary and notes</div>
           </div>
         </a>
 
@@ -1196,7 +1207,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Transportation and Infrastructure Forum</div>
-            <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Executive summary</div>
+            <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Summary</div>
           </div>
         </a>
 
@@ -1238,7 +1249,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">SheetCheck</div>
-            <div class="home-meta-loc">Drawing-set QA/QC<span class="sep">/</span>Title-block extraction<span class="sep">/</span>Defect injection test<span class="sep">/</span>Live browser demo</div>
+            <div class="home-meta-loc">Drawing-set QA/QC<span class="sep">/</span>Defect injection<span class="sep">/</span>Live demo</div>
           </div>
         </a>
 
@@ -1249,7 +1260,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">FIRE-002 Compartmentation</div>
-            <div class="home-meta-loc">Fire compartmentation validation<span class="sep">/</span>NCC 2022, DBP Act NSW<span class="sep">/</span>Interactive handover<span class="sep">/</span>Live page</div>
+            <div class="home-meta-loc">Fire compartmentation<span class="sep">/</span>NCC 2022<span class="sep">/</span>Live page</div>
           </div>
         </a>
         <a class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
@@ -1259,7 +1270,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Bailout</div>
-            <div class="home-meta-loc">Value engineering as load path<span class="sep">/</span>In-browser frame solver<span class="sep">/</span>AECtech Big Build hackathon 2026<span class="sep">/</span>Live demo</div>
+            <div class="home-meta-loc">Value engineering<span class="sep">/</span>Hackathon 2026<span class="sep">/</span>Live demo</div>
           </div>
         </a>
 
@@ -1280,7 +1291,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Redevelopment</div>
-            <div class="home-meta-loc">Inwood, Manhattan<span class="sep">/</span>2018<span class="sep">/</span>Architecture firm<span class="sep">/</span>Private developer</div>
+            <div class="home-meta-loc">Inwood NY<span class="sep">/</span>2018<span class="sep">/</span>Private developer</div>
           </div>
         </a>
 
@@ -1291,7 +1302,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Rodarte</div>
-            <div class="home-meta-loc">Meatpacking District, NYC<span class="sep">/</span>Storefront concept<span class="sep">/</span>Highline frontage</div>
+            <div class="home-meta-loc">Meatpacking NYC<span class="sep">/</span>Storefront concept</div>
           </div>
         </a>
 
@@ -1302,7 +1313,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Jorejick Home</div>
-            <div class="home-meta-loc">Arusha region, Tanzania<span class="sep">/</span>2020<span class="sep">/</span>Competition entry<span class="sep">/</span>Family compound<span class="sep">/</span>Earth construction<span class="sep">/</span>Rainwater roof</div>
+            <div class="home-meta-loc">Tanzania<span class="sep">/</span>2020<span class="sep">/</span>Competition entry</div>
           </div>
         </a>
 
@@ -1313,7 +1324,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Cyber Housing</div>
-            <div class="home-meta-loc">Brooklyn Heights<span class="sep">/</span>2019<span class="sep">/</span>150 apartments, 14 floors<span class="sep">/</span>C6-4, FAR 10</div>
+            <div class="home-meta-loc">Brooklyn Heights<span class="sep">/</span>2019<span class="sep">/</span>150 apartments</div>
           </div>
         </a>
 
@@ -1324,7 +1335,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Hotel+</div>
-            <div class="home-meta-loc">East Village, Manhattan<span class="sep">/</span>2020<span class="sep">/</span>60 keys<span class="sep">/</span>37K sf as of right<span class="sep">/</span>Development proposal</div>
+            <div class="home-meta-loc">East Village<span class="sep">/</span>2020<span class="sep">/</span>60 keys</div>
           </div>
         </a>
 
@@ -1335,7 +1346,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Scale Models</div>
-            <div class="home-meta-loc">Physical models<span class="sep">/</span>Frame, plane and solid studies</div>
+            <div class="home-meta-loc">Frame, plane and solid studies</div>
           </div>
         </a>
 
@@ -1346,7 +1357,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Housing Studies</div>
-            <div class="home-meta-loc">Mixed-use tower<span class="sep">/</span>Raised house<span class="sep">/</span>Palazzo precedent<span class="sep">/</span>Three studies</div>
+            <div class="home-meta-loc">Tower<span class="sep">/</span>Raised house<span class="sep">/</span>Palazzo</div>
           </div>
         </a>
 
@@ -1357,7 +1368,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Internet Museum</div>
-            <div class="home-meta-loc">Museum concept<span class="sep">/</span>Four concrete pillars<span class="sep">/</span>Plans, section and axonometric</div>
+            <div class="home-meta-loc">Concept<span class="sep">/</span>Plans, section, axonometric</div>
           </div>
         </a>
 
@@ -1368,7 +1379,7 @@
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Archived Portfolio</div>
-            <div class="home-meta-loc">NYIT<span class="sep">/</span>Fall 2011 + Spring 2012<span class="sep">/</span>Central Park Pavilion, Palazzi, CaixaForum</div>
+            <div class="home-meta-loc">NYIT<span class="sep">/</span>2011&rarr;2012</div>
           </div>
         </a>
       </section>
