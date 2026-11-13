@@ -42,8 +42,8 @@
     --text: #0a0a0a;
     --text-light: rgba(10,10,10,0.62);
     --text-faint: rgba(10,10,10,0.42);
-    --accent: #1414FF;
-    --bg: #F4F4EF;
+    --accent: #0a0a0a;
+    --bg: #ffffff;
     --ink: #0a0a0a;
     --rule: rgba(0,0,0,0.10);
     --font-display: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
@@ -953,6 +953,26 @@
   .cat-header .cat-thesis { grid-column: 1 / -1; max-width: none; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
   .project-description, .project-detail, .info-bio, .work-description { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
   @media (max-width: 600px) { .home-intro-text .l { display: inline; white-space: normal; text-align: left; text-align-last: auto; } }
+
+  /* BLACK AND WHITE, LIGHT: labels are white boxes with black text, no solid black blocks, no color */
+  .home-image-wrap { background: #f1f1f1; }
+  .home-tag { background: #fff; color: var(--ink); }
+  .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { background: #fff; }
+  .home-entry .home-meta-name, .cat-section--grid .home-meta-name { color: var(--ink); }
+  .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { color: var(--text-light); }
+  .home-entry .home-meta-loc .sep { color: var(--text-faint); }
+  .home-entry:hover .home-meta { background: var(--ink); }
+  .home-entry:hover .home-meta-name, .home-entry:hover .home-meta-loc, .home-entry:hover .home-meta-loc .sep { color: #fff; }
+  .home-entry--text .home-image-wrap, .cat-section--grid .home-entry--text .home-image-wrap { background: #f1f1f1; color: var(--ink); }
+  .home-entry--text:hover .home-image-wrap { background: #e9e9e9; }
+  .home-entry--text .home-text-metric { color: var(--text-light); }
+  .site-subtitle { border-bottom-width: 1px; }
+  .site-subtitle:hover, .site-subtitle.active { color: var(--text-light); }
+  .home-index a.active, .home-index a.active .t { color: var(--ink); font-weight: 700; }
+  .home-index-row.active .n { color: var(--ink); }
+  .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+  .home-tag .num { color: var(--ink); }
+  .home-image-wrap { outline: 1px solid var(--rule); outline-offset: -1px; }
 </style>
 </head>
 <body>
