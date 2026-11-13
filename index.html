@@ -944,6 +944,15 @@
   .cat-section--grid { row-gap: 0.8rem; }
   .home-entry .home-meta-loc .sep { color: rgba(244,244,239,0.5); }
   .home-entry--text .home-image-wrap, .cat-section--grid .home-entry--text .home-image-wrap { padding-bottom: 5.4rem; }
+
+  /* ALIGNED TEXT BLOCKS: headline, intro and section sentences share one left and one right edge with the tiles */
+  .home-intro { max-width: none; padding-right: 0; }
+  .home-intro-text .l { display: block; text-align: justify; text-align-last: justify; white-space: nowrap; }
+  @media (min-width: 901px) { .home-feed { padding-right: 1.8rem; } }
+  .home-intro-sub { max-width: none; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .cat-header .cat-thesis { grid-column: 1 / -1; max-width: none; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  .project-description, .project-detail, .info-bio, .work-description { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+  @media (max-width: 600px) { .home-intro-text .l { display: inline; white-space: normal; text-align: left; text-align-last: auto; } }
 </style>
 </head>
 <body>
@@ -982,7 +991,7 @@
 
       <div class="home-intro">
         <div class="home-intro-tag">Index 2011 / 2026 31 selected works</div>
-        <div class="home-intro-text">Buildings as regulated platforms. Built to survive value engineering, political reality and capital math.</div>
+        <div class="home-intro-text"><span class="l">Buildings as regulated platforms.</span> <span class="l">Built to survive value engineering,</span> <span class="l">Political reality and capital math.</span></div>
         <div class="home-intro-sub">Fourteen years, 20+ public-use facilities, $2.7B+ aggregate and 7.8M+ sf across courthouses, healthcare, transit, libraries and hospitality. That record now works where the industry is shifting: helping firms adopt AI, price it and put it into delivery while knowledge moves faster than process. Design judgment, development economics and working software from one practitioner.</div>
       </div>
 
@@ -2517,6 +2526,25 @@
       });
       box.appendChild(g);
     });
+  })();
+</script>
+
+<script>
+  /* Fit the three headline lines to the column: largest type at which the longest line still fits, then justify the others to it. */
+  (function () {
+    const box = document.querySelector('.home-intro-text');
+    if (!box) return;
+    const lines = box.querySelectorAll('.l');
+    function fit() {
+      if (window.innerWidth <= 600) { box.style.fontSize = ''; return; }
+      box.style.fontSize = '100px';
+      let widest = 0;
+      lines.forEach(l => { l.style.display = 'inline-block'; l.style.textAlignLast = 'auto'; widest = Math.max(widest, l.getBoundingClientRect().width); l.style.display = ''; l.style.textAlignLast = ''; });
+      if (widest > 0) box.style.fontSize = (Math.floor(box.clientWidth / widest * 1000) / 10) + 'px';
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
   })();
 </script>
 </body>
