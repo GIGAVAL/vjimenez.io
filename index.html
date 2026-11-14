@@ -973,6 +973,10 @@
   .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
   .home-tag .num { color: var(--ink); }
   .home-image-wrap { outline: 1px solid var(--rule); outline-offset: -1px; }
+
+  /* Index fills the side panel: slightly taller rows now that the two columns are even */
+  .home-index-row { padding: clamp(0.28rem, 0.75vh, 0.7rem) 0; font-size: 1.28rem; }
+  .home-index-group { margin-bottom: 1.6rem; }
 </style>
 </head>
 <body>
@@ -998,7 +1002,7 @@
       <hr>
       <a href="mailto:nyc@vjimenez.io" class="email">nyc@vjimenez.io</a>
       <div class="copyright">&copy; 2026 Valerie Jimenez</div>
-      <div class="copyright">Updated 11/12/26</div>
+      <div class="copyright">Updated 11/14/26</div>
     </div>
   </nav>
 
@@ -1079,17 +1083,59 @@
 
       </section>
 
-      <!-- 02 JUSTICE -->
-      <section class="cat-section cat-section--grid" id="cat-justice">
+      <!-- 02 AI TOOLS -->
+      <section class="cat-section cat-section--grid" id="cat-ai-tools">
         <div class="cat-header">
           <div class="cat-mark">02</div>
+          <h2 class="cat-name">AI Tools</h2>
+          <div class="cat-thesis">AI-assisted tools for drawing-set review, code checking and structural risk, built and versioned in the open at <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a>. Each one turns a check a reviewer does by eye into a check software can run.</div>
+        </div>
+
+        <a class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">006</span>QA/QC</div>
+            <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">SheetCheck</div>
+            <div class="home-meta-loc">Drawing-set QA/QC<span class="sep">/</span>Defect injection<span class="sep">/</span>Live demo</div>
+          </div>
+        </a>
+
+        <a class="home-entry" href="https://gigaval.github.io/fire002-handover/" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">007</span>Code</div>
+            <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">FIRE-002 Compartmentation</div>
+            <div class="home-meta-loc">Fire compartmentation<span class="sep">/</span>NCC 2022<span class="sep">/</span>Live page</div>
+          </div>
+        </a>
+        <a class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">008</span>Structure</div>
+            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Bailout</div>
+            <div class="home-meta-loc">Value engineering<span class="sep">/</span>Hackathon 2026<span class="sep">/</span>Live demo</div>
+          </div>
+        </a>
+
+      </section>
+
+      <!-- 03 JUSTICE -->
+      <section class="cat-section cat-section--grid" id="cat-justice">
+        <div class="cat-header">
+          <div class="cat-mark">03</div>
           <h2 class="cat-name">Justice</h2>
           <div class="cat-thesis">Confinement, courts and forensic treatment. Trauma-informed planning at $2B+ scale, environments designed around recovery rather than control, across the typologies the discipline largely refuses to examine.</div>
         </div>
 
         <a class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">006</span>Detention</div>
+            <div class="home-tag"><span class="num">009</span>Detention</div>
             <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1100,7 +1146,7 @@
 
         <a class="home-entry" href="#court" onclick="stackOpen(&apos;court&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">007</span>Court</div>
+            <div class="home-tag"><span class="num">010</span>Court</div>
             <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1111,7 +1157,7 @@
 
         <a class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">008</span>Forensic</div>
+            <div class="home-tag"><span class="num">011</span>Forensic</div>
             <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1122,7 +1168,7 @@
 
         <a class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">009</span>Detention &amp; Treatment</div>
+            <div class="home-tag"><span class="num">012</span>Detention &amp; Treatment</div>
             <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1133,7 +1179,7 @@
 
         <a class="home-entry" href="#rehabilitation" onclick="stackOpen(&apos;rehabilitation&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">010</span>Detention</div>
+            <div class="home-tag"><span class="num">013</span>Detention</div>
             <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="County Jail Renovation, program massing" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1144,17 +1190,17 @@
 
       </section>
 
-      <!-- 03 PRACTICE -->
+      <!-- 04 PRACTICE -->
       <section class="cat-section cat-section--grid" id="cat-practice">
         <div class="cat-header">
-          <div class="cat-mark">03</div>
+          <div class="cat-mark">04</div>
           <h2 class="cat-name">Practice</h2>
           <div class="cat-thesis">Smaller-scale work where material and proportion carry the design: retail and workplace. The studio register at room scale.</div>
         </div>
 
         <a class="home-entry" href="#interior" onclick="stackOpen(&apos;interior&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">011</span>Retail</div>
+            <div class="home-tag"><span class="num">014</span>Retail</div>
             <img decoding="async" loading="lazy" src="bakery.jpg" alt="Blue Sky Bakery" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1165,7 +1211,7 @@
 
         <a class="home-entry" href="#office" onclick="stackOpen(&apos;office&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">012</span>Workplace</div>
+            <div class="home-tag"><span class="num">015</span>Workplace</div>
             <img decoding="async" loading="lazy" src="office.jpg" alt="AEC firm office" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1176,17 +1222,17 @@
 
       </section>
 
-      <!-- 04 EDITORIAL -->
+      <!-- 05 EDITORIAL -->
       <section class="cat-section cat-section--grid" id="cat-editorial">
         <div class="cat-header">
-          <div class="cat-mark">04</div>
+          <div class="cat-mark">05</div>
           <h2 class="cat-name">Editorial</h2>
           <div class="cat-thesis">Writing across justice architecture, AI in practice, sustainable real estate, infrastructure and development. Seven pieces, each with its full text or document.</div>
         </div>
 
         <a class="home-entry" href="#editorial" onclick="showPage(&apos;editorial&apos;); location.hash=&apos;editorial&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">013</span>Justice</div>
+            <div class="home-tag"><span class="num">016</span>Justice</div>
             <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1197,7 +1243,7 @@
 
         <a class="home-entry home-entry--text" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">014</span>AI in practice</div>
+            <div class="home-tag"><span class="num">017</span>AI in practice</div>
             <div class="home-text-title">Twelve principles. Seven frameworks. Every finding cited.</div>
             <div class="home-text-metric">Essay / May 2026</div>
           </div>
@@ -1209,7 +1255,7 @@
 
         <a class="home-entry" href="#ed-spine" onclick="showPage(&apos;ed-spine&apos;); location.hash=&apos;ed-spine&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">015</span>AI in practice</div>
+            <div class="home-tag"><span class="num">018</span>AI in practice</div>
             <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1220,7 +1266,7 @@
 
         <a class="home-entry" href="#ed-sustainable-re" onclick="showPage(&apos;ed-sustainable-re&apos;); location.hash=&apos;ed-sustainable-re&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">016</span>Real estate</div>
+            <div class="home-tag"><span class="num">019</span>Real estate</div>
             <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1231,7 +1277,7 @@
 
         <a class="home-entry" href="#ed-infrastructure" onclick="showPage(&apos;ed-infrastructure&apos;); location.hash=&apos;ed-infrastructure&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">017</span>Infrastructure</div>
+            <div class="home-tag"><span class="num">020</span>Infrastructure</div>
             <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1242,7 +1288,7 @@
 
         <a class="home-entry" href="#ed-hotel-plus" onclick="showPage(&apos;ed-hotel-plus&apos;); location.hash=&apos;ed-hotel-plus&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">018</span>Development</div>
+            <div class="home-tag"><span class="num">021</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1253,7 +1299,7 @@
 
         <a class="home-entry" href="#ed-the-cad" onclick="showPage(&apos;ed-the-cad&apos;); location.hash=&apos;ed-the-cad&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">019</span>Development</div>
+            <div class="home-tag"><span class="num">022</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
           </div>
           <div class="home-meta">
@@ -1261,48 +1307,6 @@
             <div class="home-meta-loc">Brooklyn Heights<span class="sep">/</span>2019<span class="sep">/</span>PDF, 14 pages</div>
           </div>
         </a>
-      </section>
-
-      <!-- 05 AI TOOLS -->
-      <section class="cat-section cat-section--grid" id="cat-ai-tools">
-        <div class="cat-header">
-          <div class="cat-mark">05</div>
-          <h2 class="cat-name">AI Tools</h2>
-          <div class="cat-thesis">AI-assisted tools for drawing-set review, code checking and structural risk, built and versioned in the open at <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a>. Each one turns a check a reviewer does by eye into a check software can run.</div>
-        </div>
-
-        <a class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">020</span>QA/QC</div>
-            <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">SheetCheck</div>
-            <div class="home-meta-loc">Drawing-set QA/QC<span class="sep">/</span>Defect injection<span class="sep">/</span>Live demo</div>
-          </div>
-        </a>
-
-        <a class="home-entry" href="https://gigaval.github.io/fire002-handover/" target="_blank" rel="noopener">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">021</span>Code</div>
-            <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">FIRE-002 Compartmentation</div>
-            <div class="home-meta-loc">Fire compartmentation<span class="sep">/</span>NCC 2022<span class="sep">/</span>Live page</div>
-          </div>
-        </a>
-        <a class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">022</span>Structure</div>
-            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Bailout</div>
-            <div class="home-meta-loc">Value engineering<span class="sep">/</span>Hackathon 2026<span class="sep">/</span>Live demo</div>
-          </div>
-        </a>
-
       </section>
 
       <!-- 06 CONCEPTS / ARCHIVE -->
