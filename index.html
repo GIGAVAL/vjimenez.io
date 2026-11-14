@@ -977,6 +977,17 @@
   /* Index fills the side panel: slightly taller rows now that the two columns are even */
   .home-index-row { padding: clamp(0.28rem, 0.75vh, 0.7rem) 0; font-size: 1.28rem; }
   .home-index-group { margin-bottom: 1.6rem; }
+
+  /* THREE-UP GRID on wide screens: smaller tiles, more works per screen. Two-up below 1200px, one-up on phones. */
+  @media (min-width: 1200px) {
+    .cat-section--grid { grid-template-columns: repeat(3, 1fr); column-gap: 0.6rem; row-gap: 0.6rem; }
+    .home-entry .home-meta-name, .cat-section--grid .home-meta-name { font-size: 1.2rem; margin-bottom: 0.25rem; }
+    .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { font-size: 0.66rem; letter-spacing: 0.05em; }
+    .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { padding: 0.5rem 0.7rem 0.55rem; }
+    .cat-section--grid .home-tag { font-size: 0.68rem; padding: 0.45rem 0.7rem; }
+    .cat-section--grid .home-entry--text .home-text-title { font-size: 1.35rem; }
+    .home-entry--text .home-image-wrap, .cat-section--grid .home-entry--text .home-image-wrap { padding: 2rem 0.9rem 4.4rem; }
+  }
 </style>
 </head>
 <body>
