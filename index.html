@@ -970,7 +970,7 @@
   .site-subtitle:hover, .site-subtitle.active { color: var(--text-light); }
   .home-index a.active, .home-index a.active .t { color: var(--ink); font-weight: 700; }
   .home-index-row.active .n { color: var(--ink); }
-  .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); font-weight: 700; text-decoration: none; background: #E4FF4A; box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 0.15em; margin: 0 -0.15em; }
+  .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
   .home-tag .num { color: var(--ink); }
   .home-image-wrap { outline: 1px solid var(--rule); outline-offset: -1px; }
 
@@ -991,6 +991,10 @@
 
   /* INDEX HOVER: bold word on a lime-yellow highlight, no underline. Stroke gives the bold weight without changing word width, so rows never jump. */
   .home-index-row:hover .t, .home-index-head a:hover, .home-index a.active .t, .home-index-head a.active { text-decoration: none; color: var(--ink); font-weight: inherit; -webkit-text-stroke: 0.45px var(--ink); background: #E8FF3A; box-shadow: 0.25em 0 0 #E8FF3A, -0.25em 0 0 #E8FF3A; }
+
+  /* Viewer: link from the image stack to the project page with its text and downloads */
+  .stack-meta .stack-more { display: inline-block; margin-top: 0.8rem; pointer-events: auto; font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #E8FF3A; padding: 0.35rem 0.7rem; }
+  .stack-meta .stack-more:hover { background: var(--ink); color: #fff; }
 </style>
 </head>
 <body>
@@ -1244,7 +1248,7 @@
           <div class="cat-thesis">Writing across justice architecture, AI in practice, sustainable real estate, infrastructure and development. Seven pieces, each with its full text or document.</div>
         </div>
 
-        <a class="home-entry" href="#editorial" onclick="showPage(&apos;editorial&apos;); location.hash=&apos;editorial&apos;; return false;">
+        <a class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">016</span>Justice</div>
             <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')">
@@ -1267,7 +1271,7 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#ed-spine" onclick="showPage(&apos;ed-spine&apos;); location.hash=&apos;ed-spine&apos;; return false;">
+        <a class="home-entry" href="#ed-spine" onclick="stackOpen(&apos;ed-spine&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">018</span>AI in practice</div>
             <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')">
@@ -1278,7 +1282,7 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#ed-sustainable-re" onclick="showPage(&apos;ed-sustainable-re&apos;); location.hash=&apos;ed-sustainable-re&apos;; return false;">
+        <a class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">019</span>Real estate</div>
             <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')">
@@ -1289,7 +1293,7 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#ed-infrastructure" onclick="showPage(&apos;ed-infrastructure&apos;); location.hash=&apos;ed-infrastructure&apos;; return false;">
+        <a class="home-entry" href="#ed-infrastructure" onclick="stackOpen(&apos;ed-infrastructure&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">020</span>Infrastructure</div>
             <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')">
@@ -1300,7 +1304,7 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#ed-hotel-plus" onclick="showPage(&apos;ed-hotel-plus&apos;); location.hash=&apos;ed-hotel-plus&apos;; return false;">
+        <a class="home-entry" href="#ed-hotel-plus" onclick="stackOpen(&apos;ed-hotel-plus&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">021</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
@@ -1311,7 +1315,7 @@
           </div>
         </a>
 
-        <a class="home-entry" href="#ed-the-cad" onclick="showPage(&apos;ed-the-cad&apos;); location.hash=&apos;ed-the-cad&apos;; return false;">
+        <a class="home-entry" href="#ed-the-cad" onclick="stackOpen(&apos;ed-the-cad&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">022</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
@@ -2379,7 +2383,14 @@
     }
     meta.innerHTML =
       '<span class="ref">Ref. ' + num + '</span>' +
-      '<span class="citation"><span class="title">' + projectName + '</span>. ' + citationDetail + '</span>';
+      '<span class="citation"><span class="title">' + projectName + '</span>. ' + citationDetail + '</span>' +
+      '<a class="stack-more" href="#' + projectId + '">Text and downloads &rarr;</a>';
+    meta.querySelector('.stack-more').addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      stackClose();
+      showPage(projectId);
+      history.replaceState(null, '', '#' + projectId);
+    });
     document.getElementById('stack-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     stackNext();
