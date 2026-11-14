@@ -970,7 +970,7 @@
   .site-subtitle:hover, .site-subtitle.active { color: var(--text-light); }
   .home-index a.active, .home-index a.active .t { color: var(--ink); font-weight: 700; }
   .home-index-row.active .n { color: var(--ink); }
-  .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
+  .home-index-row:hover .t, .home-index-head a:hover { color: var(--ink); font-weight: 700; text-decoration: none; background: #E4FF4A; box-decoration-break: clone; -webkit-box-decoration-break: clone; padding: 0 0.15em; margin: 0 -0.15em; }
   .home-tag .num { color: var(--ink); }
   .home-image-wrap { outline: 1px solid var(--rule); outline-offset: -1px; }
 
@@ -988,6 +988,9 @@
     .cat-section--grid .home-entry--text .home-text-title { font-size: 1.35rem; }
     .home-entry--text .home-image-wrap, .cat-section--grid .home-entry--text .home-image-wrap { padding: 2rem 0.9rem 4.4rem; }
   }
+
+  /* INDEX HOVER: bold word on a lime-yellow highlight, no underline. Stroke gives the bold weight without changing word width, so rows never jump. */
+  .home-index-row:hover .t, .home-index-head a:hover, .home-index a.active .t, .home-index-head a.active { text-decoration: none; color: var(--ink); font-weight: inherit; -webkit-text-stroke: 0.45px var(--ink); background: #E8FF3A; box-shadow: 0.25em 0 0 #E8FF3A, -0.25em 0 0 #E8FF3A; }
 </style>
 </head>
 <body>
