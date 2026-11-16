@@ -995,6 +995,10 @@
   /* Viewer: link from the image stack to the project page with its text and downloads */
   .stack-meta .stack-more { display: inline-block; margin-top: 0.8rem; pointer-events: auto; font-family: var(--font-mono); font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: #E8FF3A; padding: 0.35rem 0.7rem; }
   .stack-meta .stack-more:hover { background: var(--ink); color: #fff; }
+
+  /* ONE LABEL PER TILE: the upper tag is gone; the lower label carries number, index word and facts */
+  .home-tag { display: none; }
+  .home-meta-name .k { font-family: var(--font-mono); font-size: 0.62em; font-weight: 400; letter-spacing: 0.06em; margin-right: 0.6em; vertical-align: 0.12em; opacity: 0.6; }
 </style>
 </head>
 <body>
@@ -2369,7 +2373,7 @@
     let citationDetail = '';
     if (projectTile) {
       num = projectTile.querySelector('.home-tag .num')?.textContent.trim() || '';
-      projectName = projectTile.querySelector('.home-meta-name')?.textContent.trim() || projectName;
+      projectName = projectTile.dataset.full || projectTile.querySelector('.home-meta-name')?.textContent.trim() || projectName;
       const locLine = projectTile.querySelector('.home-meta-loc');
       if (locLine) {
         /* Take location and year, drop the more granular details */
@@ -2568,8 +2572,18 @@
         n.textContent = tile.querySelector('.home-tag .num')?.textContent.trim() || '';
         const body = document.createElement('span');
         const t = document.createElement('span'); t.className = 't';
-        t.textContent = tile.dataset.index || tile.querySelector('.home-meta-name')?.textContent.trim() || '';
-        row.title = tile.querySelector('.home-meta-name')?.textContent.trim() || '';
+        const nameEl = tile.querySelector('.home-meta-name');
+        const full = nameEl?.textContent.trim() || '';
+        tile.dataset.full = full;
+        t.textContent = tile.dataset.index || full;
+        row.title = full;
+        /* One label per tile: number and the index word, in place of the separate tag and full name */
+        if (nameEl) {
+          const k = document.createElement('span'); k.className = 'k'; k.textContent = n.textContent;
+          nameEl.textContent = tile.dataset.index || full;
+          nameEl.prepend(k);
+          tile.title = full;
+        }
         const d = document.createElement('span'); d.className = 'd';
         d.textContent = parts.join(' / ');
         body.append(t, d); row.append(n, body); g.appendChild(row);
