@@ -1012,6 +1012,10 @@
   /* TITLES ONLY: no numerals on index rows, tile labels or the viewer */
   .home-index-row { grid-template-columns: 1fr; }
   .home-index-row .n, .home-meta-name .k, .stack-meta .ref { display: none; }
+
+  /* TILE HOVER: label takes the same lime-yellow highlight as the index, black text */
+  .home-entry:hover .home-meta, .cat-section--grid .home-entry:hover .home-meta { background: #E8FF3A; }
+  .home-entry:hover .home-meta-name, .home-entry:hover .home-meta-loc, .home-entry:hover .home-meta-loc .sep { color: var(--ink); }
 </style>
 </head>
 <body>
