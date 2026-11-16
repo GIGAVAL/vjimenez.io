@@ -46,7 +46,7 @@
   :root {
     --text: #0a0a0a;
     --text-light: rgba(10,10,10,0.62);
-    --text-faint: rgba(10,10,10,0.42);
+    --text-faint: rgba(10,10,10,0.56);
     --accent: #0a0a0a;
     --bg: #ffffff;
     --ink: #0a0a0a;
@@ -69,6 +69,30 @@
   a { color: var(--text); text-decoration: none; transition: color 0.2s; }
   a:hover { color: var(--bg); }
   a.active { color: var(--bg); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+  .skip-link {
+    position: absolute;
+    left: 1.6rem;
+    top: -8rem;
+    z-index: 1000;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1.2rem 1.6rem;
+  }
+  .skip-link:focus, .skip-link:focus-visible {
+    top: 1.6rem;
+    color: var(--bg);
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
 
   /* LAYOUT */
   .site-wrapper { display: flex; min-height: 100vh; }
@@ -283,7 +307,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--text-faint);
+    color: rgba(255,255,255,0.72);
     font-family: var(--font-mono);
     font-size: 1rem;
     letter-spacing: 0.12em;
@@ -331,7 +355,7 @@
     letter-spacing: -0.005em;
     color: var(--text-light);
   }
-  .next-page a:hover { color: var(--bg); }
+  .next-page a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.15em; }
 
   /* INFO PAGE */
   .info-page { display: none; }
@@ -355,7 +379,21 @@
     font-style: italic;
     line-height: 1.2;
     color: var(--text-light);
-    margin-bottom: 2.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .info-resume {
+    font-family: var(--font-mono);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 2.4rem;
+  }
+  .info-resume a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.35rem;
   }
 
   .info-tagline {
@@ -780,7 +818,7 @@
 
   /* PHONE (iPhone-class viewports) */
   @media (max-width: 600px) {
-    html { font-size: 9px; }
+    html { font-size: 12px; }
     .nav-panel { padding: 2rem 2rem 2.4rem; }
     .nav-links a, .site-name, .site-subtitle { font-size: 2rem; }
     .site-role { font-size: 1.35rem; margin-top: 0; }
@@ -1033,9 +1071,19 @@
   /* TILE HOVER: label takes the same lime-yellow highlight as the index, black text */
   .home-entry:hover .home-meta, .cat-section--grid .home-entry:hover .home-meta { background: #E8FF3A; }
   .home-entry:hover .home-meta-name, .home-entry:hover .home-meta-loc, .home-entry:hover .home-meta-loc .sep { color: var(--ink); }
+
+  /* Images now carry width and height attributes (less layout shift); keep their proportions when CSS sets the width */
+  .project-images img, .info-page img { height: auto; }
+
+  /* Phone: long contact lines wrap inside the panel */
+  @media (max-width: 600px) {
+    .nav-footer .email { font-size: 1.25rem; overflow-wrap: anywhere; }
+    .info-email-top { font-size: 1.5rem; overflow-wrap: anywhere; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="site-wrapper">
 
@@ -1060,11 +1108,11 @@
       <a href="mailto:nyc@vjimenez.io" class="email">nyc@vjimenez.io</a>
       <a href="https://www.linkedin.com/in/valeriejimeneznyc" class="email" target="_blank" rel="noopener me">linkedin.com/in/valeriejimeneznyc</a>
       <div class="copyright">&copy; 2026 Valerie Jimenez</div>
-      <div class="copyright">Updated 11/14/26</div>
+      <div class="copyright">Updated 11/16/26</div>
     </div>
   </nav>
 
-  <main class="content-panel">
+  <main id="main" class="content-panel">
 
     <!-- HOME: Project feed DS+R/H&dM synthesis numbered, tagged, image-led -->
     <div class="home-feed" id="home">
@@ -1088,7 +1136,7 @@
         <a data-index="Library" class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">001</span>Learning</div>
-            <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library, axonometric" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library, axonometric" onload="this.classList.add('loaded')" width="1600" height="1143">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Fine Arts Library</div>
@@ -1099,7 +1147,7 @@
         <a data-index="Park" class="home-entry" href="#civic" onclick="stackOpen(&apos;civic&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">002</span>District</div>
-            <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')" width="1600" height="792">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Metropolitan Park</div>
@@ -1110,7 +1158,7 @@
         <a data-index="Transit" class="home-entry" href="#transit" onclick="stackOpen(&apos;transit&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">003</span>Transit</div>
-            <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="MTA Platform Screen Doors" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="MTA Platform Screen Doors" onload="this.classList.add('loaded')" width="1600" height="893">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">MTA Platform Screen Doors</div>
@@ -1121,7 +1169,7 @@
         <a data-index="Development" class="home-entry" href="#development" onclick="stackOpen(&apos;development&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">004</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')" width="1600" height="1237">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">341 Grand Street</div>
@@ -1131,7 +1179,7 @@
         <a data-index="Tower" class="home-entry" href="#brooklyn-tech" onclick="stackOpen(&apos;brooklyn-tech&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">005</span>Preservation</div>
-            <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Historic Tower" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Historic Tower" onload="this.classList.add('loaded')" width="1340" height="1005">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Historic Tower</div>
@@ -1152,7 +1200,7 @@
         <a data-index="SheetCheck" class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">006</span>QA/QC</div>
-            <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')" width="1176" height="784">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">SheetCheck</div>
@@ -1163,7 +1211,7 @@
         <a data-index="Fire" class="home-entry" href="https://gigaval.github.io/fire002-handover/" target="_blank" rel="noopener">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">007</span>Code</div>
-            <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')" width="918" height="612">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">FIRE-002 Compartmentation</div>
@@ -1173,7 +1221,7 @@
         <a data-index="Bailout" class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">008</span>Structure</div>
-            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')" width="1535" height="1023">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Bailout</div>
@@ -1194,7 +1242,7 @@
         <a data-index="Detention" class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">009</span>Detention</div>
-            <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')" width="1553" height="2400">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Adult Justice Center</div>
@@ -1205,7 +1253,7 @@
         <a data-index="Court" class="home-entry" href="#court" onclick="stackOpen(&apos;court&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">010</span>Court</div>
-            <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')" width="1600" height="893">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Family Court</div>
@@ -1216,7 +1264,7 @@
         <a data-index="Forensic" class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">011</span>Forensic</div>
-            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')" width="1600" height="893">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
@@ -1227,7 +1275,7 @@
         <a data-index="Intake" class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">012</span>Detention &amp; Treatment</div>
-            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')" width="881" height="1540">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Intake and Holdings</div>
@@ -1238,7 +1286,7 @@
         <a data-index="Jail" class="home-entry" href="#rehabilitation" onclick="stackOpen(&apos;rehabilitation&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">013</span>Detention</div>
-            <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="County Jail Renovation, program massing" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="County Jail Renovation, program massing" onload="this.classList.add('loaded')" width="1340" height="867">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">County Jail Renovation</div>
@@ -1259,7 +1307,7 @@
         <a data-index="Interiors" class="home-entry" href="#interior" onclick="stackOpen(&apos;interior&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">014</span>Retail</div>
-            <img decoding="async" loading="lazy" src="bakery.jpg" alt="Blue Sky Bakery" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="bakery.jpg" alt="Blue Sky Bakery" onload="this.classList.add('loaded')" width="1600" height="603">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Interiors &amp; Renovations</div>
@@ -1270,7 +1318,7 @@
         <a data-index="Workplace" class="home-entry" href="#office" onclick="stackOpen(&apos;office&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">015</span>Workplace</div>
-            <img decoding="async" loading="lazy" src="office.jpg" alt="AEC firm office" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="office.jpg" alt="AEC firm office" onload="this.classList.add('loaded')" width="1600" height="1035">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Architecture &amp; Engineering HQ</div>
@@ -1291,7 +1339,7 @@
         <a data-index="Observer" class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">016</span>Justice</div>
-            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')" width="1600" height="900">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">DO: Design Observer</div>
@@ -1314,7 +1362,7 @@
         <a data-index="Spine" class="home-entry" href="#ed-spine" onclick="stackOpen(&apos;ed-spine&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">018</span>AI in practice</div>
-            <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">The Spine: Parametric Design with AI</div>
@@ -1325,7 +1373,7 @@
         <a data-index="Sustainability" class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">019</span>Real estate</div>
-            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Sustainable Real Estate Conference</div>
@@ -1336,7 +1384,7 @@
         <a data-index="Transportation" class="home-entry" href="#ed-infrastructure" onclick="stackOpen(&apos;ed-infrastructure&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">020</span>Infrastructure</div>
-            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Transportation and Infrastructure Forum</div>
@@ -1347,7 +1395,7 @@
         <a data-index="Hospitality" class="home-entry" href="#ed-hotel-plus" onclick="stackOpen(&apos;ed-hotel-plus&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">021</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Hotel+ Proposal</div>
@@ -1358,7 +1406,7 @@
         <a data-index="Zoning" class="home-entry" href="#ed-the-cad" onclick="stackOpen(&apos;ed-the-cad&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">022</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')" width="1200" height="675">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">The CAD Proposal</div>
@@ -1378,7 +1426,7 @@
         <a data-index="Redevelopment" class="home-entry" href="#archive-inwood" onclick="stackOpen(&apos;archive-inwood&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">023</span>Residential</div>
-            <img decoding="async" loading="lazy" src="images/archive/inwood-redevelopment-cover.jpg" alt="Redevelopment" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/archive/inwood-redevelopment-cover.jpg" alt="Redevelopment" onload="this.classList.add('loaded')" width="1280" height="1600">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Redevelopment</div>
@@ -1389,7 +1437,7 @@
         <a data-index="Storefront" class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">024</span>Storefront</div>
-            <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')" width="1600" height="1067">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Rodarte</div>
@@ -1400,7 +1448,7 @@
         <a data-index="Dwelling" class="home-entry" href="#jorejick" onclick="stackOpen(&apos;jorejick&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">025</span>Dwelling</div>
-            <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Jorejick Home, covered terrace at sunset" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Jorejick Home, covered terrace at sunset" onload="this.classList.add('loaded')" width="1600" height="1173">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Jorejick Home</div>
@@ -1411,7 +1459,7 @@
         <a data-index="Housing" class="home-entry" href="#cyber-housing" onclick="stackOpen(&apos;cyber-housing&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">026</span>Housing</div>
-            <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Cyber Housing" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Cyber Housing" onload="this.classList.add('loaded')" width="1340" height="680">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Cyber Housing</div>
@@ -1422,7 +1470,7 @@
         <a data-index="Hotel" class="home-entry" href="#hotel" onclick="stackOpen(&apos;hotel&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">027</span>Hospitality</div>
-            <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Hotel+, proposed exterior" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Hotel+, proposed exterior" onload="this.classList.add('loaded')" width="1340" height="1262">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Hotel+</div>
@@ -1433,7 +1481,7 @@
         <a data-index="Models" class="home-entry" href="#models" onclick="stackOpen(&apos;models&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">028</span>Models</div>
-            <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Scale Models" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Scale Models" onload="this.classList.add('loaded')" width="1340" height="974">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Scale Models</div>
@@ -1444,7 +1492,7 @@
         <a data-index="Studies" class="home-entry" href="#housing-studies" onclick="stackOpen(&apos;housing-studies&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">029</span>Housing</div>
-            <img decoding="async" loading="lazy" src="images/vjl/housing/cover.jpg" alt="Housing Studies, mixed-use residential tower" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/housing/cover.jpg" alt="Housing Studies, mixed-use residential tower" onload="this.classList.add('loaded')" width="1010" height="673">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Housing Studies</div>
@@ -1455,7 +1503,7 @@
         <a data-index="Museum" class="home-entry" href="#internet-museum" onclick="stackOpen(&apos;internet-museum&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">030</span>Museum</div>
-            <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Internet Museum, elevation and section" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Internet Museum, elevation and section" onload="this.classList.add('loaded')" width="1500" height="842">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Internet Museum</div>
@@ -1466,7 +1514,7 @@
         <a data-index="Academic" class="home-entry" href="#archive-design-2" onclick="stackOpen(&apos;archive-design-2&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">031</span>Academic</div>
-            <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio, Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')">
+            <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio, Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')" width="550" height="688">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Archived Portfolio</div>
@@ -1480,11 +1528,11 @@
     <!-- JUSTICE / COOK COUNTY -->
     <div class="project-page" id="justice">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cook-county-extras/campus-aerial.jpg?v=4" alt="Adult Justice Center campus aerial massing study" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-extras/campus-aerial.jpg?v=4" alt="Adult Justice Center campus aerial massing study" onload="this.classList.add('loaded')" width="1600" height="924">
         <div class="image-caption">Campus aerial massing study, 96-acre site organization across three new mid-rise towers and retained existing structures</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-extras/program-massing.jpg?v=2" alt="Adult Justice Center program massing model" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-extras/program-massing.jpg?v=2" alt="Adult Justice Center program massing model" onload="this.classList.add('loaded')" width="1600" height="1017">
         <div class="image-caption">Program massing model, dark forms = new construction, light voids = retained existing buildings and green spaces</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-extras/intake-release-diagram.jpg" alt="Adult Justice Center intake and release programmatic flow diagram" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-extras/intake-release-diagram.jpg" alt="Adult Justice Center intake and release programmatic flow diagram" onload="this.classList.add('loaded')" width="1600" height="1331">
         <div class="image-caption">Intake and Release flow diagram, sequencing pre-bond, intake processing, medical evaluation, holding, unit assignment, release and detainee transport across building floors</div>
       </div>
       <div class="project-content">
@@ -1494,15 +1542,15 @@
         <p class="project-detail">Programmatic stacking and floor-by-floor space allocations across the three towers, the Residential Treatment Unit and the Cermak medical acute building. Coordinated with the Sheriff's Office, Office of the Chief Judge, Illinois Department of Corrections and US Department of Justice to reconcile design intent with treatment standards and security requirements. Implementation of the plan is projected to save Cook County $765M over 30 years and $2.9B over 40 years versus status-quo operating costs.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center Tower I exploded program axonometric" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center Tower I exploded program axonometric" onload="this.classList.add('loaded')" width="1553" height="2400">
         <div class="image-caption">Tower I exploded program axonometric, 653,649 GSF across twelve levels</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-2.jpg" alt="Adult Justice Center Tower II programmatic stacking" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-2.jpg" alt="Adult Justice Center Tower II programmatic stacking" onload="this.classList.add('loaded')" width="1553" height="2400">
         <div class="image-caption">Tower II 538,425 GSF, eleven housing levels above a service base</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-3.jpg" alt="Adult Justice Center Tower III programmatic stacking" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-3.jpg" alt="Adult Justice Center Tower III programmatic stacking" onload="this.classList.add('loaded')" width="1553" height="2400">
         <div class="image-caption">Tower III general population housing with administration and education programs at base</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-4.jpg" alt="Adult Justice Center Residential Treatment Unit" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-4.jpg" alt="Adult Justice Center Residential Treatment Unit" onload="this.classList.add('loaded')" width="1553" height="2400">
         <div class="image-caption">Residential Treatment Unit female housing over recreation and education</div>
-        <img decoding="async" loading="lazy" src="images/cook-county-5.jpg" alt="Adult Justice Center Cermak medical acute building" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cook-county-5.jpg" alt="Adult Justice Center Cermak medical acute building" onload="this.classList.add('loaded')" width="1553" height="2400">
         <div class="image-caption">Cermak medical acute facility serving the campus</div>
       </div>
       <div class="next-page"><a href="#court" onclick="showPage('court')">Court &rarr;</a></div>
@@ -1511,7 +1559,7 @@
     <!-- COURT -->
     <div class="project-page" id="court">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Courtroom interior, walnut millwork, wood-slat feature wall, integrated linear lighting" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Courtroom interior, walnut millwork, wood-slat feature wall, integrated linear lighting" onload="this.classList.add('loaded')" width="1600" height="893">
         <div class="image-caption">Courtroom interior render, walnut millwork, wood-slat feature wall behind the bench, integrated linear lighting</div>
       </div>
       <div class="project-content">
@@ -1521,17 +1569,17 @@
         <p class="project-detail">Collaborated with the design architect on bridging documents. Developed test-fit options and blocking diagrams for each department, participated in steering committee presentations and contributed to the conceptual report for cost estimation. Joint venture with Mitchell Giurgola Architects for DASNY.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/court/court-site-plan.jpg" alt="Family Court campus site plan, 100 Richmond, 10 Hamilton, 55 Stuyvesant" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/court/court-site-plan.jpg" alt="Family Court campus site plan, 100 Richmond, 10 Hamilton, 55 Stuyvesant" onload="this.classList.add('loaded')" width="1600" height="937">
         <div class="image-caption">Campus site plan, 100 Richmond Terrace, 10 Hamilton Avenue and 55 Stuyvesant Place, three buildings consolidated into a single courthouse complex</div>
-        <img decoding="async" loading="lazy" src="court-studies.jpg?v=3" alt="Courtroom design studies, eight material and lighting iterations" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="court-studies.jpg?v=3" alt="Courtroom design studies, eight material and lighting iterations" onload="this.classList.add('loaded')" width="1600" height="463">
         <div class="image-caption">Material and lighting studies, iterative design development across ceiling geometry, millwork finish and feature-wall configurations</div>
-        <img decoding="async" loading="lazy" src="si-court-plan.jpg" alt="Third floor overall plan with key plan, 10 Hamilton and 55 Stuyvesant" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="si-court-plan.jpg" alt="Third floor overall plan with key plan, 10 Hamilton and 55 Stuyvesant" onload="this.classList.add('loaded')" width="1600" height="1325">
         <div class="image-caption">Third floor overall plan, courtrooms, chambers and departmental support across 10 Hamilton and 55 Stuyvesant, with color-coded key plan</div>
-        <img decoding="async" loading="lazy" src="images/court/court-color-plan.jpg?v=5" alt="Family Court programmatic color plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/court/court-color-plan.jpg?v=5" alt="Family Court programmatic color plan" onload="this.classList.add('loaded')" width="1600" height="768">
         <div class="image-caption">Programmatic plan, courtrooms and ancillary spaces organized by department around the central circulation core</div>
-        <img decoding="async" loading="lazy" src="images/court/court-courtroom-plan.jpg?v=6" alt="Family Court detailed courtroom floor plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/court/court-courtroom-plan.jpg?v=6" alt="Family Court detailed courtroom floor plan" onload="this.classList.add('loaded')" width="1600" height="1001">
         <div class="image-caption">Courtroom floor plan, BIM-modeled layout with judge's bench, witness stand, jury box, gallery seating and ancillary chambers</div>
-        <img decoding="async" loading="lazy" src="si-court-exterior.jpg" alt="Historic Richmond County Courthouse with contemporary addition" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="si-court-exterior.jpg" alt="Historic Richmond County Courthouse with contemporary addition" onload="this.classList.add('loaded')" width="1600" height="1164">
         <div class="image-caption">Historic Richmond County Courthouse with contemporary addition, contextual response to the circa-1920 civic landmark at 100 Richmond Terrace</div>
       </div>
       <div class="next-page"><a href="#interior" onclick="showPage('interior')">Interior &rarr;</a></div>
@@ -1540,9 +1588,9 @@
     <!-- INTAKE AND HOLDINGS -->
     <div class="project-page" id="penobscot">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/penobscot/axo-full.png?v=2" alt="Intake and Holdings exploded axonometric and floor diagrams" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/penobscot/axo-full.png?v=2" alt="Intake and Holdings exploded axonometric and floor diagrams" onload="this.classList.add('loaded')" width="1600" height="1118">
         <div class="image-caption">Exploded axonometric and floor-by-floor programmatic diagrams, 2019</div>
-        <img decoding="async" loading="lazy" src="images/penobscot/stacking-diagram.png" alt="Intake and Holdings programmatic stacking diagram" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/penobscot/stacking-diagram.png" alt="Intake and Holdings programmatic stacking diagram" onload="this.classList.add('loaded')" width="1600" height="956">
         <div class="image-caption">Stacking diagram, vertical adjacency of housing, healthcare, admin, food service, MEP and intake operations</div>
       </div>
       <div class="project-content">
@@ -1552,15 +1600,15 @@
         <p class="project-detail">CAD documentation and exploded-axonometric authorship for an early-stage programmatic study. Output included floor-level diagrams that informed downstream planning conversations.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/penobscot/town-aerial-dusk.jpg" alt="Proposed facility in its downtown block, aerial at dusk" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/penobscot/town-aerial-dusk.jpg" alt="Proposed facility in its downtown block, aerial at dusk" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Proposed facility in its downtown block, aerial at dusk</div>
-        <img decoding="async" loading="lazy" src="images/cargo/hospital-007.jpg" alt="Massing in context, facility among civic and church buildings" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-007.jpg" alt="Massing in context, facility among civic and church buildings" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Massing in context, facility among civic and church buildings</div>
-        <img decoding="async" loading="lazy" src="images/cargo/hospital-008c.jpg" alt="Massing study, street elevation" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-008c.jpg" alt="Massing study, street elevation" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Massing study, street elevation</div>
-        <img decoding="async" loading="lazy" src="images/penobscot/town-plan-aerial.jpg" alt="Site in the town grid, aerial plan view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/penobscot/town-plan-aerial.jpg" alt="Site in the town grid, aerial plan view" onload="this.classList.add('loaded')" width="1340" height="753">
         <div class="image-caption">Site in the town grid, aerial plan view</div>
-        <img decoding="async" loading="lazy" src="images/penobscot/site-topography.jpg" alt="Site plan, topographic diagram" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/penobscot/site-topography.jpg" alt="Site plan, topographic diagram" onload="this.classList.add('loaded')" width="1600" height="1068">
         <div class="image-caption">Site plan, topographic diagram</div>
       </div>
       <div class="next-page"><a href="#hospital" onclick="showPage('hospital')">Administration &amp; Forensic Psychiatric Center &rarr;</a></div>
@@ -1569,7 +1617,7 @@
     <!-- HOSPITAL -->
     <div class="project-page" id="hospital">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')" width="1600" height="893">
         <div class="image-caption">Administration &amp; Forensic Psychiatric Center approach view</div>
       </div>
       <div class="project-content">
@@ -1579,11 +1627,11 @@
         <p class="project-detail">Coordinated consultants and managed fee structures for a trauma-informed treatment campus. Developed design options that satisfied both security requirements and the emerging standards for behavioral health environments. Integrated BIM workflows with prefabrication sequencing for a 306-bed secure facility.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/hospital-view-03c.jpg" alt="Campus aerial, new facility and existing campus in a wooded site" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/hospital-view-03c.jpg" alt="Campus aerial, new facility and existing campus in a wooded site" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Campus aerial, new facility and existing campus in a wooded site</div>
-        <img decoding="async" loading="lazy" src="images/hospital/site-plan-aerial.jpg" alt="Site plan view, housing wings off a single secure spine" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/hospital/site-plan-aerial.jpg" alt="Site plan view, housing wings off a single secure spine" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Site plan view, housing wings off a single secure spine</div>
-        <img decoding="async" loading="lazy" src="images/hospital/first-floor-plan.jpg" alt="Entry and first floor overall plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/hospital/first-floor-plan.jpg" alt="Entry and first floor overall plan" onload="this.classList.add('loaded')" width="1600" height="1200">
         <div class="image-caption">Entry and first floor overall plan</div>
       </div>
       <div class="next-page"><a href="#justice" onclick="showPage('justice')">Justice &rarr;</a></div>
@@ -1592,7 +1640,7 @@
     <!-- LIBRARY -->
     <div class="project-page" id="library">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/cornell-library-hero.jpg" alt="Fine Arts Library" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/cornell-library-hero.jpg" alt="Fine Arts Library" onload="this.classList.add('loaded')" width="1581" height="2400">
         <div class="image-caption">Fine Arts Library, Ithaca NY. Photo &copy; Lukas Schaller.</div>
       </div>
       <div class="project-content">
@@ -1602,9 +1650,9 @@
         <p class="project-detail">Contributed to design and construction document production. Coordinated high-performance building systems tailored to the library's unique open-stack configuration. Early-career project that established foundational experience in historic renovation, sustainable design and cross-discipline coordination.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library axonometric" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library axonometric" onload="this.classList.add('loaded')" width="1600" height="1143">
         <div class="image-caption">Axonometric suspended stack structure within the existing envelope</div>
-        <img decoding="async" loading="lazy" src="cornell-tech.jpg" alt="Fine Arts Library technical" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="cornell-tech.jpg" alt="Fine Arts Library technical" onload="this.classList.add('loaded')" width="1600" height="1143">
         <div class="image-caption">Technical detail integration of new systems within historic masonry</div>
       </div>
       <div class="next-page"><a href="#civic" onclick="showPage('civic')">Civic &rarr;</a></div>
@@ -1613,7 +1661,7 @@
     <!-- INTERIOR -->
     <div class="project-page" id="interior">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="bakery.jpg" alt="01 Blue Sky Bakery. Corner storefront, plans and interior studies" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="bakery.jpg" alt="01 Blue Sky Bakery. Corner storefront, plans and interior studies" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">01 Blue Sky Bakery. Corner storefront, plans and interior studies</div>
       </div>
       <div class="project-content">
@@ -1623,13 +1671,13 @@
         <p class="project-detail">Full project lifecycles from survey through construction documents. Material specification, finish schedules and millwork detailing coordinated with contractors and fabricators.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/interior-auditorium.jpg" alt="02 Auditorium renovation. Acoustics, seating layout and material palette" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/interior-auditorium.jpg" alt="02 Auditorium renovation. Acoustics, seating layout and material palette" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">02 Auditorium renovation. Acoustics, seating layout and material palette</div>
-        <img decoding="async" loading="lazy" src="images/interiors/apartment.jpg" alt="03 Apartment renovation. Plans, axonometric and interior render" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/interiors/apartment.jpg" alt="03 Apartment renovation. Plans, axonometric and interior render" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">03 Apartment renovation. Plans, axonometric and interior render</div>
-        <img decoding="async" loading="lazy" src="images/interiors/office-and-facade.jpg" alt="04 Office fit-out and facade repair. Plans, wall sections and existing conditions" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/interiors/office-and-facade.jpg" alt="04 Office fit-out and facade repair. Plans, wall sections and existing conditions" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">04 Office fit-out and facade repair. Plans, wall sections and existing conditions</div>
-        <img decoding="async" loading="lazy" src="images/cargo/interior-garden.jpg" alt="05 Courtyard garden. Landscape plan, planting schedule and details" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/interior-garden.jpg" alt="05 Courtyard garden. Landscape plan, planting schedule and details" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">05 Courtyard garden. Landscape plan, planting schedule and details</div>
       </div>
       <div class="next-page"><a href="#office" onclick="showPage('office')">Office &rarr;</a></div>
@@ -1638,7 +1686,7 @@
     <!-- METROPOLITAN PARK -->
     <div class="project-page" id="civic">
       <div class="project-images">
-        <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')" width="1600" height="792">
         <div class="image-caption">Metropolitan Park, Willets Point Queens NY</div>
       </div>
       <div class="project-content">
@@ -1648,13 +1696,13 @@
         <p class="project-detail">Led cross-discipline coordination between architecture, landscape, civil and structural teams. Managed bridging documents across multiple structured garages and integrated public realm design with the entertainment program.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/civic-tq-northwest-corner.jpg" alt="Metropolitan Park, northwest corner render" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/civic-tq-northwest-corner.jpg" alt="Metropolitan Park, northwest corner render" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">Northwest corner, hotel and casino entry frontage at Roosevelt Avenue</div>
-        <img decoding="async" loading="lazy" src="images/civic/metropolitan-park-axonometric-views.jpg" alt="Metropolitan Park, building axonometric views, South Gateway Plaza approach and Roosevelt Avenue parcel" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/civic/metropolitan-park-axonometric-views.jpg" alt="Metropolitan Park, building axonometric views, South Gateway Plaza approach and Roosevelt Avenue parcel" onload="this.classList.add('loaded')" width="1600" height="1607">
         <div class="image-caption">Building axonometric views, South Gateway Plaza approach from Citi Field and parcel context at Roosevelt Avenue / Seaver Way</div>
-        <img decoding="async" loading="lazy" src="images/civic/tq-exploded-axo.png" alt="Tower Q parking garage exploded axonometric" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/civic/tq-exploded-axo.png" alt="Tower Q parking garage exploded axonometric" onload="this.classList.add('loaded')" width="1600" height="1186">
         <div class="image-caption">Tower Q parking garage, exploded axonometric programmatic stacking</div>
-        <img decoding="async" loading="lazy" src="images/cargo/civic-tq-overall-plan.jpg" alt="Metropolitan Park, 50-acre district plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/civic-tq-overall-plan.jpg" alt="Metropolitan Park, 50-acre district plan" onload="this.classList.add('loaded')" width="1600" height="1200">
         <div class="image-caption">Overall site plan, 50-acre district organization across hotel, casino, performance venue, food hall and public park</div>
       </div>
       <div class="next-page"><a href="#transit" onclick="showPage('transit')">Transit &rarr;</a></div>
@@ -1663,7 +1711,7 @@
     <!-- TRANSIT -->
     <div class="project-page" id="transit">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="Transit" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="Transit" onload="this.classList.add('loaded')" width="1600" height="893">
         <div class="image-caption">Platform screen doors MTA Subway pilot program</div>
       </div>
       <div class="project-content">
@@ -1673,9 +1721,9 @@
         <p class="project-detail">Led integration of screen door concepts with existing station elements. Coordinated interdisciplinary equipment room design and produced design-build bridging documents.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-2.jpg" alt="Platform screen door installation, alternate station view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/transit-psd-2.jpg" alt="Platform screen door installation, alternate station view" onload="this.classList.add('loaded')" width="1600" height="893">
         <div class="image-caption">Platform screen door system, alternate station configuration and passenger flow</div>
-        <img decoding="async" loading="lazy" src="transit-1.jpg?v=2" alt="Platform screen door technical detail" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="transit-1.jpg?v=2" alt="Platform screen door technical detail" onload="this.classList.add('loaded')" width="1600" height="359">
         <div class="image-caption">Screen door assembly, integration with existing column grid and ventilation systems</div>
       </div>
       <div class="next-page"><a href="#development" onclick="showPage('development')">Development &rarr;</a></div>
@@ -1684,7 +1732,7 @@
     <!-- DEVELOPMENT LES Mixed-Use -->
     <div class="project-page" id="development">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="LES Mixed-Use residential program by floor" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="LES Mixed-Use residential program by floor" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Residential mix program allocation by floor, unit type, $/sf, monthly rent</div>
       </div>
       <div class="project-content">
@@ -1694,15 +1742,15 @@
         <p class="project-detail">Solo authorship across all components site analysis, demographic study, project concept, residential mix, financial structure, sustainability targets and SWOT. Concluding capstone for the M.S. Real Estate Development with a concentration in Sustainable Development. Underwriting headlines: $1.43M maximum year-one revenue, $745K NOI, 5.1% cap rate, FAR 6 zoning envelope at maximum allowable height.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/les-zoning-info.jpg" alt="LES zoning analysis" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-zoning-info.jpg" alt="LES zoning analysis" onload="this.classList.add('loaded')" width="1600" height="2070">
         <div class="image-caption">Zoning R7-2 envelope, FAR 6, 9,888 sf maximum allowable floor area, 120-ft maximum height</div>
-        <img decoding="async" loading="lazy" src="images/les-rent-roll.jpg" alt="LES rent roll and pro forma" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-rent-roll.jpg" alt="LES rent roll and pro forma" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Rent roll per-unit revenue, expenses, NOI and cap rate</div>
-        <img decoding="async" loading="lazy" src="images/les-per-sf-per-yr.jpg" alt="LES per-sf-per-year metrics" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-per-sf-per-yr.jpg" alt="LES per-sf-per-year metrics" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Operating metrics per square foot, per year</div>
-        <img decoding="async" loading="lazy" src="images/les-construction-.jpg" alt="LES construction cost analysis" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-construction-.jpg" alt="LES construction cost analysis" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Construction hard cost breakdown by trade</div>
-        <img decoding="async" loading="lazy" src="images/les-bldg-qty.jpg" alt="LES building quantities" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/les-bldg-qty.jpg" alt="LES building quantities" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Building quantities takeoffs supporting the construction estimate</div>
       </div>
       <div class="next-page"><a href="#hospital" onclick="showPage('hospital')">Forensic &rarr;</a></div>
@@ -1711,7 +1759,7 @@
     <!-- OFFICE -->
     <div class="project-page" id="office">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="office.jpg" alt="Office" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="office.jpg" alt="Office" onload="this.classList.add('loaded')" width="1600" height="1035">
         <div class="image-caption">Architecture and engineering headquarters New York</div>
       </div>
       <div class="project-content">
@@ -1721,7 +1769,7 @@
         <p class="project-detail">Space planning, construction documentation and material specification. Coordinated MEP and furniture systems integration across five floors of occupied renovation.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/cargo/office-aec-plans.jpg" alt="Office floor plans and programming" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/cargo/office-aec-plans.jpg" alt="Office floor plans and programming" onload="this.classList.add('loaded')" width="1600" height="1035">
         <div class="image-caption">Floor plans, open office, conference suites and support spaces</div>
       </div>
       <div class="next-page"><a href="#editorial" onclick="showPage('editorial')">Editorial &rarr;</a></div>
@@ -1730,7 +1778,7 @@
     <!-- RODARTE STOREFRONT -->
     <div class="project-page" id="rodarte">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/rodarte/storefront-rendering.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/rodarte/storefront-rendering.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')" width="1600" height="1258">
         <div class="image-caption">Storefront concept rendering, Highline frontage, Meatpacking District</div>
       </div>
       <div class="project-content">
@@ -1740,13 +1788,13 @@
         <p class="project-detail">Concept and visualization for a luxury fashion storefront. Frontage strategy keyed to the rhythm of High Line foot traffic; interior layered to read as a sequence of rooms rather than a single retail volume.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-06.png" alt="Highline Fashion Rodarte page 1" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-06.png" alt="Highline Fashion Rodarte page 1" onload="this.classList.add('loaded')" width="1600" height="2071">
         <div class="image-caption">Brand research and preliminary facade sketches, Rodarte references, mood board and hand-drawn storefront studies</div>
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-07.png" alt="Highline Fashion Rodarte page 2" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-07.png" alt="Highline Fashion Rodarte page 2" onload="this.classList.add('loaded')" width="1600" height="2071">
         <div class="image-caption">Site plan and massing model, pedestrian and vehicle circulation at the High Line and Washington Street</div>
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-08.png" alt="Highline Fashion Rodarte page 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-08.png" alt="Highline Fashion Rodarte page 3" onload="this.classList.add('loaded')" width="1600" height="2071">
         <div class="image-caption">Floor plans, structural axonometric and display system model, program stacking from gallery through production studio to roof</div>
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-09.png" alt="Highline Fashion Rodarte page 4" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-09.png" alt="Highline Fashion Rodarte page 4" onload="this.classList.add('loaded')" width="1600" height="2071">
         <div class="image-caption">Building sections and facade model, detailed section through showroom, studio and conference levels</div>
       </div>
       <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>
@@ -1755,7 +1803,7 @@
     <!-- EDITORIAL / WRITING -->
     <div class="project-page" id="editorial">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer masthead, Volume 1" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer masthead, Volume 1" onload="this.classList.add('loaded')" width="1600" height="900">
         <div class="image-caption">DO: Design Observer masthead, Volume 1</div>
       </div>
       <div class="project-content">
@@ -1765,7 +1813,7 @@
         <p class="project-detail">Inaugural issue assembling typological, material and technological reports on innovations in justice and treatment infrastructure. Sections in development: trauma-informed planning, post-supervision typologies, materials of care, technology and surveillance. Drawing on first-hand work across $1.5B+ of detention, court and behavioral health programs.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="typology.jpg" alt="Typological research: transportation, passengers, buildings" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="typology.jpg" alt="Typological research: transportation, passengers, buildings" onload="this.classList.add('loaded')" width="1600" height="589">
         <div class="image-caption">Typological research: transportation, passengers, buildings</div>
       </div>
       <div class="next-page"><a href="#ed-design-review" onclick="showPage('ed-design-review')">Design Review Rubric &rarr;</a></div>
@@ -1781,7 +1829,7 @@
     </div>
     <div class="project-page" id="ed-spine">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine, page 1 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine, page 1 of 3" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">The Spine, page 1 of 3</div>
       </div>
       <div class="project-content">
@@ -1793,16 +1841,16 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/spine/page-2.jpg" alt="The Spine, page 2 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-2.jpg" alt="The Spine, page 2 of 3" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">The Spine, page 2 of 3</div>
-        <img decoding="async" loading="lazy" src="images/editorial/spine/page-3.jpg" alt="The Spine, page 3 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/spine/page-3.jpg" alt="The Spine, page 3 of 3" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">The Spine, page 3 of 3</div>
       </div>
       <div class="next-page"><a href="#ed-sustainable-re" onclick="showPage('ed-sustainable-re')">Sustainable Real Estate &rarr;</a></div>
     </div>
     <div class="project-page" id="ed-sustainable-re">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Executive Summary, page 1 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Executive Summary, page 1 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 1 of 7</div>
       </div>
       <div class="project-content">
@@ -1816,36 +1864,36 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-02.png" alt="Executive Summary, page 2 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-02.png" alt="Executive Summary, page 2 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 2 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-03.png" alt="Executive Summary, page 3 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-03.png" alt="Executive Summary, page 3 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 3 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-04.png" alt="Executive Summary, page 4 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-04.png" alt="Executive Summary, page 4 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 4 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-05.png" alt="Executive Summary, page 5 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-05.png" alt="Executive Summary, page 5 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 5 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-06.png" alt="Executive Summary, page 6 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-06.png" alt="Executive Summary, page 6 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 6 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-07.png" alt="Executive Summary, page 7 of 7" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-07.png" alt="Executive Summary, page 7 of 7" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Executive Summary, page 7 of 7</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="Conference Notes, page 1 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-01.png" alt="Conference Notes, page 1 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 1 of 6</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-02.png" alt="Conference Notes, page 2 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-02.png" alt="Conference Notes, page 2 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 2 of 6</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-03.png" alt="Conference Notes, page 3 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-03.png" alt="Conference Notes, page 3 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 3 of 6</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-04.png" alt="Conference Notes, page 4 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-04.png" alt="Conference Notes, page 4 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 4 of 6</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-05.png" alt="Conference Notes, page 5 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-05.png" alt="Conference Notes, page 5 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 5 of 6</div>
-        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-06.png" alt="Conference Notes, page 6 of 6" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/nyu-notes/page-06.png" alt="Conference Notes, page 6 of 6" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">Conference Notes, page 6 of 6</div>
       </div>
       <div class="next-page"><a href="#ed-infrastructure" onclick="showPage('ed-infrastructure')">Infrastructure Forum &rarr;</a></div>
     </div>
     <div class="project-page" id="ed-infrastructure">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary, page 1 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="PwC Forum Executive Summary, page 1 of 3" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">PwC Forum Executive Summary, page 1 of 3</div>
       </div>
       <div class="project-content">
@@ -1857,16 +1905,16 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-02.png" alt="PwC Forum Executive Summary, page 2 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-02.png" alt="PwC Forum Executive Summary, page 2 of 3" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">PwC Forum Executive Summary, page 2 of 3</div>
-        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-03.png" alt="PwC Forum Executive Summary, page 3 of 3" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/pwc/page-03.png" alt="PwC Forum Executive Summary, page 3 of 3" onload="this.classList.add('loaded')" width="1390" height="1800">
         <div class="image-caption">PwC Forum Executive Summary, page 3 of 3</div>
       </div>
       <div class="next-page"><a href="#ed-hotel-plus" onclick="showPage('ed-hotel-plus')">Hotel+ Proposal &rarr;</a></div>
     </div>
     <div class="project-page" id="ed-hotel-plus">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal, page 1 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal, page 1 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 1 of 8</div>
       </div>
       <div class="project-content">
@@ -1878,26 +1926,26 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-2.jpg" alt="Hotel+ Proposal, page 2 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-2.jpg" alt="Hotel+ Proposal, page 2 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 2 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-3.jpg" alt="Hotel+ Proposal, page 3 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-3.jpg" alt="Hotel+ Proposal, page 3 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 3 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-4.jpg" alt="Hotel+ Proposal, page 4 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-4.jpg" alt="Hotel+ Proposal, page 4 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 4 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-5.jpg" alt="Hotel+ Proposal, page 5 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-5.jpg" alt="Hotel+ Proposal, page 5 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 5 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-6.jpg" alt="Hotel+ Proposal, page 6 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-6.jpg" alt="Hotel+ Proposal, page 6 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 6 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-7.jpg" alt="Hotel+ Proposal, page 7 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-7.jpg" alt="Hotel+ Proposal, page 7 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 7 of 8</div>
-        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-8.jpg" alt="Hotel+ Proposal, page 8 of 8" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-8.jpg" alt="Hotel+ Proposal, page 8 of 8" onload="this.classList.add('loaded')" width="765" height="990">
         <div class="image-caption">Hotel+ Proposal, page 8 of 8</div>
       </div>
       <div class="next-page"><a href="#ed-the-cad" onclick="showPage('ed-the-cad')">The CAD Proposal &rarr;</a></div>
     </div>
     <div class="project-page" id="ed-the-cad">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal, page 1 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal, page 1 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 1 of 14</div>
       </div>
       <div class="project-content">
@@ -1909,31 +1957,31 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-02.jpg" alt="The CAD Proposal, page 2 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-02.jpg" alt="The CAD Proposal, page 2 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 2 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-03.jpg" alt="The CAD Proposal, page 3 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-03.jpg" alt="The CAD Proposal, page 3 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 3 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-04.jpg" alt="The CAD Proposal, page 4 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-04.jpg" alt="The CAD Proposal, page 4 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 4 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-05.jpg" alt="The CAD Proposal, page 5 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-05.jpg" alt="The CAD Proposal, page 5 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 5 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-06.jpg" alt="The CAD Proposal, page 6 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-06.jpg" alt="The CAD Proposal, page 6 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 6 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-07.jpg" alt="The CAD Proposal, page 7 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-07.jpg" alt="The CAD Proposal, page 7 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 7 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-08.jpg" alt="The CAD Proposal, page 8 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-08.jpg" alt="The CAD Proposal, page 8 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 8 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-09.jpg" alt="The CAD Proposal, page 9 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-09.jpg" alt="The CAD Proposal, page 9 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 9 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-10.jpg" alt="The CAD Proposal, page 10 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-10.jpg" alt="The CAD Proposal, page 10 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 10 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-11.jpg" alt="The CAD Proposal, page 11 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-11.jpg" alt="The CAD Proposal, page 11 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 11 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-12.jpg" alt="The CAD Proposal, page 12 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-12.jpg" alt="The CAD Proposal, page 12 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 12 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-13.jpg" alt="The CAD Proposal, page 13 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-13.jpg" alt="The CAD Proposal, page 13 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 13 of 14</div>
-        <img decoding="async" loading="lazy" src="images/editorial/cad/page-14.jpg" alt="The CAD Proposal, page 14 of 14" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/editorial/cad/page-14.jpg" alt="The CAD Proposal, page 14 of 14" onload="this.classList.add('loaded')" width="1200" height="675">
         <div class="image-caption">The CAD Proposal, page 14 of 14</div>
       </div>
       <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Redevelopment &rarr;</a></div>
@@ -1943,8 +1991,8 @@
     <!-- ARCHIVE 011: INWOOD REDEVELOPMENT -->
     <div class="project-page" id="archive-inwood">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/archive/inwood-render.jpg?v=1" alt="Redevelopment street view rendering at sunset" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-01.png?v=2" alt="Redevelopment site plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/inwood-render.jpg?v=1" alt="Redevelopment street view rendering at sunset" onload="this.classList.add('loaded')" width="1600" height="957">
+        <img decoding="async" loading="lazy" src="images/archive/inwood/page-01.png?v=2" alt="Redevelopment site plan" onload="this.classList.add('loaded')" width="1600" height="832">
       </div>
       <div class="project-content">
         <div class="project-location">Inwood, Manhattan / Architecture Firm / Private Developer / May 2018</div>
@@ -1952,9 +2000,9 @@
         <p class="project-detail"><a href="archive/inwood-redevelopment.pdf" target="_blank" rel="noopener">Download original PDF</a> &nbsp;&middot;&nbsp; 22 pages</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-02.png?v=2" alt="Redevelopment page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-03.png?v=2" alt="Redevelopment page 3" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/inwood/page-04.png?v=2" alt="Redevelopment page 4" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/inwood/page-02.png?v=2" alt="Redevelopment page 2" onload="this.classList.add('loaded')" width="1600" height="832">
+        <img decoding="async" loading="lazy" src="images/archive/inwood/page-03.png?v=2" alt="Redevelopment page 3" onload="this.classList.add('loaded')" width="1600" height="832">
+        <img decoding="async" loading="lazy" src="images/archive/inwood/page-04.png?v=2" alt="Redevelopment page 4" onload="this.classList.add('loaded')" width="1600" height="832">
         <div class="image-caption">Representative spreads, full 22-page presentation available above</div>
       </div>
       <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>
@@ -1963,11 +2011,11 @@
     <!-- ARCHIVE 014: ARCHIVED PORTFOLIO (Design I Fall 2011 + Design II Spring 2012) -->
     <div class="project-page" id="archive-design-2">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-09.png" alt="Central Park Pavilion page 9" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-10.png" alt="Central Park Pavilion page 10" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-11.png" alt="Central Park Pavilion page 11" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-12.png" alt="Central Park Pavilion page 12" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-01.png" alt="Archived Portfolio, Palazzi cover" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-09.png" alt="Central Park Pavilion page 9" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-10.png" alt="Central Park Pavilion page 10" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-11.png" alt="Central Park Pavilion page 11" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-12.png" alt="Central Park Pavilion page 12" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-01.png" alt="Archived Portfolio, Palazzi cover" onload="this.classList.add('loaded')" width="1600" height="2071">
       </div>
       <div class="project-content">
         <div class="project-location">NYIT / Fall 2011 + Spring 2012</div>
@@ -1979,26 +2027,26 @@
         </p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-02.png" alt="Spring 2012, Palazzi page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-03.png" alt="Spring 2012, CaixaForum page 3" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-04.png" alt="Spring 2012, CaixaForum page 4" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-2/page-05.png" alt="Spring 2012, CaixaForum page 5" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-02.png" alt="Spring 2012, Palazzi page 2" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-03.png" alt="Spring 2012, CaixaForum page 3" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-04.png" alt="Spring 2012, CaixaForum page 4" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-2/page-05.png" alt="Spring 2012, CaixaForum page 5" onload="this.classList.add('loaded')" width="1600" height="2071">
         <div class="image-caption">Fall 2011, Central Park Pavilion follows</div>
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-01.png" alt="Central Park Pavilion cover" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-02.png" alt="Central Park Pavilion page 2" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-03.png" alt="Central Park Pavilion page 3" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-04.png" alt="Central Park Pavilion page 4" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-05.png" alt="Central Park Pavilion page 5" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-06.png" alt="Central Park Pavilion page 6" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-07.png" alt="Central Park Pavilion page 7" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-08.png" alt="Central Park Pavilion page 8" onload="this.classList.add('loaded')">
-        <img decoding="async" loading="lazy" src="images/archive/design-1/page-13.png" alt="Central Park Pavilion page 13" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-01.png" alt="Central Park Pavilion cover" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-02.png" alt="Central Park Pavilion page 2" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-03.png" alt="Central Park Pavilion page 3" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-04.png" alt="Central Park Pavilion page 4" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-05.png" alt="Central Park Pavilion page 5" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-06.png" alt="Central Park Pavilion page 6" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-07.png" alt="Central Park Pavilion page 7" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-08.png" alt="Central Park Pavilion page 8" onload="this.classList.add('loaded')" width="1600" height="2071">
+        <img decoding="async" loading="lazy" src="images/archive/design-1/page-13.png" alt="Central Park Pavilion page 13" onload="this.classList.add('loaded')" width="1600" height="2071">
       </div>
     </div>
 
     <div class="project-page" id="rehabilitation">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="Program massing, axonometric. Existing tower in tan, new program by department in color" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="Program massing, axonometric. Existing tower in tan, new program by department in color" onload="this.classList.add('loaded')" width="1340" height="867">
         <div class="image-caption">Program massing, axonometric. Existing tower in tan, new program by department in color</div>
       </div>
       <div class="project-content">
@@ -2008,11 +2056,11 @@
         <p class="project-detail">Program verification, blocking and stacking and massing options in axonometric and elevation.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/jail/program-axo-2.jpg" alt="Program massing, opposite view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/jail/program-axo-2.jpg" alt="Program massing, opposite view" onload="this.classList.add('loaded')" width="1340" height="867">
         <div class="image-caption">Program massing, opposite view</div>
-        <img decoding="async" loading="lazy" src="images/jail/program-elevations-1.jpg" alt="Program massing, elevations" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/jail/program-elevations-1.jpg" alt="Program massing, elevations" onload="this.classList.add('loaded')" width="1340" height="867">
         <div class="image-caption">Program massing, elevations</div>
-        <img decoding="async" loading="lazy" src="images/jail/program-elevations-2.jpg" alt="Program massing, long elevations" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/jail/program-elevations-2.jpg" alt="Program massing, long elevations" onload="this.classList.add('loaded')" width="1340" height="867">
         <div class="image-caption">Program massing, long elevations</div>
       </div>
       <div class="next-page"><a href="#brooklyn-tech" onclick="showPage('brooklyn-tech')">Historic Tower &rarr;</a></div>
@@ -2020,7 +2068,7 @@
 
     <div class="project-page" id="brooklyn-tech">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Tower crown, masonry piers and copper roof" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Tower crown, masonry piers and copper roof" onload="this.classList.add('loaded')" width="1340" height="1005">
         <div class="image-caption">Tower crown, masonry piers and copper roof</div>
       </div>
       <div class="project-content">
@@ -2030,19 +2078,19 @@
         <p class="project-detail">Construction documents for the facade and roof restoration: elevations, window bay and parapet details, demolition and construction wall sections and truss enclosure drawings, issued for bid.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/facade-detail.jpg" alt="Window bay, brick and limestone ornament" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/facade-detail.jpg" alt="Window bay, brick and limestone ornament" onload="this.classList.add('loaded')" width="1340" height="1038">
         <div class="image-caption">Window bay, brick and limestone ornament</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/elevations.jpg" alt="Tower elevations, north, south, east and west" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/elevations.jpg" alt="Tower elevations, north, south, east and west" onload="this.classList.add('loaded')" width="1340" height="1552">
         <div class="image-caption">Tower elevations, north, south, east and west</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/window-bay-details.jpg" alt="Typical window bay, wall sections and details" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/window-bay-details.jpg" alt="Typical window bay, wall sections and details" onload="this.classList.add('loaded')" width="1340" height="1373">
         <div class="image-caption">Typical window bay, wall sections and details</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/parapet-sections.jpg" alt="Demolition and construction sections at window and pier parapets" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/parapet-sections.jpg" alt="Demolition and construction sections at window and pier parapets" onload="this.classList.add('loaded')" width="1340" height="1786">
         <div class="image-caption">Demolition and construction sections at window and pier parapets</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/wall-sections.jpg" alt="Wall sections at parapet" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/wall-sections.jpg" alt="Wall sections at parapet" onload="this.classList.add('loaded')" width="1340" height="674">
         <div class="image-caption">Wall sections at parapet</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/roof-trusses.jpg" alt="Rooftop gym steel trusses, mesh enclosure elevations" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/roof-trusses.jpg" alt="Rooftop gym steel trusses, mesh enclosure elevations" onload="this.classList.add('loaded')" width="1340" height="1434">
         <div class="image-caption">Rooftop gym steel trusses, mesh enclosure elevations</div>
-        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/rendering-1929.jpg" alt="Original rendering, 1929. Brooklyn Public Library collection" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/rendering-1929.jpg" alt="Original rendering, 1929. Brooklyn Public Library collection" onload="this.classList.add('loaded')" width="700" height="368">
         <div class="image-caption">Original rendering, 1929. Brooklyn Public Library collection</div>
       </div>
       <div class="next-page"><a href="#jorejick" onclick="showPage('jorejick')">Jorejick Home &rarr;</a></div>
@@ -2050,7 +2098,7 @@
 
     <div class="project-page" id="jorejick">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Covered terrace at sunset, folded rainwater roof" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Covered terrace at sunset, folded rainwater roof" onload="this.classList.add('loaded')" width="1600" height="1173">
         <div class="image-caption">Covered terrace at sunset, folded rainwater roof</div>
       </div>
       <div class="project-content">
@@ -2060,19 +2108,19 @@
         <p class="project-detail">Concept design: site plan, floor plan, elevations, materials and components, water collection strategy and renderings.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/courtyard.jpg" alt="Central courtyard between the family houses" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/courtyard.jpg" alt="Central courtyard between the family houses" onload="this.classList.add('loaded')" width="1600" height="1173">
         <div class="image-caption">Central courtyard between the family houses</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/night.jpg" alt="Compound at night" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/night.jpg" alt="Compound at night" onload="this.classList.add('loaded')" width="1600" height="400">
         <div class="image-caption">Compound at night</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/kitchen.jpg" alt="Kitchen and shared dining" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/kitchen.jpg" alt="Kitchen and shared dining" onload="this.classList.add('loaded')" width="1600" height="1200">
         <div class="image-caption">Kitchen and shared dining</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/bedroom.jpg" alt="Bedroom interior" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/bedroom.jpg" alt="Bedroom interior" onload="this.classList.add('loaded')" width="1600" height="1173">
         <div class="image-caption">Bedroom interior</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/siteplan.jpg" alt="Site plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/siteplan.jpg" alt="Site plan" onload="this.classList.add('loaded')" width="1600" height="1333">
         <div class="image-caption">Site plan</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/board-1.jpg" alt="Competition board 1: site plan, concept diagram, materials and components" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/board-1.jpg" alt="Competition board 1: site plan, concept diagram, materials and components" onload="this.classList.add('loaded')" width="1600" height="2200">
         <div class="image-caption">Competition board 1: site plan, concept diagram, materials and components</div>
-        <img decoding="async" loading="lazy" src="images/vjl/jorejick/board-2.jpg" alt="Competition board 2: elevations, floor plan, water collection and interior views" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/jorejick/board-2.jpg" alt="Competition board 2: elevations, floor plan, water collection and interior views" onload="this.classList.add('loaded')" width="1600" height="2200">
         <div class="image-caption">Competition board 2: elevations, floor plan, water collection and interior views</div>
       </div>
       <div class="next-page"><a href="#cyber-housing" onclick="showPage('cyber-housing')">Cyber Housing &rarr;</a></div>
@@ -2080,7 +2128,7 @@
 
     <div class="project-page" id="cyber-housing">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Stepped elevation, night view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Stepped elevation, night view" onload="this.classList.add('loaded')" width="1340" height="680">
         <div class="image-caption">Stepped elevation, night view</div>
       </div>
       <div class="project-content">
@@ -2090,21 +2138,21 @@
         <p class="project-detail">Site and zoning analysis, massing studies, elevations, typical unit plans, demographic research and street-level visualization. <a href="editorial/the-cad-residential-proposal.pdf" target="_blank" rel="noopener">Download the full proposal (PDF, 14 pages)</a></p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/site-massing.jpg" alt="Site massing, aerial view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/site-massing.jpg" alt="Site massing, aerial view" onload="this.classList.add('loaded')" width="1340" height="728">
         <div class="image-caption">Site massing, aerial view</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/street-view.jpg" alt="Street view in context" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/street-view.jpg" alt="Street view in context" onload="this.classList.add('loaded')" width="1000" height="587">
         <div class="image-caption">Street view in context</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/elevations.jpg" alt="Elevations" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/elevations.jpg" alt="Elevations" onload="this.classList.add('loaded')" width="1340" height="942">
         <div class="image-caption">Elevations</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/typical-units.jpg" alt="Typical floor, unit types" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/typical-units.jpg" alt="Typical floor, unit types" onload="this.classList.add('loaded')" width="1340" height="1607">
         <div class="image-caption">Typical floor, unit types</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/demographics.jpg" alt="Demographic study" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/demographics.jpg" alt="Demographic study" onload="this.classList.add('loaded')" width="1340" height="751">
         <div class="image-caption">Demographic study</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-1.jpg" alt="Massing study, tower" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-1.jpg" alt="Massing study, tower" onload="this.classList.add('loaded')" width="1340" height="922">
         <div class="image-caption">Massing study, tower</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-2.jpg" alt="Massing study, stepped bar" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-2.jpg" alt="Massing study, stepped bar" onload="this.classList.add('loaded')" width="1340" height="772">
         <div class="image-caption">Massing study, stepped bar</div>
-        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-3.jpg" alt="Massing study, terraced corner" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/massing-3.jpg" alt="Massing study, terraced corner" onload="this.classList.add('loaded')" width="1340" height="632">
         <div class="image-caption">Massing study, terraced corner</div>
       </div>
       <div class="next-page"><a href="#hotel" onclick="showPage('hotel')">Hotel+ &rarr;</a></div>
@@ -2112,7 +2160,7 @@
 
     <div class="project-page" id="hotel">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Proposed exterior" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Proposed exterior" onload="this.classList.add('loaded')" width="1340" height="1262">
         <div class="image-caption">Proposed exterior</div>
       </div>
       <div class="project-content">
@@ -2122,19 +2170,19 @@
         <p class="project-detail">Site and neighborhood study, zoning analysis, survey design and analysis, massing and a ten-year pro forma: 18-month construction, a 5.25% exit cap rate, a 10.5% levered IRR and a 2.44x equity multiple.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/massing-1.jpg" alt="Proposed massing, corner view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/massing-1.jpg" alt="Proposed massing, corner view" onload="this.classList.add('loaded')" width="1600" height="848">
         <div class="image-caption">Proposed massing, corner view</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/massing-2.jpg" alt="Proposed massing, street view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/massing-2.jpg" alt="Proposed massing, street view" onload="this.classList.add('loaded')" width="1600" height="1173">
         <div class="image-caption">Proposed massing, street view</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/site.jpg" alt="Existing building, site outline" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/site.jpg" alt="Existing building, site outline" onload="this.classList.add('loaded')" width="1340" height="695">
         <div class="image-caption">Existing building, site outline</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/existing.jpg" alt="Existing hotel, St. Marks Place and Third Avenue" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/existing.jpg" alt="Existing hotel, St. Marks Place and Third Avenue" onload="this.classList.add('loaded')" width="1600" height="1200">
         <div class="image-caption">Existing hotel, St. Marks Place and Third Avenue</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-1.jpg" alt="Survey: industries and sectors most positively impacted" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-1.jpg" alt="Survey: industries and sectors most positively impacted" onload="this.classList.add('loaded')" width="1340" height="443">
         <div class="image-caption">Survey: industries and sectors most positively impacted</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-2.jpg" alt="Survey: industries expected to recover first" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-2.jpg" alt="Survey: industries expected to recover first" onload="this.classList.add('loaded')" width="1340" height="631">
         <div class="image-caption">Survey: industries expected to recover first</div>
-        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-3.jpg" alt="Survey: industries and sectors most negatively impacted" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/hotel/survey-3.jpg" alt="Survey: industries and sectors most negatively impacted" onload="this.classList.add('loaded')" width="1340" height="445">
         <div class="image-caption">Survey: industries and sectors most negatively impacted</div>
       </div>
       <div class="next-page"><a href="#models" onclick="showPage('models')">Scale Models &rarr;</a></div>
@@ -2142,7 +2190,7 @@
 
     <div class="project-page" id="models">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Frame, plane and cube" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Frame, plane and cube" onload="this.classList.add('loaded')" width="1340" height="974">
         <div class="image-caption">Frame, plane and cube</div>
       </div>
       <div class="project-content">
@@ -2152,47 +2200,47 @@
         <p class="project-detail">Model making in basswood, museum board, cast and 3D-printed material. Photography and drawing.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/models/frames-planes-solid.jpg" alt="Frames, planes and solid" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/frames-planes-solid.jpg" alt="Frames, planes and solid" onload="this.classList.add('loaded')" width="1340" height="974">
         <div class="image-caption">Frames, planes and solid</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/frames-planes.jpg" alt="Frames and planes" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/frames-planes.jpg" alt="Frames and planes" onload="this.classList.add('loaded')" width="1340" height="974">
         <div class="image-caption">Frames and planes</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/frame-study.jpg" alt="Frame study" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/frame-study.jpg" alt="Frame study" onload="this.classList.add('loaded')" width="1340" height="1356">
         <div class="image-caption">Frame study</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-1.jpg" alt="Pavilion model, perforated wall and screen" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-1.jpg" alt="Pavilion model, perforated wall and screen" onload="this.classList.add('loaded')" width="800" height="1200">
         <div class="image-caption">Pavilion model, perforated wall and screen</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-2.jpg" alt="Pavilion model, side view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-2.jpg" alt="Pavilion model, side view" onload="this.classList.add('loaded')" width="1000" height="666">
         <div class="image-caption">Pavilion model, side view</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-3.jpg" alt="Pavilion model, stepped ground plane" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-3.jpg" alt="Pavilion model, stepped ground plane" onload="this.classList.add('loaded')" width="1000" height="666">
         <div class="image-caption">Pavilion model, stepped ground plane</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-4.jpg" alt="Pavilion model, overhead view" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/pavilion-4.jpg" alt="Pavilion model, overhead view" onload="this.classList.add('loaded')" width="800" height="1200">
         <div class="image-caption">Pavilion model, overhead view</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form.jpg" alt="3D-printed form study" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form.jpg" alt="3D-printed form study" onload="this.classList.add('loaded')" width="1340" height="1315">
         <div class="image-caption">3D-printed form study</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/site-model.jpg" alt="Site model, folded ground plane" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/site-model.jpg" alt="Site model, folded ground plane" onload="this.classList.add('loaded')" width="1340" height="1000">
         <div class="image-caption">Site model, folded ground plane</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/truss-model-front.jpg" alt="Crossed-truss roof model, front" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/truss-model-front.jpg" alt="Crossed-truss roof model, front" onload="this.classList.add('loaded')" width="1600" height="1067">
         <div class="image-caption">Crossed-truss roof model, front</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/truss-model-above.jpg" alt="Crossed-truss roof model, from above" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/truss-model-above.jpg" alt="Crossed-truss roof model, from above" onload="this.classList.add('loaded')" width="1600" height="1067">
         <div class="image-caption">Crossed-truss roof model, from above</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-lit.jpg" alt="Gable hall model, lit from behind" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-lit.jpg" alt="Gable hall model, lit from behind" onload="this.classList.add('loaded')" width="1600" height="1067">
         <div class="image-caption">Gable hall model, lit from behind</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-front.jpg" alt="Gable hall model, front" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-front.jpg" alt="Gable hall model, front" onload="this.classList.add('loaded')" width="1600" height="1067">
         <div class="image-caption">Gable hall model, front</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-side.jpg" alt="Gable hall model, side" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/gable-model-side.jpg" alt="Gable hall model, side" onload="this.classList.add('loaded')" width="1600" height="1067">
         <div class="image-caption">Gable hall model, side</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/frame-model.jpg" alt="Frame model" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/frame-model.jpg" alt="Frame model" onload="this.classList.add('loaded')" width="1067" height="1600">
         <div class="image-caption">Frame model</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/site-model-side.jpg" alt="Site model, planted roof planes" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/site-model-side.jpg" alt="Site model, planted roof planes" onload="this.classList.add('loaded')" width="1600" height="1195">
         <div class="image-caption">Site model, planted roof planes</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/site-model-front.jpg" alt="Site model, front" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/site-model-front.jpg" alt="Site model, front" onload="this.classList.add('loaded')" width="1600" height="1195">
         <div class="image-caption">Site model, front</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form-front.jpg" alt="3D-printed form, front" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form-front.jpg" alt="3D-printed form, front" onload="this.classList.add('loaded')" width="1600" height="1600">
         <div class="image-caption">3D-printed form, front</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form-side.jpg" alt="3D-printed form, side" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/printed-form-side.jpg" alt="3D-printed form, side" onload="this.classList.add('loaded')" width="1600" height="1600">
         <div class="image-caption">3D-printed form, side</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/printing.jpg" alt="Form on the printer bed" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/printing.jpg" alt="Form on the printer bed" onload="this.classList.add('loaded')" width="1200" height="1600">
         <div class="image-caption">Form on the printer bed</div>
-        <img decoding="async" loading="lazy" src="images/vjl/models/models-board.png" alt="Model and diagram board" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/models/models-board.png" alt="Model and diagram board" onload="this.classList.add('loaded')" width="1340" height="504">
         <div class="image-caption">Model and diagram board</div>
       </div>
       <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>
@@ -2200,7 +2248,7 @@
 
     <div class="project-page" id="housing-studies">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/housing/mixed-use-tower.jpg" alt="01 Mixed-use residential tower. Render, site, unit plans and environmental diagrams" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/housing/mixed-use-tower.jpg" alt="01 Mixed-use residential tower. Render, site, unit plans and environmental diagrams" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">01 Mixed-use residential tower. Render, site, unit plans and environmental diagrams</div>
       </div>
       <div class="project-content">
@@ -2210,9 +2258,9 @@
         <p class="project-detail">Concept design, plans, sections, elevations, diagrams and renders.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/housing/raised-house.jpg" alt="02 Raised house. Renders, elevations, cross plan and section" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/housing/raised-house.jpg" alt="02 Raised house. Renders, elevations, cross plan and section" onload="this.classList.add('loaded')" width="1600" height="603">
         <div class="image-caption">02 Raised house. Renders, elevations, cross plan and section</div>
-        <img decoding="async" loading="lazy" src="images/vjl/housing/palazzo-and-tower.png" alt="03 Palazzo precedent and tower. Plan analysis, section and model photos" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/housing/palazzo-and-tower.png" alt="03 Palazzo precedent and tower. Plan analysis, section and model photos" onload="this.classList.add('loaded')" width="1340" height="504">
         <div class="image-caption">03 Palazzo precedent and tower. Plan analysis, section and model photos</div>
       </div>
       <div class="next-page"><a href="#internet-museum" onclick="showPage('internet-museum')">Internet Museum &rarr;</a></div>
@@ -2220,7 +2268,7 @@
 
     <div class="project-page" id="internet-museum">
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Elevation and section, six levels" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Elevation and section, six levels" onload="this.classList.add('loaded')" width="1500" height="842">
         <div class="image-caption">Elevation and section, six levels</div>
       </div>
       <div class="project-content">
@@ -2230,13 +2278,13 @@
         <p class="project-detail">Concept design: floor plans for each level, section, elevation and a floor-by-floor axonometric.</p>
       </div>
       <div class="project-images">
-        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plan-artifact.jpg" alt="Artifact level, floor plan" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plan-artifact.jpg" alt="Artifact level, floor plan" onload="this.classList.add('loaded')" width="1500" height="1500">
         <div class="image-caption">Artifact level, floor plan</div>
-        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plans-1.jpg" alt="Floor plans, lower levels" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plans-1.jpg" alt="Floor plans, lower levels" onload="this.classList.add('loaded')" width="1000" height="1500">
         <div class="image-caption">Floor plans, lower levels</div>
-        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plans-2.jpg" alt="Floor plans, upper levels" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/plans-2.jpg" alt="Floor plans, upper levels" onload="this.classList.add('loaded')" width="1000" height="1500">
         <div class="image-caption">Floor plans, upper levels</div>
-        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/axo.jpg" alt="Floor-by-floor axonometric with plan outlines" onload="this.classList.add('loaded')">
+        <img decoding="async" loading="lazy" src="images/vjl/internet-museum/axo.jpg" alt="Floor-by-floor axonometric with plan outlines" onload="this.classList.add('loaded')" width="1600" height="4443">
         <div class="image-caption">Floor-by-floor axonometric with plan outlines</div>
       </div>
       <div class="next-page"><a href="#archive-design-2" onclick="showPage('archive-design-2')">Archived Portfolio &rarr;</a></div>

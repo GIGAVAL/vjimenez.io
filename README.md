@@ -19,7 +19,6 @@ Architecture for regulated platforms: fourteen years and 20+ public-use faciliti
 | Path | What it holds |
 |---|---|
 | `index.html` | The whole site: one page, inline CSS and JS |
-| `projects-data.js` | Project list data used by the page |
 | `images/` | Project images, grouped by project |
 | `archive/` | Full portfolio PDFs |
 | `editorial/` | Editorial PDFs |
