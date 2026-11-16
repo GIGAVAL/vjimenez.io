@@ -1003,6 +1003,11 @@
 
   .nav-footer .email { display: block; }
   .nav-footer .email + .email { margin-top: 0.3rem; }
+
+  /* Roman numerals for works: lowercase, right-aligned in their column so the dots line up */
+  .home-index-row { grid-template-columns: 3rem 1fr; }
+  .home-index-row .n { text-align: right; padding-right: 0.2rem; font-size: 1.05rem; letter-spacing: 0.02em; }
+  .home-meta-name .k { text-transform: lowercase; font-size: 0.7em; }
 </style>
 </head>
 <body>
@@ -2377,7 +2382,7 @@
     let projectName = projectId;
     let citationDetail = '';
     if (projectTile) {
-      num = projectTile.querySelector('.home-tag .num')?.textContent.trim() || '';
+      num = projectTile.dataset.ref || projectTile.querySelector('.home-tag .num')?.textContent.trim() || '';
       projectName = projectTile.dataset.full || projectTile.querySelector('.home-meta-name')?.textContent.trim() || projectName;
       const locLine = projectTile.querySelector('.home-meta-loc');
       if (locLine) {
@@ -2565,7 +2570,8 @@
       head.firstChild.textContent = mark + ' ' + name;
       head.lastChild.textContent = tiles.length;
       g.appendChild(head);
-      tiles.forEach(tile => {
+      const ROMAN = ['i','ii','iii','iv','v','vi','vii','viii','ix','x','xi','xii','xiii','xiv','xv','xvi','xvii','xviii','xix','xx'];
+      tiles.forEach((tile, idx) => {
         const row = document.createElement('a');
         row.className = 'home-index-row';
         row.href = tile.getAttribute('href');
@@ -2574,7 +2580,9 @@
         const loc = tile.querySelector('.home-meta-loc');
         const parts = loc ? Array.from(loc.childNodes).filter(n => !(n.classList && n.classList.contains('sep'))).map(n => n.textContent.trim()).filter(Boolean) : [];
         const n = document.createElement('span'); n.className = 'n';
-        n.textContent = tile.querySelector('.home-tag .num')?.textContent.trim() || '';
+        /* Works are lettered i, ii, iii within each section, so they never repeat the section number or the count */
+        n.textContent = (ROMAN[idx] || String(idx + 1)) + '.';
+        tile.dataset.ref = mark + '.' + (ROMAN[idx] || String(idx + 1));
         const body = document.createElement('span');
         const t = document.createElement('span'); t.className = 't';
         const nameEl = tile.querySelector('.home-meta-name');
