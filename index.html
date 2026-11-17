@@ -1094,6 +1094,34 @@
   .earlier-toggle { background: none; border: none; padding: 0 0 0.25rem; cursor: pointer; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); border-bottom: 1px solid currentColor; }
   .earlier-toggle:hover { color: var(--accent); }
   @media (max-width: 600px) { .home-cta-pitch { font-size: 1.4rem; } .home-cta-links { gap: 0.8rem 1.4rem; } }
+
+  /* TYPE PASS 17 Nov: contact first, larger index, clearer section heads and tile facts */
+  .site-subtitle { margin-bottom: 1.4rem; }
+  .nav-contact { margin-bottom: 1.8rem; }
+  .nav-open { font-family: var(--font-mono); font-size: clamp(1.05rem, 1.5vh, 1.6rem); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.9rem; }
+  .nav-contact-links { display: flex; flex-wrap: wrap; gap: 0.9rem 2.2rem; }
+  .nav-contact-links a { font-family: var(--font-mono); font-size: clamp(1.35rem, 2.1vh, 2.4rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 0.35rem; }
+  .nav-contact-links a:hover { background: #E8FF3A; color: var(--ink); }
+  /* Index grows with the window so it fills the panel */
+  .home-index-row { font-size: clamp(1.3rem, 2.3vh, 3rem); padding: clamp(0.3rem, 0.6vh, 1.2rem) 0; }
+  .home-index-head { font-size: clamp(1.05rem, 1.6vh, 1.9rem); padding-bottom: clamp(0.45rem, 0.9vh, 1.1rem); }
+  .home-index-group { margin-bottom: clamp(1.4rem, 2.6vh, 2.8rem); }
+  /* Section heads: number and name in display type, sentence as supporting text */
+  .cat-header { grid-template-columns: auto 1fr; gap: 0 1.4rem; padding: 1.6rem 0 1.4rem; }
+  .cat-header .cat-mark, .cat-header .cat-name { font-family: var(--font-display); font-size: 2.8rem; font-weight: 800; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; margin: 0 0 0.9rem; }
+  .cat-header .cat-mark { color: var(--text-faint); }
+  .cat-header .cat-name { color: var(--ink); }
+  .cat-header .cat-thesis { font-size: 1.5rem; line-height: 1.45; color: var(--text-light); letter-spacing: 0; text-align: left; max-width: 78rem; }
+  /* Tile facts: black, larger, readable at a glance */
+  .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { color: var(--ink); font-size: 0.88rem; letter-spacing: 0.04em; line-height: 1.4; font-weight: 400; }
+  .home-entry .home-meta-loc .sep { color: var(--text-faint); margin: 0 0.45rem; }
+  .home-entry .home-meta-name, .cat-section--grid .home-meta-name { font-size: 1.45rem; margin-bottom: 0.35rem; }
+  .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { padding: 0.65rem 0.9rem 0.7rem; }
+  @media (max-width: 900px) {
+    .home-index-row { font-size: 1.3rem; }
+    .cat-header .cat-mark, .cat-header .cat-name { font-size: 2.2rem; }
+    .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { font-size: 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -1106,6 +1134,15 @@
       <h1 class="site-name" onclick="location.hash=''; showHome();">Valerie Jimenez</h1>
       <div class="site-role">Solutions Architect · AEC + AI · Assoc. AIA</div>
       <a href="#info" class="site-subtitle" onclick="showPage('info')">About / Resume &rarr;</a>
+      <div class="nav-contact">
+        <div class="nav-open">Open to Solutions Architect / AEC-tech roles</div>
+        <div class="nav-contact-links">
+          <a href="mailto:nyc@vjimenez.io">Email</a>
+          <a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me">LinkedIn</a>
+          <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me">GitHub</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF) &darr;</a>
+        </div>
+      </div>
       <hr class="nav-divider">
       <ul class="nav-links" id="navLinks">
         <li><a href="#cat-ai-tools" data-cat="ai-tools">AI Tools</a></li>
@@ -1119,10 +1156,6 @@
     </div>
     <div class="nav-footer">
       <hr>
-      <a href="mailto:nyc@vjimenez.io" class="email">nyc@vjimenez.io</a>
-      <a href="https://www.linkedin.com/in/valeriejimeneznyc" class="email" target="_blank" rel="noopener me">linkedin.com/in/valeriejimeneznyc</a>
-      <a href="https://github.com/GIGAVAL" class="email" target="_blank" rel="noopener me">github.com/GIGAVAL</a>
-      <a href="/resume.pdf" class="email" target="_blank" rel="noopener">Download resume (PDF) &darr;</a>
       <div class="copyright">&copy; 2026 Valerie Jimenez</div>
       <div class="copyright">Updated 11/17/26</div>
     </div>
@@ -1139,16 +1172,6 @@
         <div class="home-intro-tag">Index 2011 / 2026 19 selected works</div>
         <div class="home-intro-text"><span class="l">Buildings as regulated platforms.</span> <span class="l">Built to survive value engineering,</span> <span class="l">Political reality and capital math.</span></div>
         <div class="home-intro-sub">Solutions architect bridging architecture, building code and AI tools. Fourteen years, 20+ public-use facilities, $2.7B+ aggregate and 7.8M+ sf across courthouses, healthcare, transit, libraries and hospitality. That record now works where the industry is shifting: helping firms adopt AI, price it and put it into delivery while knowledge moves faster than process. Design judgment, development economics and working software from one practitioner.</div>
-        <div class="home-cta">
-          <p class="home-cta-pitch">Fourteen years delivering complex regulated programs, now turning the checks a reviewer does by eye into checks software can run.</p>
-          <p class="home-cta-open">Open to Solutions Architect / AEC-tech roles</p>
-          <ul class="home-cta-links">
-            <li><a href="mailto:nyc@vjimenez.io">Email</a></li>
-            <li><a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me">LinkedIn</a></li>
-            <li><a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me">GitHub</a></li>
-            <li><a href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF) &darr;</a></li>
-          </ul>
-        </div>
       </div>
 
       <!-- 01 TOOLS / AI IN PRACTICE -->
