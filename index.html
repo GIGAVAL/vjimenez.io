@@ -1080,6 +1080,20 @@
     .nav-footer .email { font-size: 1.25rem; overflow-wrap: anywhere; }
     .info-email-top { font-size: 1.5rem; overflow-wrap: anywhere; }
   }
+
+  /* fix/reorder-hero: hero call to action, Earlier work toggle */
+  .cat-section[hidden], .home-entry[hidden] { display: none !important; }
+  .cat-alias { display: block; height: 0; }
+  .home-cta { margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid var(--rule); max-width: 64rem; }
+  .home-cta-pitch { font-family: var(--font-body); font-size: 1.5rem; font-weight: 400; line-height: 1.45; color: var(--text); margin: 0 0 1.2rem; }
+  .home-cta-open { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); margin: 0 0 1rem; }
+  .home-cta-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.8rem 2rem; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+  .home-cta-links a { color: var(--text); border-bottom: 1px solid currentColor; padding-bottom: 0.25rem; }
+  .home-cta-links a:hover { color: var(--accent); }
+  .earlier-toggle-wrap { border-top: 1px solid var(--ink); padding: 1.4rem 0 1.6rem; margin-bottom: 2.8rem; }
+  .earlier-toggle { background: none; border: none; padding: 0 0 0.25rem; cursor: pointer; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); border-bottom: 1px solid currentColor; }
+  .earlier-toggle:hover { color: var(--accent); }
+  @media (max-width: 600px) { .home-cta-pitch { font-size: 1.4rem; } .home-cta-links { gap: 0.8rem 1.4rem; } }
 </style>
 </head>
 <body>
@@ -1094,12 +1108,12 @@
       <a href="#info" class="site-subtitle" onclick="showPage('info')">About / Resume &rarr;</a>
       <hr class="nav-divider">
       <ul class="nav-links" id="navLinks">
-        <li><a href="#cat-infrastructure" data-cat="infrastructure">Infrastructure</a></li>
-        <li><a href="#cat-justice" data-cat="justice">Justice</a></li>
-        <li><a href="#cat-practice" data-cat="practice">Practice</a></li>
-        <li><a href="#cat-editorial" data-cat="editorial">Editorial</a></li>
         <li><a href="#cat-ai-tools" data-cat="ai-tools">AI Tools</a></li>
-        <li><a href="#cat-archive" data-cat="archive">Concepts / Archive</a></li>
+        <li><a href="#cat-justice" data-cat="justice">Justice / Civic</a></li>
+        <li><a href="#cat-infrastructure" data-cat="infrastructure">Infrastructure</a></li>
+        <li><a href="#cat-development" data-cat="development">Development</a></li>
+        <li><a href="#cat-editorial" data-cat="editorial">Writing &amp; Talks</a></li>
+        <li><a href="#cat-earlier" data-cat="earlier">Earlier Work</a></li>
       </ul>
       <div class="home-index" id="homeIndex" aria-label="Index of works"></div>
     </div>
@@ -1107,6 +1121,7 @@
       <hr>
       <a href="mailto:nyc@vjimenez.io" class="email">nyc@vjimenez.io</a>
       <a href="https://www.linkedin.com/in/valeriejimeneznyc" class="email" target="_blank" rel="noopener me">linkedin.com/in/valeriejimeneznyc</a>
+      <a href="https://github.com/GIGAVAL" class="email" target="_blank" rel="noopener me">github.com/GIGAVAL</a>
       <a href="/resume.pdf" class="email" target="_blank" rel="noopener">Download resume (PDF) &darr;</a>
       <div class="copyright">&copy; 2026 Valerie Jimenez</div>
       <div class="copyright">Updated 11/17/26</div>
@@ -1121,86 +1136,32 @@
       <div class="edge-mark">Valerie Jimenez, Solutions Architect, NYC</div>
 
       <div class="home-intro">
-        <div class="home-intro-tag">Index 2011 / 2026 31 selected works</div>
+        <div class="home-intro-tag">Index 2011 / 2026 19 selected works</div>
         <div class="home-intro-text"><span class="l">Buildings as regulated platforms.</span> <span class="l">Built to survive value engineering,</span> <span class="l">Political reality and capital math.</span></div>
         <div class="home-intro-sub">Solutions architect bridging architecture, building code and AI tools. Fourteen years, 20+ public-use facilities, $2.7B+ aggregate and 7.8M+ sf across courthouses, healthcare, transit, libraries and hospitality. That record now works where the industry is shifting: helping firms adopt AI, price it and put it into delivery while knowledge moves faster than process. Design judgment, development economics and working software from one practitioner.</div>
+        <div class="home-cta">
+          <p class="home-cta-pitch">Fourteen years delivering complex regulated programs, now turning the checks a reviewer does by eye into checks software can run.</p>
+          <p class="home-cta-open">Open to Solutions Architect / AEC-tech roles</p>
+          <ul class="home-cta-links">
+            <li><a href="mailto:nyc@vjimenez.io">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me">LinkedIn</a></li>
+            <li><a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me">GitHub</a></li>
+            <li><a href="/resume.pdf" target="_blank" rel="noopener">Resume (PDF) &darr;</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- 01 INFRASTRUCTURE -->
-      <section class="cat-section cat-section--grid" id="cat-infrastructure">
-        <div class="cat-header">
-          <div class="cat-mark">01</div>
-          <h2 class="cat-name">Infrastructure</h2>
-          <div class="cat-thesis">Civic-scale public works and the capital frameworks behind them: learning environments, transit systems, mixed-use districts and development pro formas. Buildings and their business cases treated as one engineered system.</div>
-        </div>
-
-        <a data-index="Library" class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">001</span>Learning</div>
-            <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library, axonometric" onload="this.classList.add('loaded')" width="1600" height="1143">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Fine Arts Library</div>
-            <div class="home-meta-loc">Ithaca NY<span class="sep">/</span>2018&rarr;2019<span class="sep">/</span>31K sf, $21.6M</div>
-          </div>
-        </a>
-
-        <a data-index="Park" class="home-entry" href="#civic" onclick="stackOpen(&apos;civic&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">002</span>District</div>
-            <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')" width="1600" height="792">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Metropolitan Park</div>
-            <div class="home-meta-loc">Queens NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>1.2M sf, 50 acres</div>
-          </div>
-        </a>
-
-        <a data-index="Transit" class="home-entry" href="#transit" onclick="stackOpen(&apos;transit&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">003</span>Transit</div>
-            <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="MTA Platform Screen Doors" onload="this.classList.add('loaded')" width="1600" height="893">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">MTA Platform Screen Doors</div>
-            <div class="home-meta-loc">NYC Subway<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>$25M pilot</div>
-          </div>
-        </a>
-
-        <a data-index="Development" class="home-entry" href="#development" onclick="stackOpen(&apos;development&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">004</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')" width="1600" height="1237">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">341 Grand Street</div>
-            <div class="home-meta-loc">Lower East Side<span class="sep">/</span>2024<span class="sep">/</span>10K sf, 5.1% cap</div>
-          </div>
-        </a>
-        <a data-index="Tower" class="home-entry" href="#brooklyn-tech" onclick="stackOpen(&apos;brooklyn-tech&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">005</span>Preservation</div>
-            <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Historic Tower" onload="this.classList.add('loaded')" width="1340" height="1005">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Historic Tower</div>
-            <div class="home-meta-loc">Brooklyn NY<span class="sep">/</span>2015&rarr;2018<span class="sep">/</span>600K sf, $19M</div>
-          </div>
-        </a>
-
-      </section>
-
-      <!-- 02 AI TOOLS -->
+      <!-- 01 TOOLS / AI IN PRACTICE -->
       <section class="cat-section cat-section--grid" id="cat-ai-tools">
         <div class="cat-header">
-          <div class="cat-mark">02</div>
-          <h2 class="cat-name">Tools</h2>
-          <div class="cat-thesis">AI-assisted tools for drawing-set review, code checking and structural risk, built and versioned in the open at <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a>. Each one turns a check a reviewer does by eye into a check software can run.</div>
+          <div class="cat-mark">01</div>
+          <h2 class="cat-name">Tools / AI in Practice</h2>
+          <div class="cat-thesis">AI-assisted tools for drawing-set review, code checking and structural risk, built and versioned in the open at <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a>. Each one turns a check a reviewer does by eye into a check software can run. Two studies in AI-assisted practice follow: a citation-anchored design review rubric and a parametric structure built in Grasshopper by prompting.</div>
         </div>
 
         <a data-index="SheetCheck" class="home-entry" href="https://gigaval.github.io/sheetcheck/demo.html" target="_blank" rel="noopener">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">006</span>QA/QC</div>
+            <div class="home-tag"><span class="num">001</span>QA/QC</div>
             <img decoding="async" loading="lazy" src="images/repos/sheetcheck-inject.jpg" alt="SheetCheck catching three injected defects: missing sheet, pages out of order, title mismatch" onload="this.classList.add('loaded')" width="1176" height="784">
           </div>
           <div class="home-meta">
@@ -1209,9 +1170,20 @@
           </div>
         </a>
 
+        <a data-index="Bailout" class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">002</span>Structure</div>
+            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')" width="1535" height="1023">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Bailout</div>
+            <div class="home-meta-loc">Value engineering<span class="sep">/</span>NCSEA + AECtech Big Build, San Francisco 2026<span class="sep">/</span>Live demo</div>
+          </div>
+        </a>
+
         <a data-index="Fire" class="home-entry" href="https://gigaval.github.io/fire002-handover/" target="_blank" rel="noopener">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">007</span>Code</div>
+            <div class="home-tag"><span class="num">003</span>Code</div>
             <img decoding="async" loading="lazy" src="images/repos/fire002.jpg" alt="FIRE-002 fire compartmentation validation tool" onload="this.classList.add('loaded')" width="918" height="612">
           </div>
           <div class="home-meta">
@@ -1219,138 +1191,10 @@
             <div class="home-meta-loc">Fire compartmentation<span class="sep">/</span>NCC 2022<span class="sep">/</span>Live page</div>
           </div>
         </a>
-        <a data-index="Bailout" class="home-entry" href="https://no-bailout-buildings.lovable.app" target="_blank" rel="noopener">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">008</span>Structure</div>
-            <img decoding="async" loading="lazy" src="images/repos/bailout-terminal.jpg" alt="Bailout terminal, 3D steel frame with ticker, savings, rating and tranche mix" onload="this.classList.add('loaded')" width="1535" height="1023">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Bailout</div>
-            <div class="home-meta-loc">Value engineering<span class="sep">/</span>Hackathon 2026<span class="sep">/</span>Live demo</div>
-          </div>
-        </a>
-
-      </section>
-
-      <!-- 03 JUSTICE -->
-      <section class="cat-section cat-section--grid" id="cat-justice">
-        <div class="cat-header">
-          <div class="cat-mark">03</div>
-          <h2 class="cat-name">Justice</h2>
-          <div class="cat-thesis">Confinement, courts and forensic treatment. Trauma-informed planning at $2B+ scale, environments designed around recovery rather than control, across the typologies the discipline largely refuses to examine.</div>
-        </div>
-
-        <a data-index="Detention" class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">009</span>Detention</div>
-            <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')" width="1553" height="2400">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Adult Justice Center</div>
-            <div class="home-meta-loc">Chicago IL<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>3.9M sf master plan</div>
-          </div>
-        </a>
-
-        <a data-index="Court" class="home-entry" href="#court" onclick="stackOpen(&apos;court&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">010</span>Court</div>
-            <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')" width="1600" height="893">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Family Court</div>
-            <div class="home-meta-loc">Staten Island NY<span class="sep">/</span>2020&rarr;2026<span class="sep">/</span>300K sf, $155M</div>
-          </div>
-        </a>
-
-        <a data-index="Forensic" class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">011</span>Forensic</div>
-            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')" width="1600" height="893">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
-            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf, $300M</div>
-          </div>
-        </a>
-
-        <a data-index="Intake" class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">012</span>Detention &amp; Treatment</div>
-            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')" width="881" height="1540">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Intake and Holdings</div>
-            <div class="home-meta-loc">2019<span class="sep">/</span>Program stacking study</div>
-          </div>
-        </a>
-
-        <a data-index="Jail" class="home-entry" href="#rehabilitation" onclick="stackOpen(&apos;rehabilitation&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">013</span>Detention</div>
-            <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="County Jail Renovation, program massing" onload="this.classList.add('loaded')" width="1340" height="867">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">County Jail Renovation</div>
-            <div class="home-meta-loc">Macomb County MI<span class="sep">/</span>$229M<span class="sep">/</span>Program massing</div>
-          </div>
-        </a>
-
-      </section>
-
-      <!-- 04 PRACTICE -->
-      <section class="cat-section cat-section--grid" id="cat-practice">
-        <div class="cat-header">
-          <div class="cat-mark">04</div>
-          <h2 class="cat-name">Practice</h2>
-          <div class="cat-thesis">Smaller-scale work where material and proportion carry the design: retail and workplace. The studio register at room scale.</div>
-        </div>
-
-        <a data-index="Interiors" class="home-entry" href="#interior" onclick="stackOpen(&apos;interior&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">014</span>Retail</div>
-            <img decoding="async" loading="lazy" src="bakery.jpg" alt="Blue Sky Bakery" onload="this.classList.add('loaded')" width="1600" height="603">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Interiors &amp; Renovations</div>
-            <div class="home-meta-loc">New York NY<span class="sep">/</span>Five projects</div>
-          </div>
-        </a>
-
-        <a data-index="Workplace" class="home-entry" href="#office" onclick="stackOpen(&apos;office&apos;); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">015</span>Workplace</div>
-            <img decoding="async" loading="lazy" src="office.jpg" alt="AEC firm office" onload="this.classList.add('loaded')" width="1600" height="1035">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">Architecture &amp; Engineering HQ</div>
-            <div class="home-meta-loc">New York NY<span class="sep">/</span>5-story renovation</div>
-          </div>
-        </a>
-
-      </section>
-
-      <!-- 05 EDITORIAL -->
-      <section class="cat-section cat-section--grid" id="cat-editorial">
-        <div class="cat-header">
-          <div class="cat-mark">05</div>
-          <h2 class="cat-name">Editorial</h2>
-          <div class="cat-thesis">Writing across justice architecture, AI in practice, sustainable real estate, infrastructure and development. Seven pieces, each with its full text or document.</div>
-        </div>
-
-        <a data-index="Observer" class="home-entry" href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
-          <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">016</span>Justice</div>
-            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')" width="1600" height="900">
-          </div>
-          <div class="home-meta">
-            <div class="home-meta-name">DO: Design Observer</div>
-            <div class="home-meta-loc">Justice typologies<span class="sep">/</span>Volume 1 forthcoming</div>
-          </div>
-        </a>
 
         <a data-index="Rubric" class="home-entry home-entry--text" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">017</span>AI in practice</div>
+            <div class="home-tag"><span class="num">004</span>AI in practice</div>
             <div class="home-text-title">Twelve principles. Seven frameworks. Every finding cited.</div>
             <div class="home-text-metric">Essay / May 2026</div>
           </div>
@@ -1362,7 +1206,7 @@
 
         <a data-index="Spine" class="home-entry" href="#ed-spine" onclick="stackOpen(&apos;ed-spine&apos;, this); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">018</span>AI in practice</div>
+            <div class="home-tag"><span class="num">005</span>AI in practice</div>
             <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
           </div>
           <div class="home-meta">
@@ -1370,32 +1214,147 @@
             <div class="home-meta-loc">2026<span class="sep">/</span>PDF, 3 pages</div>
           </div>
         </a>
+      </section>
 
-        <a data-index="Sustainability" class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
+      <!-- 02 JUSTICE / CIVIC -->
+      <section class="cat-section cat-section--grid" id="cat-justice">
+        <div class="cat-header">
+          <div class="cat-mark">02</div>
+          <h2 class="cat-name">Justice / Civic</h2>
+          <div class="cat-thesis">Confinement, courts and forensic treatment. Trauma-informed planning at $2B+ scale, environments designed around recovery rather than control, across the typologies the discipline largely refuses to examine.</div>
+        </div>
+
+        <a data-index="Detention" class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">019</span>Real estate</div>
-            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+            <div class="home-tag"><span class="num">006</span>Detention</div>
+            <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')" width="1553" height="2400">
           </div>
           <div class="home-meta">
-            <div class="home-meta-name">Sustainable Real Estate Conference</div>
-            <div class="home-meta-loc">NYU Schack<span class="sep">/</span>2026<span class="sep">/</span>Summary and notes</div>
+            <div class="home-meta-name">Adult Justice Center</div>
+            <div class="home-meta-loc">Chicago IL<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>3.9M sf master plan</div>
           </div>
         </a>
 
-        <a data-index="Transportation" class="home-entry" href="#ed-infrastructure" onclick="stackOpen(&apos;ed-infrastructure&apos;, this); return false;">
+        <a data-index="Court" class="home-entry" href="#court" onclick="stackOpen(&apos;court&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">020</span>Infrastructure</div>
-            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+            <div class="home-tag"><span class="num">007</span>Court</div>
+            <img decoding="async" loading="lazy" src="courtroom-hero.jpg" alt="Family Court" onload="this.classList.add('loaded')" width="1600" height="893">
           </div>
           <div class="home-meta">
-            <div class="home-meta-name">Transportation and Infrastructure Forum</div>
-            <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Summary</div>
+            <div class="home-meta-name">Family Court</div>
+            <div class="home-meta-loc">Staten Island NY<span class="sep">/</span>2020&rarr;2026<span class="sep">/</span>300K sf, $155M</div>
+          </div>
+        </a>
+
+        <a data-index="Forensic" class="home-entry" href="#hospital" onclick="stackOpen(&apos;hospital&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">008</span>Forensic</div>
+            <img decoding="async" loading="lazy" src="mid-hudson.jpg" alt="Administration &amp; Forensic Psychiatric Center" onload="this.classList.add('loaded')" width="1600" height="893">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Administration &amp; Forensic Psychiatric Center</div>
+            <div class="home-meta-loc">New Hampton NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>345K sf, $300M</div>
+          </div>
+        </a>
+
+        <a data-index="Jail" class="home-entry" href="#rehabilitation" onclick="stackOpen(&apos;rehabilitation&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">009</span>Detention</div>
+            <img decoding="async" loading="lazy" src="images/jail/program-axo-1.jpg" alt="County Jail Renovation, program massing" onload="this.classList.add('loaded')" width="1340" height="867">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">County Jail Renovation</div>
+            <div class="home-meta-loc">Macomb County MI<span class="sep">/</span>$229M<span class="sep">/</span>Program massing</div>
+          </div>
+        </a>
+
+        <a data-index="Intake" class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">010</span>Detention &amp; Treatment</div>
+            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')" width="881" height="1540">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Intake and Holdings</div>
+            <div class="home-meta-loc">2019<span class="sep">/</span>Program stacking study</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- 03 INFRASTRUCTURE -->
+      <section class="cat-section cat-section--grid" id="cat-infrastructure">
+        <div class="cat-header">
+          <div class="cat-mark">03</div>
+          <h2 class="cat-name">Infrastructure</h2>
+          <div class="cat-thesis">Civic-scale public works: transit systems, a mixed-use district, a learning environment and a historic tower. Buildings and their business cases treated as one engineered system.</div>
+        </div>
+
+        <a data-index="Transit" class="home-entry" href="#transit" onclick="stackOpen(&apos;transit&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">011</span>Transit</div>
+            <img decoding="async" loading="lazy" src="images/cargo/transit-psd-1.jpg" alt="MTA Platform Screen Doors" onload="this.classList.add('loaded')" width="1600" height="893">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">MTA Platform Screen Doors</div>
+            <div class="home-meta-loc">NYC Subway<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>$25M pilot</div>
+          </div>
+        </a>
+
+        <a data-index="Park" class="home-entry" href="#civic" onclick="stackOpen(&apos;civic&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">012</span>District</div>
+            <img decoding="async" loading="eager" fetchpriority="high" src="images/cargo/metropolitan-park-passerelle.jpg" alt="Metropolitan Park" onload="this.classList.add('loaded')" width="1600" height="792">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Metropolitan Park</div>
+            <div class="home-meta-loc">Queens NY<span class="sep">/</span>2018&rarr;2024<span class="sep">/</span>1.2M sf, 50 acres</div>
+          </div>
+        </a>
+
+        <a data-index="Library" class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">013</span>Learning</div>
+            <img decoding="async" loading="eager" fetchpriority="high" src="cornell-axo.jpg" alt="Fine Arts Library, axonometric" onload="this.classList.add('loaded')" width="1600" height="1143">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Fine Arts Library</div>
+            <div class="home-meta-loc">Ithaca NY<span class="sep">/</span>2018&rarr;2019<span class="sep">/</span>31K sf, $21.6M</div>
+          </div>
+        </a>
+
+        <a data-index="Tower" class="home-entry" href="#brooklyn-tech" onclick="stackOpen(&apos;brooklyn-tech&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">014</span>Preservation</div>
+            <img decoding="async" loading="lazy" src="images/vjl/brooklyn-tech/tower-crown.jpg" alt="Historic Tower" onload="this.classList.add('loaded')" width="1340" height="1005">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Historic Tower</div>
+            <div class="home-meta-loc">Brooklyn NY<span class="sep">/</span>2015&rarr;2018<span class="sep">/</span>600K sf, $19M</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- 04 DEVELOPMENT -->
+      <section class="cat-section cat-section--grid" id="cat-development">
+        <div class="cat-header">
+          <div class="cat-mark">04</div>
+          <h2 class="cat-name">Development</h2>
+          <div class="cat-thesis">Ground-up development studies and proposals: zoning analysis, market research, massing and pro forma underwriting.</div>
+        </div>
+
+        <a data-index="Development" class="home-entry" href="#development" onclick="stackOpen(&apos;development&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">015</span>Development</div>
+            <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')" width="1600" height="1237">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">341 Grand Street</div>
+            <div class="home-meta-loc">Lower East Side<span class="sep">/</span>2024<span class="sep">/</span>10K sf, 5.1% cap</div>
           </div>
         </a>
 
         <a data-index="Hospitality" class="home-entry" href="#ed-hotel-plus" onclick="stackOpen(&apos;ed-hotel-plus&apos;, this); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">021</span>Development</div>
+            <div class="home-tag"><span class="num">016</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
           </div>
           <div class="home-meta">
@@ -1406,7 +1365,7 @@
 
         <a data-index="Zoning" class="home-entry" href="#ed-the-cad" onclick="stackOpen(&apos;ed-the-cad&apos;, this); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">022</span>Development</div>
+            <div class="home-tag"><span class="num">017</span>Development</div>
             <img decoding="async" loading="lazy" src="images/editorial/cad/page-01.jpg" alt="The CAD Proposal" style="object-position: center top;" onload="this.classList.add('loaded')" width="1200" height="675">
           </div>
           <div class="home-meta">
@@ -1416,17 +1375,84 @@
         </a>
       </section>
 
-      <!-- 06 CONCEPTS / ARCHIVE -->
-      <section class="cat-section cat-section--grid" id="cat-archive">
+      <!-- 05 WRITING & TALKS -->
+      <section class="cat-section cat-section--grid" id="cat-editorial">
+        <div class="cat-header">
+          <div class="cat-mark">05</div>
+          <h2 class="cat-name">Writing &amp; Talks</h2>
+          <div class="cat-thesis">Executive summaries and notes from industry conferences on sustainable real estate and infrastructure. Talks, including the Greenbuild NYC technology demo, are listed on the <a href="#info" onclick="showPage('info')">About page</a>.</div>
+        </div>
+
+        <a data-index="Sustainability" class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">018</span>Real estate</div>
+            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Sustainable Real Estate Conference</div>
+            <div class="home-meta-loc">NYU Schack<span class="sep">/</span>2026<span class="sep">/</span>Summary and notes</div>
+          </div>
+        </a>
+
+        <a data-index="Transportation" class="home-entry" href="#ed-infrastructure" onclick="stackOpen(&apos;ed-infrastructure&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">019</span>Infrastructure</div>
+            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Transportation and Infrastructure Forum</div>
+            <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Summary</div>
+          </div>
+        </a>
+
+        <!-- Hidden until Design Observer Volume 1 is published: remove the hidden attribute to show it. -->
+        <a data-index="Observer" class="home-entry" hidden href="#editorial" onclick="stackOpen(&apos;editorial&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">031</span>Justice</div>
+            <img decoding="async" loading="lazy" src="images/do-editorial.jpg" alt="DO: Design Observer" style="object-position: center center;" onload="this.classList.add('loaded')" width="1600" height="900">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">DO: Design Observer</div>
+            <div class="home-meta-loc">Justice typologies<span class="sep">/</span>Volume 1 forthcoming</div>
+          </div>
+        </a>
+      </section>
+
+      <!-- 06 EARLIER WORK -->
+      <div class="earlier-toggle-wrap"><button type="button" class="earlier-toggle" id="earlierToggle" aria-expanded="false" aria-controls="cat-earlier" onclick="toggleEarlier()">Earlier work &rarr;</button></div>
+      <section class="cat-section cat-section--grid cat-section--earlier" id="cat-earlier" hidden>
+        <span id="cat-practice" class="cat-alias"></span><span id="cat-archive" class="cat-alias"></span>
         <div class="cat-header">
           <div class="cat-mark">06</div>
-          <h2 class="cat-name">Archive</h2>
-          <div class="cat-thesis">Concept work, competition entries and earlier portfolios: a residential redevelopment, a storefront, housing and hospitality studies, physical models and academic work from NYIT.</div>
+          <h2 class="cat-name">Earlier Work</h2>
+          <div class="cat-thesis">Room-scale interiors, a workplace renovation, concept work, competition entries, physical models and academic work from NYIT.</div>
         </div>
+
+        <a data-index="Interiors" class="home-entry" href="#interior" onclick="stackOpen(&apos;interior&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">020</span>Retail</div>
+            <img decoding="async" loading="lazy" src="bakery.jpg" alt="Blue Sky Bakery" onload="this.classList.add('loaded')" width="1600" height="603">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Interiors &amp; Renovations</div>
+            <div class="home-meta-loc">New York NY<span class="sep">/</span>Five projects</div>
+          </div>
+        </a>
+
+        <a data-index="Workplace" class="home-entry" href="#office" onclick="stackOpen(&apos;office&apos;); return false;">
+          <div class="home-image-wrap">
+            <div class="home-tag"><span class="num">021</span>Workplace</div>
+            <img decoding="async" loading="lazy" src="office.jpg" alt="AEC firm office" onload="this.classList.add('loaded')" width="1600" height="1035">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Architecture &amp; Engineering HQ</div>
+            <div class="home-meta-loc">New York NY<span class="sep">/</span>5-story renovation</div>
+          </div>
+        </a>
 
         <a data-index="Redevelopment" class="home-entry" href="#archive-inwood" onclick="stackOpen(&apos;archive-inwood&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">023</span>Residential</div>
+            <div class="home-tag"><span class="num">022</span>Residential</div>
             <img decoding="async" loading="lazy" src="images/archive/inwood-redevelopment-cover.jpg" alt="Redevelopment" onload="this.classList.add('loaded')" width="1280" height="1600">
           </div>
           <div class="home-meta">
@@ -1437,7 +1463,7 @@
 
         <a data-index="Storefront" class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">024</span>Storefront</div>
+            <div class="home-tag"><span class="num">023</span>Storefront</div>
             <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')" width="1600" height="1067">
           </div>
           <div class="home-meta">
@@ -1448,7 +1474,7 @@
 
         <a data-index="Dwelling" class="home-entry" href="#jorejick" onclick="stackOpen(&apos;jorejick&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">025</span>Dwelling</div>
+            <div class="home-tag"><span class="num">024</span>Dwelling</div>
             <img decoding="async" loading="lazy" src="images/vjl/jorejick/sunset.jpg" alt="Jorejick Home, covered terrace at sunset" onload="this.classList.add('loaded')" width="1600" height="1173">
           </div>
           <div class="home-meta">
@@ -1459,7 +1485,7 @@
 
         <a data-index="Housing" class="home-entry" href="#cyber-housing" onclick="stackOpen(&apos;cyber-housing&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">026</span>Housing</div>
+            <div class="home-tag"><span class="num">025</span>Housing</div>
             <img decoding="async" loading="lazy" src="images/vjl/cyber-housing/cover.jpg" alt="Cyber Housing" onload="this.classList.add('loaded')" width="1340" height="680">
           </div>
           <div class="home-meta">
@@ -1470,7 +1496,7 @@
 
         <a data-index="Hotel" class="home-entry" href="#hotel" onclick="stackOpen(&apos;hotel&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">027</span>Hospitality</div>
+            <div class="home-tag"><span class="num">026</span>Hospitality</div>
             <img decoding="async" loading="lazy" src="images/vjl/hotel/render.jpg" alt="Hotel+, proposed exterior" onload="this.classList.add('loaded')" width="1340" height="1262">
           </div>
           <div class="home-meta">
@@ -1481,7 +1507,7 @@
 
         <a data-index="Models" class="home-entry" href="#models" onclick="stackOpen(&apos;models&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">028</span>Models</div>
+            <div class="home-tag"><span class="num">027</span>Models</div>
             <img decoding="async" loading="lazy" src="images/vjl/models/frame-plane-cube.jpg" alt="Scale Models" onload="this.classList.add('loaded')" width="1340" height="974">
           </div>
           <div class="home-meta">
@@ -1492,7 +1518,7 @@
 
         <a data-index="Studies" class="home-entry" href="#housing-studies" onclick="stackOpen(&apos;housing-studies&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">029</span>Housing</div>
+            <div class="home-tag"><span class="num">028</span>Housing</div>
             <img decoding="async" loading="lazy" src="images/vjl/housing/cover.jpg" alt="Housing Studies, mixed-use residential tower" onload="this.classList.add('loaded')" width="1010" height="673">
           </div>
           <div class="home-meta">
@@ -1503,7 +1529,7 @@
 
         <a data-index="Museum" class="home-entry" href="#internet-museum" onclick="stackOpen(&apos;internet-museum&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">030</span>Museum</div>
+            <div class="home-tag"><span class="num">029</span>Museum</div>
             <img decoding="async" loading="lazy" src="images/vjl/internet-museum/section-elevation.jpg" alt="Internet Museum, elevation and section" onload="this.classList.add('loaded')" width="1500" height="842">
           </div>
           <div class="home-meta">
@@ -1514,7 +1540,7 @@
 
         <a data-index="Academic" class="home-entry" href="#archive-design-2" onclick="stackOpen(&apos;archive-design-2&apos;); return false;">
           <div class="home-image-wrap">
-            <div class="home-tag"><span class="num">031</span>Academic</div>
+            <div class="home-tag"><span class="num">030</span>Academic</div>
             <img decoding="async" loading="lazy" src="images/archive/design-2/grant-archives-cover.jpg?v=2" alt="Archived Portfolio, Visitor Center Addition &amp; The Archives, Ulysses S. Grant Memorial study model" onload="this.classList.add('loaded')" width="550" height="688">
           </div>
           <div class="home-meta">
@@ -2295,7 +2321,7 @@
     <div class="info-page" id="info">
       <div class="info-content">
         <div class="info-name">Valerie Jimenez</div>
-        <div class="info-email-top">nyc@vjimenez.io &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">linkedin.com/in/valeriejimeneznyc</a></div>
+        <div class="info-email-top">nyc@vjimenez.io &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">linkedin.com/in/valeriejimeneznyc</a> &nbsp;/&nbsp; <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a></div>
         <p class="info-resume"><a href="/resume.pdf" target="_blank" rel="noopener">Download resume (PDF) &darr;</a></p>
         <div class="info-tagline">Solutions Architect / AEC + AI / Project Delivery</div>
 
@@ -2638,12 +2664,42 @@
 
 
 <script>
+  /* fix/reorder-hero: Earlier work is collapsed by default; links into it open it first. */
+  function setEarlier(open) {
+    const sec = document.getElementById('cat-earlier');
+    const btn = document.getElementById('earlierToggle');
+    if (!sec || !btn) return;
+    sec.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.innerHTML = open ? 'Hide earlier work &uarr;' : 'Earlier work &rarr;';
+  }
+  function toggleEarlier() {
+    const sec = document.getElementById('cat-earlier');
+    if (!sec) return;
+    const open = sec.hidden;
+    setEarlier(open);
+    if (open) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  (function () {
+    function openIfInside() {
+      const h = location.hash.replace('#', '');
+      if (h === 'cat-earlier' || h === 'cat-practice' || h === 'cat-archive') {
+        setEarlier(true);
+        requestAnimationFrame(() => document.getElementById('cat-earlier').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+      }
+    }
+    window.addEventListener('hashchange', openIfInside);
+    window.addEventListener('load', openIfInside);
+  })();
+</script>
+
+<script>
   /* Build the index from the home tiles: section name, count, one row per work. */
   (function () {
     const box = document.getElementById('homeIndex');
     if (!box) return;
     document.querySelectorAll('.cat-section').forEach(sec => {
-      const tiles = sec.querySelectorAll('.home-entry');
+      const tiles = sec.querySelectorAll('.home-entry:not([hidden])');
       if (!tiles.length) return;
       const g = document.createElement('div');
       g.className = 'home-index-group';
@@ -2652,7 +2708,7 @@
       const head = document.createElement('div');
       head.className = 'home-index-head';
       head.innerHTML = '<a href="#' + sec.id + '"></a><span></span>';
-      head.firstChild.textContent = mark + ' ' + name;
+      head.firstChild.textContent = mark + ' ' + name + (sec.classList.contains('cat-section--earlier') ? ' \u2192' : '');
       head.lastChild.textContent = tiles.length;
       g.appendChild(head);
       const ROMAN = ['i','ii','iii','iv','v','vi','vii','viii','ix','x','xi','xii','xiii','xiv','xv','xvi','xvii','xviii','xix','xx'];
@@ -2684,7 +2740,7 @@
         }
         const d = document.createElement('span'); d.className = 'd';
         d.textContent = parts.join(' / ');
-        body.append(t, d); row.append(n, body); g.appendChild(row);
+        body.append(t, d); row.append(n, body); if (!sec.classList.contains('cat-section--earlier')) g.appendChild(row);
       });
       box.appendChild(g);
     });
