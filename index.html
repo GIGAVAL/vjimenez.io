@@ -1122,6 +1122,16 @@
     .cat-header .cat-mark, .cat-header .cat-name { font-size: 2.2rem; }
     .home-entry .home-meta-loc, .cat-section--grid .home-meta-loc { font-size: 1rem; }
   }
+  /* FILL SHORT ROWS 19 Nov: a last row of two tiles stretches to full width; a lone last tile joins the row above as two rows of two */
+  @media (min-width: 1200px) {
+    .cat-section--grid { grid-template-columns: repeat(6, 1fr); }
+    .cat-section--grid > a.home-entry { grid-column: span 2; }
+    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(2),
+    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(2) ~ a.home-entry,
+    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(4),
+    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(4) ~ a.home-entry,
+    #cat-editorial > a.home-entry { grid-column: span 3; }
+  }
 </style>
 </head>
 <body>
@@ -1215,26 +1225,25 @@
           </div>
         </a>
 
-        <a data-index="Rubric" class="home-entry home-entry--text" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
+        <a data-index="Rubric" class="home-entry" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">004</span>AI in practice</div>
-            <div class="home-text-title">Twelve principles. Seven frameworks. Every finding cited.</div>
-            <div class="home-text-metric">Essay / May 2026</div>
+            <img decoding="async" loading="lazy" src="images/repos/rubric-matrix.jpg" alt="AI design reviewer output: compliance matrix scoring trauma-informed principles 0 to 3, each with a cited framework" style="object-position: left top;" onload="this.classList.add('loaded')" width="1200" height="800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">A Trauma-Informed Design Review Rubric</div>
-            <div class="home-meta-loc">Essay<span class="sep">/</span>2026</div>
+            <div class="home-meta-loc">12 principles<span class="sep">/</span>7 frameworks<span class="sep">/</span>Essay, 2026</div>
           </div>
         </a>
 
         <a data-index="Spine" class="home-entry" href="#ed-spine" onclick="stackOpen(&apos;ed-spine&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">005</span>AI in practice</div>
-            <img decoding="async" loading="lazy" src="images/editorial/spine/page-1.jpg" alt="The Spine: Parametric Design with AI" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
+            <img decoding="async" loading="lazy" src="images/repos/spine-3d.jpg" alt="The Spine: ring structure along a parametric curve, modeled in Grasshopper by prompting" onload="this.classList.add('loaded')" width="1200" height="801">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">The Spine: Parametric Design with AI</div>
-            <div class="home-meta-loc">2026<span class="sep">/</span>PDF, 3 pages</div>
+            <div class="home-meta-loc">Grasshopper<span class="sep">/</span>Built by prompting<span class="sep">/</span>2026</div>
           </div>
         </a>
       </section>
@@ -1294,7 +1303,7 @@
         <a data-index="Intake" class="home-entry" href="#penobscot" onclick="stackOpen(&apos;penobscot&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">010</span>Detention &amp; Treatment</div>
-            <img decoding="async" loading="lazy" src="images/penobscot/cover.png?v=2" alt="Intake and Holdings exploded axonometric" onload="this.classList.add('loaded')" width="881" height="1540">
+            <img decoding="async" loading="lazy" src="images/penobscot/town-aerial-dusk.jpg" alt="Penobscot intake study: aerial of the town site at dusk" onload="this.classList.add('loaded')" width="1600" height="900">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Intake and Holdings</div>
@@ -1367,7 +1376,7 @@
         <a data-index="Development" class="home-entry" href="#development" onclick="stackOpen(&apos;development&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">015</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="341 Grand Street LES Mixed-Use Development" onload="this.classList.add('loaded')" width="1600" height="1237">
+            <img decoding="async" loading="lazy" src="images/thumbs/development.jpg" alt="Lower East Side development study: hard cost distribution by trade" onload="this.classList.add('loaded')" width="1150" height="766">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">341 Grand Street</div>
@@ -1378,7 +1387,7 @@
         <a data-index="Hospitality" class="home-entry" href="#ed-hotel-plus" onclick="stackOpen(&apos;ed-hotel-plus&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">016</span>Development</div>
-            <img decoding="async" loading="lazy" src="images/editorial/hotel-plus/page-1.jpg" alt="Hotel+ Proposal" style="object-position: center top;" onload="this.classList.add('loaded')" width="765" height="990">
+            <img decoding="async" loading="lazy" src="images/thumbs/hospitality.jpg" alt="Hotel+ proposal: existing St. Marks Hotel site outlined at the corner" onload="this.classList.add('loaded')" width="1200" height="801">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Hotel+ Proposal</div>
@@ -1409,7 +1418,7 @@
         <a data-index="Sustainability" class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">018</span>Real estate</div>
-            <img decoding="async" loading="lazy" src="images/editorial/nyu-exec/page-01.png" alt="Sustainable Real Estate Conference" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+            <img decoding="async" loading="lazy" src="images/thumbs/sustainability.jpg" alt="Sustainable Real Estate Conference" onload="this.classList.add('loaded')" width="1130" height="753">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Sustainable Real Estate Conference</div>
@@ -1420,7 +1429,7 @@
         <a data-index="Transportation" class="home-entry" href="#ed-infrastructure" onclick="stackOpen(&apos;ed-infrastructure&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">019</span>Infrastructure</div>
-            <img decoding="async" loading="lazy" src="images/editorial/pwc/page-01.png" alt="Transportation and Infrastructure Forum" style="object-position: center top;" onload="this.classList.add('loaded')" width="1390" height="1800">
+            <img decoding="async" loading="lazy" src="images/thumbs/transportation.jpg" alt="Transportation and Infrastructure Forum" onload="this.classList.add('loaded')" width="1140" height="760">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Transportation and Infrastructure Forum</div>
@@ -1487,7 +1496,7 @@
         <a data-index="Storefront" class="home-entry" href="#rodarte" onclick="stackOpen(&apos;rodarte&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">023</span>Storefront</div>
-            <img decoding="async" loading="lazy" src="images/rodarte/cover.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')" width="1600" height="1067">
+            <img decoding="async" loading="lazy" src="images/thumbs/storefront.jpg" alt="Rodarte storefront concept, Meatpacking District" onload="this.classList.add('loaded')" width="1538" height="1067">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Rodarte</div>
