@@ -227,39 +227,3 @@ assert EXISTING < 356.11 / 2  # proposal's average queen rate across the five co
 body += [t(ax0, 915, 'The site sells rooms at under half', 30, 700), t(ax0, 953, 'the neighborhood rate.', 30, 700)]
 save('images/vjl/hotel/returns.svg', body)
 
-# ---------- Bailout tile: a market crash, drawn (illustration, not market data) ----------
-import random
-random.seed(7)
-UP, DOWN, BG, GRID = '#23d18b', '#ff3b3b', '#0b0b0b', '#1e1e1e'
-steps = [random.uniform(6, 26) for _ in range(22)] + [-random.uniform(40, 95) for _ in range(9)] + [random.uniform(-14, 18) for _ in range(5)]
-steps[3], steps[9], steps[15] = -14, -20, -11   # a few red days on the way up
-price, candles = 420.0, []
-for d in steps:
-    o, c = price, price + d
-    candles.append((o, c, max(o, c) + random.uniform(4, 22), min(o, c) - random.uniform(4, 22)))
-    price = c
-lo, hi = min(c[3] for c in candles), max(c[2] for c in candles)
-X0, X1, Y0, Y1 = 70, 1530, 110, 900
-py = lambda v: Y1 - (v - lo) / (hi - lo) * (Y1 - Y0)
-body = [rect(0, 0, W, H, BG)]
-for k in range(9):
-    y = Y0 + k * (Y1 - Y0) / 8
-    body.append(f'<line x1="{X0}" y1="{y:.0f}" x2="{X1}" y2="{y:.0f}" stroke="{GRID}" stroke-width="2"/>')
-for k in range(13):
-    x = X0 + k * (X1 - X0) / 12
-    body.append(f'<line x1="{x:.0f}" y1="{Y0}" x2="{x:.0f}" y2="{Y1}" stroke="{GRID}" stroke-width="2"/>')
-step = (X1 - X0) / len(candles)
-peak = max(range(len(candles)), key=lambda i: candles[i][2])
-for i, (o, c, h, l) in enumerate(candles):
-    x = X0 + i * step + step / 2
-    col = UP if c >= o else DOWN
-    body.append(f'<line x1="{x:.1f}" y1="{py(h):.1f}" x2="{x:.1f}" y2="{py(l):.1f}" stroke="{col}" stroke-width="4"/>')
-    body.append(rect(x - step * 0.32, py(max(o, c)), step * 0.64, max(abs(py(o) - py(c)), 4), col))
-px_peak = X0 + peak * step + step / 2
-body.append(f'<line x1="{X0}" y1="{py(candles[peak][2]):.1f}" x2="{X1}" y2="{py(candles[peak][2]):.1f}" stroke="{LIME}" stroke-width="3" stroke-dasharray="14 12"/>')
-body.append(rect(X1 - 250, py(candles[peak][2]) - 52, 250, 44, LIME))
-body.append(t(X1 - 125, py(candles[peak][2]) - 20, 'PEAK', 28, 800, INK, 'middle', 6))
-last = candles[-1][1]
-body.append(rect(X1 - 250, py(last) - 22, 250, 44, DOWN))
-body.append(t(X1 - 125, py(last) + 10, 'CRASH', 28, 800, '#ffffff', 'middle', 6))
-save('images/repos/bailout-crash.svg', body)
