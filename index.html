@@ -1223,10 +1223,10 @@
           </div>
         </a>
 
-        <a data-index="Rubric" class="home-entry" href="#ed-design-review" onclick="showPage(&apos;ed-design-review&apos;); location.hash=&apos;ed-design-review&apos;; return false;">
+        <a data-index="Rubric" class="home-entry" href="#ed-design-review" onclick="stackOpen(&apos;ed-design-review&apos;, this); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">004</span>AI in practice</div>
-            <img decoding="async" loading="lazy" src="images/repos/rubric-matrix.jpg" alt="AI design reviewer output: compliance matrix scoring trauma-informed principles 0 to 3, each with a cited framework" style="object-position: left top;" onload="this.classList.add('loaded')" width="1200" height="800">
+            <img decoding="async" loading="lazy" src="images/editorial/rubric/scorecard.svg" alt="Design review rubric scorecard, twelve principles scored 0 to 3" onload="this.classList.add('loaded')" width="1600" height="1067">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">A Trauma-Informed Design Review Rubric</div>
@@ -2000,11 +2000,21 @@
       <div class="next-page"><a href="#ed-design-review" onclick="showPage('ed-design-review')">Design Review Rubric &rarr;</a></div>
     </div>
     <div class="project-page" id="ed-design-review">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/rubric/scorecard.svg" alt="Scorecard: twelve trauma-informed design principles scored 0 to 3, total 8 of 36" onload="this.classList.add('loaded')" width="1600" height="1067">
+        <div class="image-caption">Scorecard from a test review: twelve principles, 8 of 36. The six zeros are the gaps to close</div>
+      </div>
       <div class="project-content">
         <div class="project-location">AI in Practice / A Trauma-Informed Design Review Rubric for Justice Facilities / May 2026</div>
         <p class="project-description">Trauma-informed design for justice facilities sits across seven separate frameworks (SAMHSA, NIC, AAJ, Vera, ACA, WBDG, BJA) that do not naturally cross-reference. I built an AI reviewer that replaces the manual cross-reference with a structured, citation-anchored first-pass audit a project architect can run on a narrative, programming sheet or drawing set in under three minutes. Twelve principles are scored 0 to 3, and every finding must cite a published framework: safety, normative materiality and dignity, sightlines and supervision model, daylight and biophilia, acoustic environment, de-escalation and sensory regulation, programming and education, family contact and visitation, gender-responsive design, cultural and demographic context, staff wellness and respite, wayfinding and autonomy.</p>
         <div class="project-role">Authored, AI for Architects (ELVTR)</div>
         <p class="project-detail">What surprised me was that the structure mattered more than the model. When I forced a twelve-principle scored matrix and required a framework citation on every finding, the reviewer produced peer-level critique. When I let it free-range, it drifted into moralizing. There is an ethics problem inside this work that the tool does not solve: reducing trauma-informed design to a 0 to 3 rubric risks turning an ethical practice into a checklist. I accept that risk because the alternative, uneven application based on whoever is reviewing, is worse. A rigorous checklist that names its frameworks beats a moral posture that produces no audit trail. What it cannot do is read the room. It cannot interview a formerly incarcerated woman. It cannot evaluate post-occupancy.</p>
+      </div>
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/rubric/review-output.jpg" alt="Reviewer output: compliance matrix with score, rationale and framework, followed by critical findings" onload="this.classList.add('loaded')" width="1600" height="952">
+        <div class="image-caption">What the reviewer returns: a scored matrix with a framework cited on every row, then findings with a specific action for each</div>
+        <img decoding="async" loading="lazy" src="images/editorial/rubric/gem-builder.jpg" alt="Reviewer configuration: system prompt listing eight framework sources, twelve principles and the required output structure" onload="this.classList.add('loaded')" width="1600" height="1629">
+        <div class="image-caption">How it is built: the system prompt fixes the frameworks, the twelve principles and the seven-part output</div>
       </div>
       <div class="next-page"><a href="#ed-spine" onclick="showPage('ed-spine')">The Spine &rarr;</a></div>
     </div>

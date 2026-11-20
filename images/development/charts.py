@@ -166,3 +166,31 @@ for i, (name, v) in enumerate(TAX):
              t(430 + w + 20, y + 44, f'{v:.2f}%', 40, 800)]
 body.append(t(70, 985, 'Redrawn 2026 from the table in the 2018 study', 20, 400, GREY, ls=1))
 save('images/development/berkshire/property-tax.svg', body)
+
+# ---------- Rubric: scorecard from test review 1 ----------
+RUBRIC = [('Safety, physical and psychological', 1), ('Normative materiality and finishes', 0), ('Sightlines and supervision model', 2),
+          ('Daylight access and biophilia', 0), ('Acoustic environment', 0), ('De-escalation and sensory regulation', 1),
+          ('Programming, education, vocational', 0), ('Family contact and visitation dignity', 2), ('Gender-responsive design', 1),
+          ('Cultural, historical, demographic context', 0), ('Staff wellness and respite', 0), ('Wayfinding, predictability, autonomy', 1)]
+TOTAL = sum(v for _, v in RUBRIC)
+assert len(RUBRIC) == 12 and TOTAL == 8
+body = [t(70, 110, 'DESIGN REVIEW RUBRIC  /  TEST REVIEW: ACUTE MENTAL HEALTH HOUSING UNIT', 24, 700, GREY, ls=4),
+        t(64, 300, f'{TOTAL}/36', 190, 800, INK, ls=-8),
+        rect(70, 335, 470, 26, LIME),
+        t(70, 425, 'Twelve principles,', 38, 700), t(70, 473, 'each scored 0 to 3.', 38, 700),
+        t(70, 560, 'Every score cites one of', 26, 400, GREY), t(70, 596, 'seven published frameworks:', 26, 400, GREY),
+        t(70, 650, 'SAMHSA  /  NIC  /  AAJ  /  Vera', 26, 700), t(70, 688, 'ACA  /  WBDG  /  BJA', 26, 700),
+        t(70, 800, 'Six principles scored zero.', 34, 700), t(70, 844, 'Those are the gaps to close.', 34, 700),
+        t(70, 985, 'Scores from the reference review in the project files, May 2026', 20, 400, GREY, ls=1)]
+assert sum(1 for _, v in RUBRIC if v == 0) == 6
+bx, cell, y0, rowh = 1210, 96, 205, 62
+for k in range(4):
+    body.append(t(bx + k * cell + cell / 2, y0 - 22, str(k), 22, 700, GREY, 'middle'))
+for i, (name, v) in enumerate(RUBRIC):
+    y = y0 + i * rowh
+    body.append(t(bx - 24, y + 36, f'{i + 1}. {name}', 24, 700 if v == 0 else 400, INK, 'end'))
+    for k in range(1, 4):
+        body.append(rect(bx + k * cell - cell / 2 + 6, y + 8, cell - 12, rowh - 20, LIME if k <= v else '#ffffff', INK))
+    if v == 0:
+        body.append(rect(bx + 6, y + 8, cell / 2 - 12, rowh - 20, INK, INK))
+save('images/editorial/rubric/scorecard.svg', body)
