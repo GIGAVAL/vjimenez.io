@@ -1378,7 +1378,7 @@
         <a data-index="Library" class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">013</span>Learning</div>
-            <img decoding="async" loading="lazy" src="images/thumbs/library.jpg" alt="Fine Arts Library, cutaway axonometric of the suspended book stacks" onload="this.classList.add('loaded')" width="1200" height="800">
+            <img decoding="async" loading="lazy" src="images/thumbs/library.jpg" alt="Fine Arts Library, three levels of book stacks suspended above the reading floor. Photo by Lukas Schaller" onload="this.classList.add('loaded')" width="1200" height="800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Fine Arts Library</div>
@@ -2610,7 +2610,7 @@
     <div class="info-page" id="info">
       <div class="info-content">
         <div class="info-name">Valerie Jimenez</div>
-        <div class="info-email-top">nyc@vjimenez.io &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">linkedin.com/in/valeriejimeneznyc</a> &nbsp;/&nbsp; <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a></div>
+        <div class="info-email-top"><a href="mailto:nyc@vjimenez.io" style="color:inherit; border-bottom:1px solid currentColor;">nyc@vjimenez.io</a> &nbsp;/&nbsp; <a href="https://www.linkedin.com/in/valeriejimeneznyc" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">linkedin.com/in/valeriejimeneznyc</a> &nbsp;/&nbsp; <a href="https://github.com/GIGAVAL" target="_blank" rel="noopener me" style="color:inherit; border-bottom:1px solid currentColor;">github.com/GIGAVAL</a></div>
         <p class="info-resume"><a href="/resume.pdf" target="_blank" rel="noopener">Download resume (PDF) &darr;</a></p>
         <div class="info-tagline">Solutions Architect / AEC + AI / Project Delivery</div>
 
@@ -3156,6 +3156,17 @@
     addEventListener('load', function () { if (!done) layout(); setTimeout(end, 1500); });
     setTimeout(end, 4500);
   })();
+</script>
+<script>
+  // Email links: also copy the address and say so, because a mailto link does nothing on a computer with no mail app set up
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var addr = a.getAttribute('href').slice(7), label = a.dataset.label || (a.dataset.label = a.textContent);
+      a.textContent = addr;  // always show the address, so it can be read or copied by hand
+      setTimeout(function () { a.textContent = label; }, 4000);
+      if (navigator.clipboard) navigator.clipboard.writeText(addr).then(function () { a.textContent = 'Copied ' + addr; }, function () {});
+    });
+  });
 </script>
 </body>
 </html>
