@@ -1167,6 +1167,8 @@
   .home-index-row:hover .d, .home-index-row:focus-visible .d { max-height: 3.6em; opacity: 1; padding-top: 0.2rem; }
   /* WRITING AND TALKS 20 Nov: no thumbnails on the home page; the works open from the index on the left */
   #cat-editorial { display: none; }
+  /* EARLIER WORK 20 Nov: same as Writing, opened from the index only */
+  #cat-earlier, .earlier-toggle-wrap { display: none !important; }
 </style>
 </head>
 <body>
@@ -3027,16 +3029,16 @@
       const earlier = sec.classList.contains('cat-section--earlier');
       head.innerHTML = '<a href="#' + sec.id + '"><span class="m"></span><span class="nm"></span></a><span></span>';
       head.querySelector('.m').textContent = mark;
-      head.querySelector('.nm').textContent = name + (earlier ? ' \u2192' : '');
+      head.querySelector('.nm').textContent = name;
       head.lastChild.textContent = tiles.length;
       /* Section heads open and close their list of works; opening also scrolls to the section */
-      if (!earlier) {
+      {
         head.firstChild.setAttribute('aria-expanded', 'false');
         head.firstChild.addEventListener('click', e => {
           e.preventDefault();
           const open = g.classList.toggle('open');
           head.firstChild.setAttribute('aria-expanded', open);
-          if (open) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (open && sec.offsetParent !== null) sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); /* Writing and Earlier Work have no thumbnails on home */
         });
       }
       g.appendChild(head);
@@ -3069,7 +3071,7 @@
         }
         const d = document.createElement('span'); d.className = 'd';
         d.textContent = BIO[tile.dataset.index] || parts.join(' / ');
-        body.append(t, d); row.append(n, body); if (!sec.classList.contains('cat-section--earlier')) g.appendChild(row);
+        body.append(t, d); row.append(n, body); g.appendChild(row);
       });
       box.appendChild(g);
     });
