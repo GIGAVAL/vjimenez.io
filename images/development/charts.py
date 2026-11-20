@@ -194,3 +194,35 @@ for i, (name, v) in enumerate(RUBRIC):
     if v == 0:
         body.append(rect(bx + 6, y + 8, cell / 2 - 12, rowh - 20, INK, INK))
 save('images/editorial/rubric/scorecard.svg', body)
+
+# ---------- Hotel+: returns and room-rate comps ----------
+COMPS = [('The Bowery Hotel', 395, 625), ('The Standard East Village', 369, 415), ('The Ludlow Hotel', 265, 405),
+         ('Moxy NYC', 189, 300), ('East Village Hotel', 242, 242)]
+EXISTING = 150  # queen room at the existing hotel, from the proposal text
+assert round(24_864 / 37_296 * 100) == 67  # existing building uses 67% of the allowable floor area
+body = [t(70, 110, 'HOTEL+  /  EAST VILLAGE  /  INVESTMENT CASE, JULY 2020', 24, 700, GREY, ls=4),
+        t(64, 300, '10.5%', 190, 800, INK, ls=-8),
+        rect(70, 335, 470, 26, LIME),
+        t(70, 425, 'Levered IRR over a', 38, 700), t(70, 473, 'ten-year hold', 38, 700),
+        t(70, 560, '2.44x equity multiple', 30, 700), t(70, 602, '$96.9M total profit', 30, 700),
+        t(70, 644, 'Exit at a 5.25% cap rate', 30, 700),
+        t(70, 730, '60 keys on six floors.', 26, 400, GREY),
+        t(70, 766, '37,296 sf allowed as of right;', 26, 400, GREY),
+        t(70, 802, 'the existing building uses 67% of it.', 26, 400, GREY),
+        t(70, 985, 'Redrawn 2026 from the July 2020 proposal', 20, 400, GREY, ls=1)]
+ax0, axw, vmax = 800, 560, 700
+px = lambda v: ax0 + axw * v / vmax
+body += [t(ax0, 215, 'QUEEN ROOM, NIGHTLY RATE', 22, 700, GREY, ls=3)]
+for v in (0, 200, 400, 600):
+    body.append(f'<line x1="{px(v):.1f}" y1="250" x2="{px(v):.1f}" y2="820" stroke="{MID}" stroke-width="1"/>')
+    body.append(t(px(v), 850, f'${v}', 20, 400, GREY, 'middle'))
+for i, (name, lo, hi) in enumerate(COMPS):
+    y = 275 + i * 92
+    body += [t(ax0, y + 4, name, 24, 700), rect(px(lo), y + 18, max(px(hi) - px(lo), 10), 34, INK, INK),
+             t(px(hi) + 16, y + 44, f'${lo}' if lo == hi else f'${lo} to ${hi}', 22, 400, GREY)]
+y = 275 + len(COMPS) * 92
+body += [t(ax0, y + 4, 'Existing hotel on the site', 24, 700), rect(px(0), y + 18, px(EXISTING) - px(0), 34, LIME, INK),
+         t(px(EXISTING) + 16, y + 44, f'from ${EXISTING}', 22, 700)]
+assert EXISTING < 356.11 / 2  # proposal's average queen rate across the five comps
+body += [t(ax0, 915, 'The site sells rooms at under half', 30, 700), t(ax0, 953, 'the neighborhood rate.', 30, 700)]
+save('images/vjl/hotel/returns.svg', body)
