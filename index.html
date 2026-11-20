@@ -1143,6 +1143,12 @@
     .cat-header .cat-thesis { position: absolute; top: 100%; left: 0; right: 0; max-width: none; z-index: 20; background: #E8FF3A; color: var(--ink); padding: 1.2rem 1.4rem; opacity: 0; visibility: hidden; transition: opacity 0.15s ease, visibility 0s linear 0.25s; }
     .cat-header .cat-name:hover ~ .cat-thesis, .cat-header .cat-thesis:hover { opacity: 1; visibility: visible; transition-delay: 0s; }
   }
+  /* INTRO JUMBLE 20 Nov: on a first visit the tiles start as a collage on black, then fly to their places */
+  .intro-backdrop { position: fixed; inset: 0; background: #000; z-index: 9000; cursor: pointer; transition: opacity 1.1s ease; }
+  .intro-on a.home-entry { position: relative; }
+  .intro-on .home-meta, .intro-on .home-tag { opacity: 0; }
+  .intro-out a.home-entry { transition: transform 1.3s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .intro-out .intro-backdrop { opacity: 0; }
 </style>
 </head>
 <body>
@@ -2820,6 +2826,47 @@
     fit();
     window.addEventListener('resize', fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  })();
+</script>
+<script>
+  // Intro jumble: first visit only (add ?intro to the address to replay). Skipped for deep links and reduced motion.
+  (function () {
+    var force = /[?&]intro\b/.test(location.search);
+    if (!force) {
+      if (location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      try { if (localStorage.getItem('vj-intro')) return; localStorage.setItem('vj-intro', '1'); } catch (e) {}
+    }
+    var tiles = [].slice.call(document.querySelectorAll('#home .cat-section:not([hidden]) a.home-entry'));
+    if (!tiles.length) return;
+    var root = document.documentElement, W = innerWidth, H = innerHeight;
+    var bd = document.createElement('div'); bd.className = 'intro-backdrop'; document.body.appendChild(bd);
+    root.classList.add('intro-on');
+    // one cell per tile across the window, shuffled, with jitter so the edges overlap
+    var cols = Math.ceil(Math.sqrt(tiles.length * W / H)), rows = Math.ceil(tiles.length / cols), cells = [];
+    for (var i = 0; i < cols * rows; i++) cells.push(i);
+    cells.sort(function () { return Math.random() - 0.5; });
+    tiles.forEach(function (t, i) {
+      var img = t.querySelector('img'); if (img) img.loading = 'eager';
+      var r = t.getBoundingClientRect(), c = cells[i];
+      var cx = ((c % cols) + 0.5 + (Math.random() - 0.5) * 0.5) * W / cols;
+      var cy = (Math.floor(c / cols) + 0.5 + (Math.random() - 0.5) * 0.5) * H / rows;
+      var s = (W / cols) * (1.25 + Math.random() * 0.7) / r.width;
+      t.style.transform = 'translate(' + (cx - r.left - r.width / 2) + 'px,' + (cy - r.top - r.height / 2) + 'px) scale(' + s + ')';
+      t.style.zIndex = 9001 + i;
+    });
+    var done = false;
+    function end() {
+      if (done) return; done = true;
+      root.classList.add('intro-out');
+      tiles.forEach(function (t) { t.style.transform = ''; });
+      setTimeout(function () {
+        tiles.forEach(function (t) { t.style.zIndex = ''; });
+        root.classList.remove('intro-on', 'intro-out'); bd.remove();
+      }, 1400);
+    }
+    bd.addEventListener('click', end);
+    addEventListener('load', function () { setTimeout(end, 1500); });
+    setTimeout(end, 4500);
   })();
 </script>
 </body>
