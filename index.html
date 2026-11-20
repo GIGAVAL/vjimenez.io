@@ -1129,8 +1129,8 @@
     .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(2),
     .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(2) ~ a.home-entry,
     .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(4),
-    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(4) ~ a.home-entry,
-    #cat-editorial > a.home-entry { grid-column: span 3; }
+    .cat-section--grid > a.home-entry:nth-of-type(3n+1):nth-last-of-type(4) ~ a.home-entry { grid-column: span 3; }
+    #cat-editorial > a.home-entry { grid-column: span 2; } /* three visible tiles; the hidden Observer tile would otherwise be counted */
   }
   /* TILE LABELS 19 Nov: label box is see-through so less of the image is hidden; text stays solid */
   .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { background: rgba(255,255,255,0.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
@@ -1199,7 +1199,7 @@
       <div class="edge-mark">Valerie Jimenez, Solutions Architect, NYC</div>
 
       <div class="home-intro">
-        <div class="home-intro-tag">Index 2011 / 2026 19 selected works</div>
+        <div class="home-intro-tag">Index 2011 / 2026 22 selected works</div>
         <div class="home-intro-text"><span class="l">Buildings as regulated platforms.</span> <span class="l">Built to survive value engineering,</span> <span class="l">Political reality and capital math.</span></div>
         <div class="home-intro-sub">Solutions architect bridging architecture, building code and AI tools. 14+ years, 20+ public-use facilities, $3.155B aggregate and 7.9M sf across courthouses, healthcare, transit, libraries and hospitality. That record now works where the industry is shifting: helping firms adopt AI, price it and put it into delivery while knowledge moves faster than process. Design judgment, development economics and working software from one practitioner.</div>
       </div>
@@ -1425,6 +1425,26 @@
             <div class="home-meta-loc">Brooklyn Heights<span class="sep">/</span>2019<span class="sep">/</span>PDF, 14 pages</div>
           </div>
         </a>
+
+        <a data-index="Nolita" class="home-entry" href="#ed-nolita" onclick="stackOpen(&apos;ed-nolita&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <img decoding="async" loading="lazy" src="images/development/nolita/slide-08.jpg" alt="Nolita senior housing proposal" style="object-position: right center;" onload="this.classList.add('loaded')" width="1600" height="1200">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Senior Housing Proposal</div>
+            <div class="home-meta-loc">Nolita<span class="sep">/</span>2018<span class="sep">/</span>Sources and uses</div>
+          </div>
+        </a>
+
+        <a data-index="Market" class="home-entry" href="#ed-berkshire" onclick="stackOpen(&apos;ed-berkshire&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <img decoding="async" loading="lazy" src="images/development/berkshire/page-7.jpg" alt="Berkshire County market analysis" style="object-position: center 70%;" onload="this.classList.add('loaded')" width="1400" height="2095">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Home Market Analysis</div>
+            <div class="home-meta-loc">Berkshire County MA<span class="sep">/</span>2018<span class="sep">/</span>Forecast</div>
+          </div>
+        </a>
       </section>
 
       <!-- 05 WRITING & TALKS -->
@@ -1432,7 +1452,7 @@
         <div class="cat-header">
           <div class="cat-mark">05</div>
           <h2 class="cat-name">Writing &amp; Talks</h2>
-          <div class="cat-thesis">Executive summaries and notes from industry conferences on sustainable real estate and infrastructure. Talks, including the Greenbuild NYC technology demo, are listed on the <a href="#info" onclick="showPage('info')">About page</a>.</div>
+          <div class="cat-thesis">Executive summaries and notes from industry conferences on sustainable real estate and infrastructure. One concept text. Talks, including the Greenbuild NYC technology demo, are listed on the <a href="#info" onclick="showPage('info')">About page</a>.</div>
         </div>
 
         <a data-index="Sustainability" class="home-entry" href="#ed-sustainable-re" onclick="stackOpen(&apos;ed-sustainable-re&apos;, this); return false;">
@@ -1454,6 +1474,16 @@
           <div class="home-meta">
             <div class="home-meta-name">Transportation and Infrastructure Forum</div>
             <div class="home-meta-loc">PwC<span class="sep">/</span>2026<span class="sep">/</span>Summary</div>
+          </div>
+        </a>
+
+        <a data-index="Xi'an" class="home-entry" href="#ed-xian" onclick="stackOpen(&apos;ed-xian&apos;, this); return false;">
+          <div class="home-image-wrap">
+            <img decoding="async" loading="lazy" src="images/editorial/xian/page-1.jpg" alt="Xi'an concept text" style="object-position: center 30%;" onload="this.classList.add('loaded')" width="1300" height="1682">
+          </div>
+          <div class="home-meta">
+            <div class="home-meta-name">Xi'an: East, West, Peace</div>
+            <div class="home-meta-loc">Xi'an China<span class="sep">/</span>2019<span class="sep">/</span>Concept text</div>
           </div>
         </a>
 
@@ -1689,6 +1719,18 @@
         <div class="image-caption">Site plan, topographic diagram</div>
         <img decoding="async" loading="lazy" src="images/penobscot/site-plan-survey.jpg" alt="Site plan at Court Street and Hammond Street with contours and neighbouring buildings" onload="this.classList.add('loaded')" width="1600" height="1035">
         <div class="image-caption">Site plan, Court Street and Hammond Street, with contours and neighbouring buildings</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-06.jpg" alt="Site analysis, existing county campus and buildable area" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Site analysis: the existing county campus, the building to be removed and the buildable area</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-19.jpg" alt="Proposed building location on the campus with access routes" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Proposed location, option 1: new building, green space and vehicle access</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-23.jpg" alt="Hand sketch site plan over the aerial" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Site plan sketch over the aerial</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-31.jpg" alt="Stacking diagram, program by floor in two massing options" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Stacking diagram: housing units over healthcare, food service, staff and admin</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-33.jpg" alt="Hand-drawn housing study plan, 32 rooms around a dayroom" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Housing study, 32 rooms around a shared dayroom, hand drawn</div>
+        <img decoding="async" loading="lazy" src="images/penobscot/pcjc-37.jpg" alt="Housing layout option with dayroom, recreation yard and core program" onload="this.classList.add('loaded')" width="1600" height="947">
+        <div class="image-caption">Housing layout, option 1: dayroom, recreation yard and core program spaces</div>
       </div>
       <div class="next-page"><a href="#hospital" onclick="showPage('hospital')">Administration &amp; Forensic Psychiatric Center &rarr;</a></div>
     </div>
@@ -1827,6 +1869,12 @@
         <div class="image-caption">Iteration 1: establish the parti, a restored historic base under a glazed addition</div>
         <img decoding="async" loading="lazy" src="images/development/les-sketch-2.jpg" alt="Lower East Side corner building, AI concept sketch in sepia line" onload="this.classList.add('loaded')" width="1262" height="948">
         <div class="image-caption">Iteration 2: force the medium, hand-drawn line on toned paper</div>
+        <img decoding="async" loading="lazy" src="images/development/les-report-1.jpg" alt="Site study cover, Lower East Side, Q4 2024" onload="this.classList.add('loaded')" width="1300" height="1682">
+        <div class="image-caption">Site study, Lower East Side, Q4 2024: assemblage of four lots at Canal, Ludlow and Essex Streets</div>
+        <img decoding="async" loading="lazy" src="images/development/les-report-2.jpg" alt="Aerial with the four lots highlighted and the tax lot map" onload="this.classList.add('loaded')" width="1300" height="1682">
+        <div class="image-caption">The assemblage: four lots highlighted on the aerial, with the tax lot map</div>
+        <img decoding="async" loading="lazy" src="images/development/les-report-3.jpg" alt="Property data for each lot: lot area, floors, units, zoning and allowable floor area" onload="this.classList.add('loaded')" width="1300" height="1682">
+        <div class="image-caption">Lot by lot: area, building size, units, zoning district and allowable floor area ratio</div>
         <img decoding="async" loading="lazy" src="images/les-residential-mix.jpg" alt="LES Mixed-Use residential program by floor" onload="this.classList.add('loaded')" width="1600" height="1237">
         <div class="image-caption">Residential mix program allocation by floor, unit type, $/sf, monthly rent</div>
       </div>
@@ -2090,6 +2138,70 @@
       <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Redevelopment &rarr;</a></div>
     </div>
 
+
+    <div class="project-page" id="ed-nolita">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-01.jpg" alt="Nolita senior housing proposal, title slide with site aerial" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Nolita, mixed-use affordable housing for seniors: title and site</div>
+      </div>
+      <div class="project-content">
+        <div class="project-location">Development Proposals / Nolita, Manhattan / NYU Schack / December 2018</div>
+        <p class="project-description">Proposal for mixed-use affordable housing for seniors on a through lot between Mott and Elizabeth Streets. The deck sets out the site and zoning, the proposed building and unit mix, demand, development cost, income and expense, sources and uses and the tax credit calculation.</p>
+        <div class="project-role">Role</div>
+        <p class="project-detail">Team of three. Site and zoning analysis, building program and the financial model with the team.</p>
+      </div>
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-08.jpg" alt="Site elements: location, lot data, zoning maps" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Site: Mott and Elizabeth Streets, 20,265 sf through lot, zoning and special district</div>
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-10.jpg" alt="Demand table: unit count and rents by bedroom type" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Proposed units and rents by bedroom type</div>
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-11.jpg" alt="Finance: unit mix and income" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Unit mix and income</div>
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-12.jpg" alt="Finance: equity pay-in and sources" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Equity pay-in and sources of funds</div>
+        <img decoding="async" loading="lazy" src="images/development/nolita/slide-13.jpg" alt="Finance: uses and tax credit calculation" onload="this.classList.add('loaded')" width="1600" height="1200">
+        <div class="image-caption">Uses of funds and tax credit calculation</div>
+      </div>
+      <div class="next-page"><a href="#ed-berkshire" onclick="showPage('ed-berkshire')">Market &rarr;</a></div>
+    </div>
+
+    <div class="project-page" id="ed-berkshire">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/development/berkshire/page-3.jpg" alt="Berkshire County population by age, chart and table" onload="this.classList.add('loaded')" width="1400" height="2090">
+        <div class="image-caption">Population by age, 2009 to 2017 with forecast</div>
+      </div>
+      <div class="project-content">
+        <div class="project-location">Market Analysis / Berkshire County, MA / NYU Schack / December 2018</div>
+        <p class="project-description">Home market study for Berkshire County, Massachusetts: population by age, tenure, vacancy and occupancy, each set against the state and projected five years forward, to test demand for first homes and second homes.</p>
+        <div class="project-role">Authored</div>
+        <p class="project-detail">Data collection, charts, forecasts and written analysis.</p>
+      </div>
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/development/berkshire/page-4.jpg" alt="Tenure: owner and renter occupied homes, Massachusetts and Berkshire County" onload="this.classList.add('loaded')" width="1400" height="1894">
+        <div class="image-caption">Tenure and vacancy, state against county</div>
+        <img decoding="async" loading="lazy" src="images/development/berkshire/page-7.jpg" alt="Occupancy status charts, Massachusetts and Berkshire County" onload="this.classList.add('loaded')" width="1400" height="2095">
+        <div class="image-caption">Occupied and vacant homes, with five-year forecast</div>
+      </div>
+      <div class="next-page"><a href="#archive-inwood" onclick="showPage('archive-inwood')">Redevelopment &rarr;</a></div>
+    </div>
+
+    <div class="project-page" id="ed-xian">
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/xian/page-1.jpg" alt="Xi'an concept text with site aerial" onload="this.classList.add('loaded')" width="1300" height="1682">
+        <div class="image-caption">Xi'an: East, West, Peace. Concept text and site</div>
+      </div>
+      <div class="project-content">
+        <div class="project-location">Writing / Xi'an, China / 2019</div>
+        <p class="project-description">Concept text for a site in Xi'an split by a transit artery: a rectangular parcel on one side, a square parcel on the other. The text reads the site as platforms and trains and works out a massing from that reading.</p>
+        <div class="project-role">Authored</div>
+        <p class="project-detail">Concept text and massing diagram.</p>
+      </div>
+      <div class="project-images">
+        <img decoding="async" loading="lazy" src="images/editorial/xian/page-2.jpg" alt="Xi'an massing diagram" onload="this.classList.add('loaded')" width="1300" height="1682">
+        <div class="image-caption">Massing diagram: extruded rectangle and square with the platform void between</div>
+      </div>
+      <div class="next-page"><a href="#ed-sustainable-re" onclick="showPage('ed-sustainable-re')">Sustainability &rarr;</a></div>
+    </div>
 
     <!-- ARCHIVE 011: INWOOD REDEVELOPMENT -->
     <div class="project-page" id="archive-inwood">
