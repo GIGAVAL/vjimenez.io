@@ -1151,6 +1151,7 @@
   .intro-out a.home-entry, .intro-out .intro-text { transition: transform 1.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 1.3s ease, box-shadow 1.3s ease; }
   .intro-out .intro-text { background: transparent; box-shadow: 0 0 0 0.6rem transparent; }
   .intro-out .intro-backdrop { opacity: 0; }
+  @media (max-width: 600px) { .intro-on .home-intro-text .l { display: inline-block; } }
 </style>
 </head>
 <body>
@@ -2850,27 +2851,33 @@
     var cw = W / cols, ch = H / rows, cells = [];
     for (var i = 0; i < cols * rows; i++) cells.push(i);
     cells.sort(function () { return Math.random() - 0.5; });
-    function place(t, cx, cy, s, z) {
-      var r = t.getBoundingClientRect();
-      t.style.transform = 'translate(' + (cx - r.left - r.width / 2) + 'px,' + (cy - r.top - r.height / 2) + 'px) scale(' + s(r) + ')';
-      t.style.zIndex = z;
-    }
+    // each item keeps its random spot; layout() re-measures, because images and fonts loading move the page underneath
+    var items = [];
     tiles.forEach(function (t, i) {
       var img = t.querySelector('img'); if (img) img.loading = 'eager';
       if (i < cells.length) {
         var c = cells[i];
-        place(t, ((c % cols) + 0.5 + (Math.random() - 0.5) * 0.08) * cw, (Math.floor(c / cols) + 0.5 + (Math.random() - 0.5) * 0.08) * ch,
-          function (r) { return Math.max(cw / r.width, ch / r.height) * 1.14; }, 9001 + i);
+        items.push({ el: t, z: 9001 + i, x: ((c % cols) + 0.5 + (Math.random() - 0.5) * 0.08) * cw, y: (Math.floor(c / cols) + 0.5 + (Math.random() - 0.5) * 0.08) * ch,
+          s: function (r) { return Math.max(cw / r.width, ch / r.height) * 1.14; } });
       } else {
-        place(t, Math.random() * W, Math.random() * H, function (r) { return cw / r.width; }, 9050 + i);
+        items.push({ el: t, z: 9050 + i, x: Math.random() * W, y: Math.random() * H, s: function (r) { return cw / r.width; } });
       }
     });
-    // headings ride on top of the images, on the site highlight colour
+    // headings ride on top of the images, on the site highlight colour, at natural size (the headline fit script measures these boxes)
     texts.forEach(function (t, i) {
-      var hw = Math.min(t.getBoundingClientRect().width, W) / 2; // keep the whole line inside the window
-      place(t, hw + Math.random() * (W - 2 * hw), (i + 0.5 + (Math.random() - 0.5) * 0.4) * H / texts.length,
-        function () { return 1; }, 9100 + i); // no scaling: the headline fit script measures these boxes
+      items.push({ el: t, z: 9100 + i, fx: Math.random(), y: (i + 0.5 + (Math.random() - 0.5) * 0.4) * H / texts.length, s: function () { return W < 600 ? 0.6 : 1; } }); // phones: smaller, so images stay visible
     });
+    function layout() {
+      items.forEach(function (it) { it.el.style.transform = ''; });
+      var rects = items.map(function (it) { return it.el.getBoundingClientRect(); });
+      items.forEach(function (it, i) {
+        var r = rects[i], x = it.x, y = it.y;
+        if (x === undefined) { var hw = Math.min(r.width, W) / 2; x = hw + it.fx * (W - 2 * hw); y = Math.min(Math.max(y, r.height / 2), H - r.height / 2); } // keep the whole line inside the window
+        it.el.style.transform = 'translate(' + (x - r.left - r.width / 2) + 'px,' + (y - r.top - r.height / 2) + 'px) scale(' + it.s(r) + ')';
+        it.el.style.zIndex = it.z;
+      });
+    }
+    layout();
     var all = tiles.concat(texts);
     var done = false;
     function end() {
@@ -2884,8 +2891,8 @@
     }
     // any click during the collage skips it and does nothing else (tiles sit above the backdrop)
     document.addEventListener('click', function skip(e) { if (done) return; e.preventDefault(); e.stopPropagation(); document.removeEventListener('click', skip, true); end(); }, true);
-    if (/[?&]intro=hold\b/.test(location.search)) return; // ?intro=hold keeps the collage up until a click
-    addEventListener('load', function () { setTimeout(end, 1500); });
+    if (/[?&]intro=hold\b/.test(location.search)) { addEventListener('load', function () { if (!done) layout(); }); return; } // ?intro=hold keeps the collage up until a click
+    addEventListener('load', function () { if (!done) layout(); setTimeout(end, 1500); });
     setTimeout(end, 4500);
   })();
 </script>
