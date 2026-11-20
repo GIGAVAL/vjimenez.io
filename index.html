@@ -1165,6 +1165,8 @@
   .home-index-group.open .home-index-row { display: grid; }
   .home-index-row .d { display: block; max-height: 0; overflow: hidden; opacity: 0; font-size: 0.98rem; line-height: 1.3; color: var(--text-light); transition: max-height 0.2s ease, opacity 0.2s ease; }
   .home-index-row:hover .d, .home-index-row:focus-visible .d { max-height: 3.6em; opacity: 1; padding-top: 0.2rem; }
+  /* WRITING AND TALKS 20 Nov: no thumbnails on the home page; the works open from the index on the left */
+  #cat-editorial { display: none; }
 </style>
 </head>
 <body>
@@ -1378,7 +1380,7 @@
         <a data-index="Library" class="home-entry" href="#library" onclick="stackOpen(&apos;library&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">013</span>Learning</div>
-            <img decoding="async" loading="lazy" src="images/thumbs/library.jpg" alt="Fine Arts Library, three levels of book stacks suspended above the reading floor. Photo by Lukas Schaller" onload="this.classList.add('loaded')" width="1200" height="800">
+            <img decoding="async" loading="lazy" src="images/thumbs/library.jpg?v=3" alt="Fine Arts Library, three levels of book stacks suspended above the reading floor. Photo by Lukas Schaller" onload="this.classList.add('loaded')" width="1200" height="800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Fine Arts Library</div>
@@ -3100,7 +3102,8 @@
       if (location.hash || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       try { if (localStorage.getItem('vj-intro')) return; localStorage.setItem('vj-intro', '1'); } catch (e) {}
     }
-    var tiles = [].slice.call(document.querySelectorAll('#home .cat-section:not([hidden]) a.home-entry'));
+    var tiles = [].slice.call(document.querySelectorAll('#home .cat-section:not([hidden]) a.home-entry'))
+      .filter(function (t) { return t.offsetParent !== null; }); // skip tiles that are not shown
     if (!tiles.length) return;
     var texts = [].slice.call(document.querySelectorAll('#home .home-intro-text .l, #home .cat-section:not([hidden]) .cat-name'));
     var root = document.documentElement, W = innerWidth, H = innerHeight, n = tiles.length;
