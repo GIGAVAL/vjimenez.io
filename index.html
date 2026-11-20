@@ -1135,6 +1135,14 @@
   /* TILE LABELS 19 Nov: label box is see-through so less of the image is hidden; text stays solid */
   .home-entry .home-meta, .cat-section--grid .home-entry .home-meta { background: rgba(255,255,255,0.7); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
   .home-entry:hover .home-meta, .cat-section--grid .home-entry:hover .home-meta { background: #E8FF3A; }
+  /* SECTION BIO ON HOVER 20 Nov: with a mouse, the section sentence opens over the tiles when the section name is hovered; touch screens keep it in the page */
+  @media (hover: hover) {
+    .cat-header { position: relative; padding-bottom: 0.4rem; }
+    .cat-header .cat-name { cursor: help; justify-self: start; }
+    .cat-header .cat-name::after { content: " +"; color: var(--text-faint); }
+    .cat-header .cat-thesis { position: absolute; top: 100%; left: 0; right: 0; max-width: none; z-index: 20; background: #E8FF3A; color: var(--ink); padding: 1.2rem 1.4rem; opacity: 0; visibility: hidden; transition: opacity 0.15s ease, visibility 0s linear 0.25s; }
+    .cat-header .cat-name:hover ~ .cat-thesis, .cat-header .cat-thesis:hover { opacity: 1; visibility: visible; transition-delay: 0s; }
+  }
 </style>
 </head>
 <body>
