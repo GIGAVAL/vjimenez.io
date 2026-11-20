@@ -1152,6 +1152,19 @@
   .intro-out .intro-text { background: transparent; box-shadow: 0 0 0 0.6rem transparent; }
   .intro-out .intro-backdrop { opacity: 0; }
   @media (max-width: 600px) { .intro-on .home-intro-text .l { display: inline-block; } }
+  /* INDEX 20 Nov: section heads in the display type of the right panel, smaller; each opens its list on click; a row shows its one-line description on hover */
+  .home-index { columns: 1; }
+  .home-index-group { margin-bottom: 0; }
+  .home-index-head { font-family: var(--font-display); font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; text-transform: uppercase; padding: 0.7rem 0 0.65rem; border-bottom: 1px solid var(--ink); align-items: baseline; }
+  .home-index-head a { cursor: pointer; }
+  .home-index-head .m { color: var(--text-faint); margin-right: 0.5rem; }
+  .home-index-head a[aria-expanded]::after { content: " +"; color: var(--text-faint); }
+  .home-index-group.open .home-index-head a[aria-expanded]::after { content: " \2212"; }
+  .home-index-head > span { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em; color: var(--text-faint); }
+  .home-index-row, .home-index-group .home-index-row { display: none; grid-template-columns: 1fr; font-size: 1.2rem; line-height: 1.25; padding: 0.42rem 0 0.42rem 2.35rem; }
+  .home-index-group.open .home-index-row { display: grid; }
+  .home-index-row .d { display: block; max-height: 0; overflow: hidden; opacity: 0; font-size: 0.98rem; line-height: 1.3; color: var(--text-light); transition: max-height 0.2s ease, opacity 0.2s ease; }
+  .home-index-row:hover .d, .home-index-row:focus-visible .d { max-height: 3.6em; opacity: 1; padding-top: 0.2rem; }
 </style>
 </head>
 <body>
@@ -1279,7 +1292,7 @@
         <a data-index="Detention" class="home-entry" href="#justice" onclick="stackOpen(&apos;justice&apos;); return false;">
           <div class="home-image-wrap">
             <div class="home-tag"><span class="num">006</span>Detention</div>
-            <img decoding="async" loading="lazy" src="images/cook-county-1.jpg" alt="Adult Justice Center" onload="this.classList.add('loaded')" width="1553" height="2400">
+            <img decoding="async" loading="lazy" src="images/thumbs/detention.jpg" alt="Adult Justice Center, campus massing with three new towers" onload="this.classList.add('loaded')" width="1200" height="800">
           </div>
           <div class="home-meta">
             <div class="home-meta-name">Adult Justice Center</div>
@@ -2966,6 +2979,32 @@
   (function () {
     const box = document.getElementById('homeIndex');
     if (!box) return;
+    /* One line per work, shown when its index row is hovered */
+    const BIO = {
+      'SheetCheck': 'Checks a drawing set for sheet and reference errors before issue.',
+      'Rubric': 'AI reviewer that scores justice designs against seven published frameworks.',
+      'Fire': 'Fire compartmentation checks against NCC 2022, packaged for handover.',
+      'Bailout': 'Value engineering on a 3D steel frame, read like a trading terminal.',
+      'Spine': 'Parametric structure built in Grasshopper by prompting.',
+      'Detention': 'Ten-year master plan for a 96-acre county jail campus.',
+      'Court': 'Three civic buildings consolidated into one family courthouse.',
+      'Forensic': 'Forensic psychiatric center planned around treatment, not control.',
+      'Jail': 'County jail renovation modeled department by department.',
+      'Intake': 'Feasibility study for a county justice center on a downtown block.',
+      'Transit': 'Platform screen doors piloted at three active subway stations.',
+      'Park': 'Design coordination for a 50-acre district beside a ballpark.',
+      'Library': 'Three stack levels hung inside a century-old brick hall.',
+      'Tower': 'Masonry and limestone restoration of a 1930s public high school.',
+      'Development': 'Eight apartments over a lobby on a 1,648 sf corner lot.',
+      'Hospitality': 'Proposal to buy a corner hotel and rebuild it at 60 keys.',
+      'Zoning': '150 apartments over a library base, tested against zoning.',
+      'Nolita': '$62.3M capital stack for 76 senior apartments over retail.',
+      'Market': 'Home market forecast for an aging second-home county.',
+      'Sustainability': 'Summary and notes from a sustainable real estate conference.',
+      'Transportation': 'Summary of a forum on transit and infrastructure delivery.',
+      "Xi'an": 'Concept text and massing for a site split by a transit artery.',
+      'Onondaga': 'Field notes from a tour of a direct supervision jail.'
+    };
     document.querySelectorAll('.cat-section').forEach(sec => {
       const tiles = sec.querySelectorAll('.home-entry:not([hidden])');
       if (!tiles.length) return;
@@ -2975,9 +3014,21 @@
       const name = sec.querySelector('.cat-name')?.textContent.trim() || '';
       const head = document.createElement('div');
       head.className = 'home-index-head';
-      head.innerHTML = '<a href="#' + sec.id + '"></a><span></span>';
-      head.firstChild.textContent = mark + ' ' + name + (sec.classList.contains('cat-section--earlier') ? ' \u2192' : '');
+      const earlier = sec.classList.contains('cat-section--earlier');
+      head.innerHTML = '<a href="#' + sec.id + '"><span class="m"></span><span class="nm"></span></a><span></span>';
+      head.querySelector('.m').textContent = mark;
+      head.querySelector('.nm').textContent = name + (earlier ? ' \u2192' : '');
       head.lastChild.textContent = tiles.length;
+      /* Section heads open and close their list of works; opening also scrolls to the section */
+      if (!earlier) {
+        head.firstChild.setAttribute('aria-expanded', 'false');
+        head.firstChild.addEventListener('click', e => {
+          e.preventDefault();
+          const open = g.classList.toggle('open');
+          head.firstChild.setAttribute('aria-expanded', open);
+          if (open) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
       g.appendChild(head);
       const ROMAN = ['i','ii','iii','iv','v','vi','vii','viii','ix','x','xi','xii','xiii','xiv','xv','xvi','xvii','xviii','xix','xx'];
       tiles.forEach((tile, idx) => {
@@ -3007,7 +3058,7 @@
           tile.title = full;
         }
         const d = document.createElement('span'); d.className = 'd';
-        d.textContent = parts.join(' / ');
+        d.textContent = BIO[tile.dataset.index] || parts.join(' / ');
         body.append(t, d); row.append(n, body); if (!sec.classList.contains('cat-section--earlier')) g.appendChild(row);
       });
       box.appendChild(g);
