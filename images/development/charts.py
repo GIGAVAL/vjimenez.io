@@ -227,3 +227,88 @@ assert EXISTING < 356.11 / 2  # proposal's average queen rate across the five co
 body += [t(ax0, 915, 'The site sells rooms at under half', 30, 700), t(ax0, 953, 'the neighborhood rate.', 30, 700)]
 save('images/vjl/hotel/returns.svg', body)
 
+
+# ---------- SheetCheck tile: every page of the two demo sets, flagged ones coloured ----------
+SETS = [('SET 1  /  UNIVERSITY BUILDING', 133, 133, {'note': 2}), ('SET 2  /  PK-8 SCHOOL', 96, 294, {'error': 1, 'warning': 3, 'note': 1})]
+assert sum(p for _, p, _, _ in SETS) == 229 and sum(i for _, _, i, _ in SETS) == 427   # the demo's own totals
+SEV = {'error': '#e5332a', 'warning': '#f5a623', 'note': '#2f6fed'}
+body = [t(70, 110, 'SHEETCHECK  /  AUTOMATED DRAWING-SET QA/QC  /  LIVE DEMO', 24, 700, GREY, ls=4),
+        t(64, 300, '229', 190, 800, INK, ls=-8), t(400, 300, 'pages', 60, 800, INK, ls=-2),
+        rect(70, 335, 470, 26, LIME),
+        t(70, 425, 'Every title block read', 38, 700), t(70, 473, 'against the sheet index.', 38, 700),
+        t(70, 560, '427 indexed sheets across two sets.', 26, 400, GREY),
+        t(70, 596, 'Checked in the browser.', 26, 400, GREY)]
+ly = 690
+for name, col in (('error', 'Error: the set contradicts its own index'), ('warning', 'Warning: a reviewer decides'), ('note', 'Note: passes, worth knowing')):
+    n = sum(s[3].get(name, 0) for s in SETS)
+    body += [rect(70, ly, 30, 38, SEV[name], INK), t(118, ly + 28, f'{n}', 30, 800), t(160, ly + 28, col, 24, 400)]
+    ly += 58
+body.append(t(70, 985, 'Counts from the live demo. Marker positions are illustrative.', 20, 400, GREY, ls=1))
+gx, cw, chh, gapx, gapy, per = 700, 34, 44, 10, 12, 19
+gy = 190
+for si, (label, pages, indexed, flags) in enumerate(SETS):
+    body.append(t(gx, gy - 18, f'{label}  /  {pages} PAGES', 20, 700, GREY, ls=2))
+    marks = {}
+    spots = [int(pages * f) for f in (0.23, 0.41, 0.58, 0.77, 0.9)]
+    order = [k for k in ('error', 'warning', 'note') for _ in range(flags.get(k, 0))]
+    for k, sp in zip(order, spots):
+        marks[sp] = k
+    for i in range(pages):
+        x, y = gx + (i % per) * (cw + gapx), gy + (i // per) * (chh + gapy)
+        body.append(rect(x, y, cw, chh, SEV[marks[i]] if i in marks else '#ffffff', INK))
+    gy += ((pages - 1) // per + 1) * (chh + gapy) + 60
+save('images/repos/sheetcheck-map.svg', body)
+
+# ---------- Fire tile: the building section the check reads, redrawn from Fig. 1 of the handover page ----------
+RL = {'BASEMENT': -875, 'GROUND': 2500, 'L1': 5700, 'L2': 8900, 'L3': 12100, 'L4': 15300, 'ROOF': 19050}
+lv = list(RL.items())
+heights = [lv[i + 1][1] - lv[i][1] for i in range(len(lv) - 1)]
+assert heights == [3375, 3200, 3200, 3200, 3200, 3750]   # the dimension chain printed on the figure
+LAV, CAR, SLAB, SHAFT, DASH = '#dedcf3', '#e3efe0', '#2e7d32', '#d9302a', '#5b55b5'
+yb, sc = 900, 0.0365
+fy = lambda rl: yb - (rl - RL['BASEMENT']) * sc
+xc0, xt0, xt1 = 860, 1060, 1340
+body = [t(70, 110, 'FIRE-002  /  FIRE COMPARTMENTATION CHECK  /  NCC 2022', 24, 700, GREY, ls=4),
+        t(66, 290, 'FIRE-002', 120, 800, INK, ls=-5),
+        rect(70, 335, 470, 26, LIME),
+        t(70, 425, 'The section tells the check', 38, 700), t(70, 473, 'what a plan cannot.', 38, 700),
+        t(70, 560, 'A carpark that is one compartment', 26, 400, GREY), t(70, 596, 'across three storeys.', 26, 400, GREY),
+        t(70, 650, 'A compartment that spans two floors.', 26, 400, GREY),
+        t(70, 704, 'A stair shaft from basement to level 4.', 26, 400, GREY),
+        t(70, 800, 'Floor heights computed', 34, 700), t(70, 844, 'from levels, never measured.', 34, 700),
+        t(70, 985, 'Redrawn 2026 from Fig. 1 of the handover sheet', 20, 400, GREY, ls=1)]
+body += [rect(xc0, fy(RL['L2']), xt0 - xc0, fy(RL['BASEMENT']) - fy(RL['L2']), CAR),
+         rect(xt0, fy(RL['ROOF']), xt1 - xt0, fy(RL['GROUND']) - fy(RL['ROOF']), LAV)]
+def hline(x0, x1, rl, col=SLAB, wd=5, dash=''):
+    return f'<line x1="{x0}" y1="{fy(rl):.1f}" x2="{x1}" y2="{fy(rl):.1f}" stroke="{col}" stroke-width="{wd}"{dash}/>'
+def vline(x, r0, r1, col, wd=4, dash=''):
+    return f'<line x1="{x}" y1="{fy(r0):.1f}" x2="{x}" y2="{fy(r1):.1f}" stroke="{col}" stroke-width="{wd}"{dash}/>'
+D = ' stroke-dasharray="12 9"'
+body += [hline(xc0, xt1, RL['BASEMENT']), hline(xc0, xt1, RL['L2']), hline(xt0, xt1, RL['GROUND']), hline(xt0, xt1, RL['L1']),
+         hline(xt0, xt1, RL['L3']), hline(xt0, xt1, RL['L4']), hline(xt0, xt1, RL['ROOF']),
+         vline(xt0, RL['GROUND'], RL['ROOF'], SLAB, 5), vline(xt1, RL['GROUND'], RL['ROOF'], SLAB, 5),
+         vline(xc0, RL['BASEMENT'], RL['L2'], DASH, 4, D), vline(xt0, RL['BASEMENT'], RL['GROUND'], DASH, 4, D),
+         f'<line x1="{xc0 - 110}" y1="{fy(RL["GROUND"]):.1f}" x2="{xt1 + 190}" y2="{fy(RL["GROUND"]):.1f}" stroke="{GREY}" stroke-width="2" stroke-dasharray="10 8"/>']
+# compartment 2.4 spans L2 to L4; stair shaft runs basement to L4
+x24a, x24b, xs0, xs1 = xt0 + 95, xt0 + 180, xt1 - 82, xt1 - 36
+body += [vline(x24a, RL['L2'], RL['L4'], DASH, 4, D), vline(x24b, RL['L2'], RL['L4'], DASH, 4, D),
+         rect(xs0, fy(RL['L4']), xs1 - xs0, fy(RL['BASEMENT']) - fy(RL['L4']), 'none', SHAFT)]
+body[-1] = body[-1].replace('stroke-width="2"', 'stroke-width="5"')
+for name, r0, r1 in (('G.1', 'GROUND', 'L1'), ('1.1', 'L1', 'L2'), ('2.1', 'L2', 'L3'), ('3.1', 'L3', 'L4'), ('4.1', 'L4', 'ROOF')):
+    body.append(t(xt0 + 22, (fy(RL[r0]) + fy(RL[r1])) / 2 + 9, name, 26, 700))
+body += [t((x24a + x24b) / 2, fy(RL['L4']) + 40, '2.4', 26, 700, INK, 'middle'),
+         t((xc0 + xt0) / 2, (fy(RL['BASEMENT']) + fy(RL['L2'])) / 2 - 4, 'CARPARK', 26, 700, INK, 'middle'),
+         t((xc0 + xt0) / 2, (fy(RL['BASEMENT']) + fy(RL['L2'])) / 2 + 28, 'one compartment', 22, 400, INK, 'middle'),
+         t((xs0 + xs1) / 2, fy(RL['L4']) - 14, 'STAIR', 20, 700, SHAFT, 'middle')]
+for name, rl in lv:
+    body.append(t(xc0 - 130, fy(rl) + 8, f'{name}', 22, 700, INK, 'end'))
+    body.append(t(xc0 - 122, fy(rl) + 8, f'RL {rl}'.replace('-', '−'), 20, 400, GREY))
+xd = xt1 + 60
+for i, h in enumerate(heights):
+    y0, y1 = fy(lv[i][1]), fy(lv[i + 1][1])
+    body += [f'<line x1="{xd}" y1="{y0:.1f}" x2="{xd}" y2="{y1:.1f}" stroke="{SHAFT}" stroke-width="3"/>',
+             f'<line x1="{xd - 10}" y1="{y1:.1f}" x2="{xd + 10}" y2="{y1:.1f}" stroke="{SHAFT}" stroke-width="3"/>',
+             t(xd + 24, (y0 + y1) / 2 + 8, f'{h}', 24, 700)]
+body.append(f'<line x1="{xd - 10}" y1="{fy(lv[0][1]):.1f}" x2="{xd + 10}" y2="{fy(lv[0][1]):.1f}" stroke="{SHAFT}" stroke-width="3"/>')
+body.append(t(1560, fy(RL['ROOF']) - 30, 'FLOOR TO FLOOR, MM', 18, 700, GREY, 'end', 2))
+save('images/repos/fire-section.svg', body)
