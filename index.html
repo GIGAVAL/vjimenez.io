@@ -1169,6 +1169,8 @@
   #cat-editorial { display: none; }
   /* EARLIER WORK 20 Nov: same as Writing, opened from the index only */
   #cat-earlier, .earlier-toggle-wrap { display: none !important; }
+  /* CHART TILES 25 Nov: drawn charts are shown whole at every tile shape (phones use a squarer tile, which was cutting their sides) */
+  .home-entry .home-image-wrap img[src$=".svg"] { object-fit: contain; background: #fff; }
 </style>
 </head>
 <body>
@@ -1204,7 +1206,7 @@
     <div class="nav-footer">
       <hr>
       <div class="copyright">&copy; 2026 Valerie Jimenez</div>
-      <div class="copyright">Updated 11/20/26</div>
+      <div class="copyright">Updated 11/25/26</div>
     </div>
   </nav>
 
